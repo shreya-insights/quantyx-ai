@@ -1,4 +1,5 @@
 from functools import lru_cache
+import json
 from typing import Optional
 
 from pydantic import field_validator
@@ -63,8 +64,36 @@ class Settings(BaseSettings):
     @field_validator("ALLOWED_ORIGINS", mode="before")
     @classmethod
     def parse_origins(cls, v):
+        # pydantic-settings may provide:
+        # - a Python `list[str]` (already parsed JSON from .env)
+        # - or a raw string (from .env) that might be JSON (e.g. `["http://..."]`)
+        #   or comma-separated (e.g. `http://a,http://b`)
+        if v is None:
+            return []
+
+        if isinstance(v, list):
+            return [str(origin).strip().strip('"').strip("'") for origin in v if str(origin).strip()]
+
         if isinstance(v, str):
-            return [origin.strip() for origin in v.split(",")]
+            s = v.strip()
+            # Prefer JSON-array parsing when the value looks like JSON.
+            # This aligns with `.env.example` and avoids quoted/bracket artifacts.
+            if s.startswith("["):
+                try:
+                    parsed = json.loads(s)
+                    if isinstance(parsed, list):
+                        return [
+                            str(origin).strip().strip('"').strip("'")
+                            for origin in parsed
+                            if str(origin).strip()
+                        ]
+                except Exception:
+                    # Fall back to comma parsing below.
+                    pass
+
+            # Fallback: treat as comma-separated list.
+            return [origin.strip().strip('"').strip("'") for origin in s.split(",") if origin.strip()]
+
         return v
 
     # ─── Rate Limiting ────────────────────────────────────────────────────────
