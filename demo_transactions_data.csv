@@ -1,0 +1,181 @@
+account_id,amount,currency,transaction_type,status,description,transaction_date
+1,45000.00,INR,credit,completed,Salary credit - Infosys Ltd,2024-01-03
+1,2500.00,INR,debit,completed,Zomato food order - Mumbai,2024-01-04
+1,15000.00,INR,debit,completed,Amazon.in electronics purchase,2024-01-05
+2,30000.00,INR,credit,completed,Fixed deposit interest credit,2024-01-06
+1,1200.00,INR,debit,completed,Ola cab - Bangalore to airport,2024-01-07
+3,8500.00,INR,debit,completed,Myntra clothing purchase,2024-01-08
+1,500.00,INR,debit,completed,Swiggy Instamart - groceries,2024-01-09
+1,75000.00,INR,credit,completed,Freelance payment - Tata Consultancy,2024-01-10
+1,12000.00,INR,debit,completed,HDFC credit card bill payment,2024-01-11
+2,5000.00,INR,debit,completed,LIC premium payment,2024-01-12
+1,3200.00,INR,debit,completed,BigBasket monthly grocery order,2024-01-13
+1,950.00,INR,debit,completed,Rapido bike ride - Delhi,2024-01-14
+1,22000.00,INR,debit,completed,Flight ticket - Mumbai to Chennai - IndiGo,2024-01-15
+2,10000.00,INR,transfer,completed,Transfer to savings account,2024-01-16
+1,4500.00,INR,debit,completed,Meesho fashion purchase,2024-01-17
+3,6800.00,INR,debit,completed,Reliance Digital - headphones,2024-01-18
+1,180.00,INR,debit,completed,BMTC bus pass recharge - Bangalore,2024-01-19
+1,2100.00,INR,debit,completed,BookMyShow movie tickets - PVR,2024-01-20
+2,8000.00,INR,credit,completed,Rental income - Koramangala flat,2024-01-21
+1,750.00,INR,debit,completed,Dunzo delivery - medicines,2024-01-22
+1,45000.00,INR,credit,completed,Salary credit - Wipro Technologies,2024-02-01
+1,3800.00,INR,debit,completed,Flipkart sale purchase,2024-02-02
+1,1800.00,INR,debit,completed,Jio recharge - family plan,2024-02-03
+2,25000.00,INR,credit,completed,PPF account maturity credit,2024-02-04
+1,9500.00,INR,debit,completed,Apollo Pharmacy - diabetic medicines,2024-02-05
+3,14000.00,INR,debit,completed,Vijay Sales - mixer grinder,2024-02-06
+1,400.00,INR,debit,completed,Uber auto - Hyderabad,2024-02-07
+1,18000.00,INR,debit,completed,IRCTC train ticket - Rajdhani Express,2024-02-08
+2,6000.00,INR,debit,completed,Term insurance premium - LIC Jeevan Anand,2024-02-09
+1,2600.00,INR,debit,completed,Haldirams restaurant - family dinner,2024-02-10
+1,85000.00,INR,credit,completed,Project bonus - HCL Technologies,2024-02-11
+1,11000.00,INR,debit,completed,Home maintenance - plumber and electrician,2024-02-12
+1,700.00,INR,debit,completed,Mamaearth beauty products,2024-02-13
+3,7200.00,INR,debit,completed,Croma - air purifier,2024-02-14
+1,3000.00,INR,debit,completed,Nykaa makeup order,2024-02-15
+2,15000.00,INR,transfer,completed,Transfer to RD account,2024-02-16
+1,1500.00,INR,debit,completed,Blinkit - weekend groceries,2024-02-17
+1,5500.00,INR,debit,completed,Decathlon sports equipment,2024-02-18
+1,550.00,INR,debit,completed,IndiaMart subscription,2024-02-19
+1,45000.00,INR,credit,completed,Salary credit - Infosys Ltd,2024-03-04
+1,8200.00,INR,debit,completed,Paytm Mall - pressure cooker set,2024-03-05
+1,2000.00,INR,debit,completed,Swiggy - office lunch delivery,2024-03-06
+2,12000.00,INR,credit,completed,Dividend income - HDFC Mutual Fund,2024-03-07
+1,35000.00,INR,debit,completed,Tanishq gold jewellery - Akshaya Tritiya,2024-03-08
+3,19000.00,INR,debit,completed,Samsung Galaxy Tab - Flipkart,2024-03-09
+1,900.00,INR,debit,completed,Ola Electric scooter maintenance,2024-03-10
+1,4200.00,INR,debit,completed,Tata Sky DTH recharge - annual,2024-03-11
+1,6500.00,INR,debit,completed,WOW Skin Science - skincare bundle,2024-03-12
+2,8000.00,INR,credit,completed,Tenant rent - 2BHK Pune,2024-03-13
+1,3400.00,INR,debit,completed,Lenskart - prescription glasses,2024-03-14
+1,45000.00,INR,credit,completed,Salary credit - Tech Mahindra,2024-04-01
+1,17500.00,INR,debit,completed,MakeMyTrip - Goa holiday package,2024-04-02
+1,2800.00,INR,debit,completed,Zomato Gold - restaurant order,2024-04-03
+2,20000.00,INR,credit,completed,NSE dividend - Reliance Industries,2024-04-04
+1,6000.00,INR,debit,completed,Byju's online tuition - child,2024-04-05
+3,23000.00,INR,debit,completed,Titan Fastrack smartwatch,2024-04-06
+1,1100.00,INR,debit,completed,BigBasket daily essentials,2024-04-07
+1,42000.00,INR,debit,completed,Honda Activa servicing + insurance,2024-04-08
+2,5000.00,INR,debit,completed,SBI Mutual Fund SIP installment,2024-04-09
+1,2300.00,INR,debit,completed,Dominos pizza - family weekend,2024-04-10
+1,50000.00,INR,credit,completed,Annual performance bonus - Accenture,2024-04-11
+1,9800.00,INR,debit,completed,Urban Clap home cleaning service,2024-04-12
+1,4600.00,INR,debit,completed,Ajio fashion sale purchase,2024-04-13
+3,12500.00,INR,debit,completed,Bajaj Finance EMI - refrigerator,2024-04-14
+1,600.00,INR,debit,completed,Zepto - midnight snacks delivery,2024-04-15
+2,18000.00,INR,transfer,completed,Investment in PPF account,2024-04-16
+1,3100.00,INR,debit,completed,Cult.fit gym membership annual,2024-04-17
+1,7800.00,INR,debit,completed,Dream11 gaming deposit,2024-04-18
+1,45000.00,INR,credit,completed,Salary credit - Infosys Ltd,2024-05-02
+1,13000.00,INR,debit,completed,Yatra.com - summer vacation train,2024-05-03
+1,4000.00,INR,debit,completed,Milk Basket monthly subscription,2024-05-04
+2,9000.00,INR,credit,completed,Mutual fund SIP returns,2024-05-05
+1,5500.00,INR,debit,completed,Lakme salon - bridal makeover,2024-05-06
+3,28000.00,INR,debit,completed,iPhone case + accessories - Apple Store,2024-05-07
+1,1600.00,INR,debit,completed,Swiggy Genie - laundry pickup,2024-05-08
+1,38000.00,INR,debit,completed,Maruti Suzuki Alto service center,2024-05-09
+2,7500.00,INR,debit,completed,HDFC Life insurance premium,2024-05-10
+1,2700.00,INR,debit,completed,Moti Mahal - family dinner Dilli,2024-05-11
+1,70000.00,INR,credit,completed,Consulting fees - Cognizant project,2024-05-12
+1,8300.00,INR,debit,completed,Chumbak home decor - wedding gift,2024-05-13
+1,1400.00,INR,debit,completed,IndiGo baggage extra fee,2024-05-14
+3,15600.00,INR,debit,completed,ICICI Bank credit card bill,2024-05-15
+1,3900.00,INR,debit,completed,Udemy courses - full-stack development,2024-05-16
+2,11000.00,INR,credit,completed,Stock market gains - Zerodha,2024-05-17
+1,45000.00,INR,credit,completed,Salary credit - Wipro Ltd,2024-06-03
+1,24000.00,INR,debit,completed,Air India - family trip to Shimla,2024-06-04
+1,3500.00,INR,debit,completed,Pepperfry sofa cushions,2024-06-05
+2,15000.00,INR,credit,completed,Rent received - Bengaluru property,2024-06-06
+1,6200.00,INR,debit,completed,Chai Point office subscription,2024-06-07
+3,9500.00,INR,debit,completed,Bose speakers - Amazon Prime Day,2024-06-08
+1,850.00,INR,debit,completed,CRED bill pay - electricity,2024-06-09
+1,32000.00,INR,debit,completed,Weddingz.in - venue booking advance,2024-06-10
+2,10000.00,INR,debit,completed,Axis Bank RD installment,2024-06-11
+1,4800.00,INR,debit,completed,Kama Ayurveda skincare order,2024-06-12
+1,60000.00,INR,credit,completed,Client payment - Freelance React project,2024-06-13
+1,7600.00,INR,debit,completed,Netmeds online pharmacy order,2024-06-14
+1,2100.00,INR,debit,completed,CCD - team outing coffee meeting,2024-06-15
+3,18700.00,INR,debit,completed,Tata Cliq - Fitbit premium,2024-06-16
+1,1000.00,INR,debit,completed,Metro smart card recharge - Delhi,2024-06-17
+2,22000.00,INR,transfer,completed,Transfer to house down payment fund,2024-06-18
+1,45000.00,INR,credit,completed,Salary credit - HCL Technologies,2024-07-01
+1,5400.00,INR,debit,completed,Ather Energy electric scooter service,2024-07-02
+1,3300.00,INR,debit,completed,Nua women health subscription,2024-07-03
+2,8500.00,INR,credit,completed,Rent - Powai Mumbai property,2024-07-04
+1,14500.00,INR,debit,completed,Vedantu online coaching - JEE prep,2024-07-05
+3,21000.00,INR,debit,completed,Sony headphones - official website,2024-07-06
+1,700.00,INR,debit,completed,Park+ car parking app recharge,2024-07-07
+1,28000.00,INR,debit,completed,Ola cabs - monthly office commute,2024-07-08
+2,9000.00,INR,debit,completed,ELSS tax saving fund SIP,2024-07-09
+1,3800.00,INR,debit,completed,Licious - fresh meat monthly order,2024-07-10
+1,80000.00,INR,credit,completed,Mid-year increment credit - Infosys,2024-07-11
+1,11500.00,INR,debit,completed,Simplilearn certification course,2024-07-12
+1,2400.00,INR,debit,completed,Pizza Hut - birthday party,2024-07-13
+3,34000.00,INR,debit,completed,Croma laptop bag + accessories,2024-07-14
+1,4100.00,INR,debit,completed,Godrej Nature's Basket - premium groceries,2024-07-15
+2,17000.00,INR,credit,completed,Dividend - Tata Motors stocks,2024-07-16
+1,45000.00,INR,credit,completed,Salary credit - Wipro Technologies,2024-08-01
+1,26000.00,INR,debit,completed,Ganesh Chaturthi decoration + prasad,2024-08-02
+1,6100.00,INR,debit,completed,Firstcry - baby products monthly,2024-08-03
+2,12000.00,INR,credit,completed,Property rental - Malad West flat,2024-08-04
+1,8400.00,INR,debit,completed,Cleartrip - Dussehra travel booking,2024-08-05
+3,16000.00,INR,debit,completed,Philips air fryer - BigBasket,2024-08-06
+1,1300.00,INR,debit,completed,Juspay UPI cashback claim,2024-08-07
+1,19500.00,INR,debit,completed,Royal Enfield bike EMI installment,2024-08-08
+2,7000.00,INR,debit,completed,NPS Tier-1 contribution,2024-08-09
+1,5200.00,INR,debit,completed,mCaffeine - coffee body wash set,2024-08-10
+1,65000.00,INR,credit,completed,Website project payment - startup,2024-08-11
+1,13200.00,INR,debit,completed,Wow Momo - corporate catering,2024-08-12
+1,2200.00,INR,debit,completed,BookMyShow - IMAX film night,2024-08-13
+3,9800.00,INR,debit,completed,Casio watch - Tanishq outlet,2024-08-14
+1,3600.00,INR,debit,completed,HealthKart protein supplements,2024-08-15
+2,19000.00,INR,transfer,completed,Transfer to Diwali shopping fund,2024-08-16
+1,45000.00,INR,credit,completed,Salary credit - Tech Mahindra,2024-09-02
+1,41000.00,INR,debit,completed,Diwali gifts - Tanishq + Amazon,2024-09-03
+1,7300.00,INR,debit,completed,HomeLane interior consultation fee,2024-09-04
+2,25000.00,INR,credit,completed,Mutual fund partial redemption,2024-09-05
+1,4300.00,INR,debit,completed,Swiggy Dineout - anniversary dinner,2024-09-06
+3,48000.00,INR,debit,completed,MacBook Air M2 accessories bundle,2024-09-07
+1,1900.00,INR,debit,completed,Rapido bike - late night office cab,2024-09-08
+1,33000.00,INR,debit,completed,Indigo tickets - Durga Puja Kolkata,2024-09-09
+2,8000.00,INR,debit,completed,HDFC term plan premium installment,2024-09-10
+1,6400.00,INR,debit,completed,Westside ethnic wear - Navratri,2024-09-11
+1,90000.00,INR,credit,completed,Year-end consulting bonus - Accenture,2024-09-12
+1,15800.00,INR,debit,completed,Pepperfry bed frame + mattress,2024-09-13
+1,2900.00,INR,debit,completed,Fasoos biryani - team lunch,2024-09-14
+3,22500.00,INR,debit,completed,JBL soundbar - Diwali sale,2024-09-15
+1,5600.00,INR,debit,completed,Heads Up For Tails - pet food monthly,2024-09-16
+2,13000.00,INR,credit,completed,Rental income - Bandra property,2024-09-17
+1,45000.00,INR,credit,completed,Salary credit - Infosys Ltd,2024-10-01
+1,29000.00,INR,debit,completed,HP printer + cartridges - Amazon,2024-10-02
+1,4700.00,INR,debit,completed,Zomato - Christmas party catering,2024-10-03
+2,18000.00,INR,credit,completed,Year-end SIP bonus returns,2024-10-04
+1,7100.00,INR,debit,completed,Country Club gym membership renewal,2024-10-05
+3,55000.00,INR,debit,completed,iPad 10th gen - Apple Store India,2024-10-06
+1,1700.00,INR,debit,completed,Dunzo - medicine and essentials,2024-10-07
+1,37000.00,INR,debit,completed,Malabar Gold - gold coin investment,2024-10-08
+2,11000.00,INR,debit,completed,LIC maturity premium final payment,2024-10-09
+1,8900.00,INR,debit,completed,Bombay Dyeing - bedsheets + curtains,2024-10-10
+1,100000.00,INR,credit,completed,Annual bonus - Wipro Q3,2024-10-11
+1,19000.00,INR,debit,completed,Puma + Nike sportswear - online sale,2024-10-12
+1,3200.00,INR,debit,completed,Starbucks - team offsite coffee,2024-10-13
+3,31000.00,INR,debit,completed,Axis Bank credit card bill payment,2024-10-14
+1,6700.00,INR,debit,completed,Tata 1mg - quarterly health checkup,2024-10-15
+2,27000.00,INR,transfer,completed,Year-end savings transfer,2024-10-16
+1,45000.00,INR,credit,completed,Salary credit - HCL Technologies,2024-11-01
+1,52000.00,INR,debit,completed,Tanishq diamond pendant - wife birthday,2024-11-02
+1,5800.00,INR,debit,completed,WOW Skin Science - annual kit,2024-11-03
+2,16000.00,INR,credit,completed,Bonus rental collection - December,2024-11-04
+1,9200.00,INR,debit,completed,Zerodha brokerage and charges,2024-11-05
+3,42000.00,INR,debit,completed,Samsung Galaxy S24 - Flipkart Big Billion,2024-11-06
+1,2000.00,INR,debit,completed,Netflix + Prime + Hotstar subscriptions,2024-11-07
+1,44000.00,INR,debit,completed,Air ticket - New Year Goa trip family,2024-11-08
+2,9500.00,INR,debit,completed,Kotak Mahindra ULIP premium,2024-11-09
+1,7400.00,INR,debit,completed,Nobroker rent payment - Whitefield,2024-11-10
+1,120000.00,INR,credit,completed,Year-end incentive - TCS FY bonus,2024-11-11
+1,23000.00,INR,debit,completed,Shoppers Stop - family Christmas shopping,2024-11-12
+1,4400.00,INR,debit,completed,Lenskart premium progressive lenses,2024-11-13
+3,17800.00,INR,debit,completed,Bajaj Finance TV EMI payment,2024-11-14
+1,8100.00,INR,debit,completed,EatFit corporate lunch subscription,2024-11-15
+2,30000.00,INR,transfer,completed,Final year-end investment transfer,2024-11-16

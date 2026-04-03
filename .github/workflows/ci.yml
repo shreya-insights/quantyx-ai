@@ -1,0 +1,105 @@
+name: CI — Quantyx AI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-lint-test:
+    name: Backend — Lint & Test
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: quantyx_test
+          MYSQL_USER: quantyx
+          MYSQL_PASSWORD: quantyx_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install dependencies
+        working-directory: backend
+        run: pip install -r requirements.txt aiosqlite
+
+      - name: Run ruff (lint)
+        working-directory: backend
+        run: ruff check app/ --select E,F,I
+
+      - name: Run mypy (type check)
+        working-directory: backend
+        run: mypy app/ --ignore-missing-imports --no-strict-optional
+        continue-on-error: true
+
+      - name: Run pytest
+        working-directory: backend
+        env:
+          SECRET_KEY: ci-test-secret-key-for-github-actions-only
+          DB_HOST: localhost
+          DB_PORT: 3306
+          DB_NAME: quantyx_test
+          DB_USER: quantyx
+          DB_PASSWORD: quantyx_test
+          REDIS_HOST: localhost
+        run: pytest tests/ -v --cov=app --cov-report=xml --tb=short
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: backend/coverage.xml
+        continue-on-error: true
+
+  frontend-lint-build:
+    name: Frontend — Vite TypeScript Check & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: TypeScript check
+        working-directory: frontend
+        run: npx tsc --noEmit
+        continue-on-error: true
+
+      - name: Vite build
+        working-directory: frontend
+        env:
+          VITE_API_URL: http://localhost:8000
+        run: npm run build
+
+      - name: Verify build output
+        working-directory: frontend
+        run: |
+          ls -lh dist/
+          test -f dist/index.html && echo "✓ index.html present"
