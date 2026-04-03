@@ -1,13 +1,13 @@
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.exceptions import ConflictError, NotFoundError, SubscriptionLimitError
 from app.models.subscription import (
-    BillingCycle,
     PLAN_LIMITS,
     PLAN_PRICING,
+    BillingCycle,
     PlanName,
     Subscription,
     SubscriptionStatus,
@@ -15,7 +15,6 @@ from app.models.subscription import (
 from app.schemas.subscription import (
     PlanDetails,
     SubscribeRequest,
-    SubscriptionResponse,
     UsageResponse,
 )
 
@@ -59,7 +58,7 @@ class SubscriptionService:
             plan = PlanName(request.plan_name)
             cycle = BillingCycle(request.billing_cycle)
         except ValueError:
-            raise ConflictError(f"Invalid plan or billing cycle")
+            raise ConflictError("Invalid plan or billing cycle")
 
         now = datetime.now(timezone.utc)
         pricing = PLAN_PRICING[plan]
@@ -91,8 +90,9 @@ class SubscriptionService:
         if not sub:
             raise NotFoundError("Subscription")
 
-        from sqlalchemy import text, func
         from datetime import date
+
+        from sqlalchemy import text
 
         first_day = date.today().replace(day=1)
         result = await self.session.execute(

@@ -6,9 +6,9 @@ from app.models.kpi_report import KpiReport
 from app.models.merchant import Merchant
 from app.models.saved_query import SavedQuery
 from app.models.subscription import (
-    BillingCycle,
     PLAN_LIMITS,
     PLAN_PRICING,
+    BillingCycle,
     PlanName,
     Subscription,
     SubscriptionStatus,

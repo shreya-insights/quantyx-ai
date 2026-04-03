@@ -9,11 +9,11 @@ from app.schemas.analytics import (
     KpiSummary,
     MerchantRanking,
     MerchantRankingResponse,
+    RevenueTrendPoint,
+    RevenueTrendResponse,
     RFMCustomer,
     RFMResponse,
     RFMSegmentSummary,
-    RevenueTrendPoint,
-    RevenueTrendResponse,
     SpendingByCategory,
     TransactionFrequency,
 )

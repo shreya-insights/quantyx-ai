@@ -7,8 +7,8 @@ from app.schemas.analytics import (
     CohortResponse,
     KpiSummary,
     MerchantRankingResponse,
-    RFMResponse,
     RevenueTrendResponse,
+    RFMResponse,
     SpendingByCategory,
     TransactionFrequency,
 )

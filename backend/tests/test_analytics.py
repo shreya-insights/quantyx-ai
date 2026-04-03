@@ -2,8 +2,16 @@
 Integration tests for the analytics endpoints.
 These tests verify the SQL analytics engine functions correctly.
 """
+import os
+
 import pytest
 from httpx import AsyncClient
+
+# Revenue / merchants / fraud stats use MySQL-specific SQL (not SQLite).
+requires_mysql_analytics_sql = pytest.mark.skipif(
+    os.getenv("GITHUB_ACTIONS") != "true" and os.getenv("QUANTYX_TEST_DB") != "mysql",
+    reason="MySQL-specific analytics SQL; run in GitHub Actions or set QUANTYX_TEST_DB=mysql",
+)
 
 
 async def _get_token(client: AsyncClient, slug_suffix: str = "") -> str:
@@ -29,6 +37,7 @@ async def test_kpi_summary_empty(client: AsyncClient):
     assert data["total_transactions"] == 0
 
 
+@requires_mysql_analytics_sql
 @pytest.mark.asyncio
 async def test_revenue_trends_empty(client: AsyncClient):
     token = await _get_token(client, "-rev")
@@ -42,6 +51,7 @@ async def test_revenue_trends_empty(client: AsyncClient):
     assert isinstance(data["data"], list)
 
 
+@requires_mysql_analytics_sql
 @pytest.mark.asyncio
 async def test_top_merchants_empty(client: AsyncClient):
     token = await _get_token(client, "-mrc")
@@ -52,6 +62,7 @@ async def test_top_merchants_empty(client: AsyncClient):
     assert data["data"] == []
 
 
+@requires_mysql_analytics_sql
 @pytest.mark.asyncio
 async def test_fraud_stats_empty(client: AsyncClient):
     token = await _get_token(client, "-frd")

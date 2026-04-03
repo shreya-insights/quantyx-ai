@@ -1,10 +1,20 @@
 from datetime import datetime
 from enum import Enum as PyEnum
 
-from sqlalchemy import BigInteger, DateTime, Enum, ForeignKey, Index, Integer, Numeric, String, func
+from sqlalchemy import (
+    DateTime,
+    Enum,
+    ForeignKey,
+    Index,
+    Integer,
+    Numeric,
+    String,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+from app.db.types import BigIntPK
 
 
 class PlanName(str, PyEnum):
@@ -56,9 +66,9 @@ PLAN_PRICING = {
 class Subscription(Base):
     __tablename__ = "subscriptions"
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
     company_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
     )
     plan_name: Mapped[PlanName] = mapped_column(
         Enum(PlanName, values_callable=lambda x: [e.value for e in x]), nullable=False

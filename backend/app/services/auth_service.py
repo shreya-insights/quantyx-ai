@@ -1,16 +1,25 @@
 import secrets
-import uuid
 
+from jose import JWTError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.exceptions import AuthenticationError, ConflictError, NotFoundError
-from app.core.security import create_token_pair, decode_token, hash_password, verify_password
+from app.core.exceptions import AuthenticationError, ConflictError
+from app.core.security import (
+    create_token_pair,
+    decode_token,
+    hash_password,
+    verify_password,
+)
 from app.models.company import Company, SubscriptionTier
-from app.models.subscription import BillingCycle, PlanName, Subscription, SubscriptionStatus
+from app.models.subscription import (
+    BillingCycle,
+    PlanName,
+    Subscription,
+    SubscriptionStatus,
+)
 from app.models.user import User, UserRole
 from app.repositories.user_repo import UserRepository
 from app.schemas.auth import CompanyRegisterRequest, InviteUserRequest, LoginRequest
-from jose import JWTError
 
 
 class AuthService:
@@ -26,7 +35,6 @@ class AuthService:
 
         # Check slug uniqueness
         from sqlalchemy import select
-        from app.models.company import Company
         result = await self.session.execute(
             select(Company).where(Company.slug == request.company_slug)
         )
@@ -56,7 +64,7 @@ class AuthService:
         self.session.add(admin)
 
         # Create starter subscription
-        from datetime import datetime, timezone, timedelta
+        from datetime import datetime, timedelta, timezone
         now = datetime.now(timezone.utc)
         sub = Subscription(
             company_id=company.id,

@@ -1,10 +1,21 @@
 from datetime import datetime
 from enum import Enum as PyEnum
 
-from sqlalchemy import BigInteger, Boolean, DateTime, Enum, ForeignKey, Index, Numeric, String, Text, func
+from sqlalchemy import (
+    Boolean,
+    DateTime,
+    Enum,
+    ForeignKey,
+    Index,
+    Numeric,
+    String,
+    Text,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+from app.db.types import BigIntPK
 
 
 class AlertType(str, PyEnum):
@@ -27,12 +38,12 @@ class AlertSeverity(str, PyEnum):
 class FraudAlert(Base):
     __tablename__ = "fraud_alerts"
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
     company_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
     )
     transaction_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("transactions.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("transactions.id", ondelete="CASCADE"), nullable=False
     )
     alert_type: Mapped[AlertType] = mapped_column(
         Enum(AlertType, values_callable=lambda x: [e.value for e in x]), nullable=False
@@ -44,7 +55,7 @@ class FraudAlert(Base):
     description: Mapped[str | None] = mapped_column(Text)
     is_resolved: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     resolved_by: Mapped[int | None] = mapped_column(
-        BigInteger, ForeignKey("users.id", ondelete="SET NULL")
+        BigIntPK, ForeignKey("users.id", ondelete="SET NULL")
     )
     resolved_at: Mapped[datetime | None] = mapped_column(DateTime)
     rule_metadata: Mapped[str | None] = mapped_column(String(1000))

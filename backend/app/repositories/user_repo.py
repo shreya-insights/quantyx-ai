@@ -20,7 +20,7 @@ class UserRepository(BaseRepository[User]):
     ) -> list[User]:
         result = await self.session.execute(
             select(User)
-            .where(User.company_id == company_id, User.is_active == True)
+            .where(User.company_id == company_id, User.is_active.is_(True))
             .offset(offset)
             .limit(limit)
         )

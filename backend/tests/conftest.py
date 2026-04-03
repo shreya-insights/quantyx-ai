@@ -1,5 +1,7 @@
 import asyncio
+import os
 from collections.abc import AsyncGenerator
+from urllib.parse import quote_plus
 
 import pytest
 import pytest_asyncio
@@ -10,9 +12,32 @@ from app.db.base import Base
 from app.db.session import get_db
 from app.main import app
 
-TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
 
-test_engine = create_async_engine(TEST_DATABASE_URL, echo=False)
+def uses_mysql_backend() -> bool:
+    """CI and optional local runs use MySQL so MySQL-specific analytics SQL can execute."""
+    return os.getenv("GITHUB_ACTIONS") == "true" or os.getenv("QUANTYX_TEST_DB") == "mysql"
+
+
+def _test_database_url() -> str:
+    if uses_mysql_backend():
+        user = quote_plus(os.environ["DB_USER"])
+        password = quote_plus(os.environ["DB_PASSWORD"])
+        host = os.environ.get("DB_HOST", "127.0.0.1")
+        port = os.environ.get("DB_PORT", "3306")
+        name = os.environ.get("DB_NAME", "quantyx_test")
+        return f"mysql+aiomysql://{user}:{password}@{host}:{port}/{name}"
+    return "sqlite+aiosqlite:///:memory:"
+
+
+TEST_DATABASE_URL = _test_database_url()
+
+test_engine = create_async_engine(
+    TEST_DATABASE_URL,
+    echo=False,
+    pool_pre_ping=True,
+)
+
+
 TestSessionLocal = async_sessionmaker(
     bind=test_engine, class_=AsyncSession, expire_on_commit=False
 )

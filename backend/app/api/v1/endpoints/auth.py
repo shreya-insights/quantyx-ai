@@ -9,7 +9,6 @@ from app.schemas.auth import (
     TokenResponse,
     UserResponse,
 )
-from app.schemas.common import MessageResponse
 from app.services.auth_service import AuthService
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])

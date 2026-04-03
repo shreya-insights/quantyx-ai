@@ -1,4 +1,3 @@
-from typing import Annotated
 
 from fastapi import APIRouter, File, Query, UploadFile
 
@@ -165,9 +164,13 @@ async def create_account(
 @accounts_router.get("", response_model=list[AccountResponse])
 async def list_accounts(current_user: CurrentUser, db: DBSession):
     from sqlalchemy import select
+
     from app.models.account import Account
     result = await db.execute(
-        select(Account).where(Account.company_id == current_user.company_id, Account.is_active == True)
+        select(Account).where(
+            Account.company_id == current_user.company_id,
+            Account.is_active.is_(True),
+        )
     )
     return list(result.scalars().all())
 
@@ -198,6 +201,7 @@ async def create_merchant(
 @merchants_router.get("", response_model=list[MerchantResponse])
 async def list_merchants(current_user: CurrentUser, db: DBSession):
     from sqlalchemy import select
+
     from app.models.merchant import Merchant
     result = await db.execute(
         select(Merchant).where(Merchant.company_id == current_user.company_id)

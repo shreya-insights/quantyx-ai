@@ -5,8 +5,8 @@ from app.schemas.query_lab import (
     QueryExecuteRequest,
     QueryExecuteResponse,
     QueryTemplate,
-    SaveQueryRequest,
     SavedQueryResponse,
+    SaveQueryRequest,
 )
 from app.services.query_lab_service import QueryLabService
 
@@ -67,8 +67,9 @@ async def delete_saved_query(
 ):
     """Delete a saved query. Only the owner or admin can delete."""
     from sqlalchemy import select
+
+    from app.core.exceptions import AuthorizationError, NotFoundError
     from app.models.saved_query import SavedQuery
-    from app.core.exceptions import NotFoundError, AuthorizationError
 
     result = await db.execute(
         select(SavedQuery).where(

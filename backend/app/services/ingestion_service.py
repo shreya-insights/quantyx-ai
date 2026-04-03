@@ -3,7 +3,6 @@ Data Ingestion Service — handles CSV bulk uploads with validation.
 """
 import io
 import uuid
-from datetime import datetime
 
 import pandas as pd
 from sqlalchemy.ext.asyncio import AsyncSession

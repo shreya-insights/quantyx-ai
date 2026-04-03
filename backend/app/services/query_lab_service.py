@@ -17,13 +17,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.exceptions import QueryExecutionError
 from app.models.saved_query import SavedQuery
-from app.repositories.base import BaseRepository
 from app.schemas.query_lab import (
     QueryExecuteRequest,
     QueryExecuteResponse,
     QueryTemplate,
     SaveQueryRequest,
-    SavedQueryResponse,
 )
 
 BLOCKED_KEYWORDS = re.compile(
@@ -236,12 +234,12 @@ class QueryLabService:
     async def get_saved_queries(
         self, company_id: int, user_id: int
     ) -> list[SavedQuery]:
-        from sqlalchemy import select, or_
+        from sqlalchemy import or_, select
         result = await self.session.execute(
             select(SavedQuery)
             .where(
                 SavedQuery.company_id == company_id,
-                or_(SavedQuery.user_id == user_id, SavedQuery.is_public == True),
+                or_(SavedQuery.user_id == user_id, SavedQuery.is_public.is_(True)),
             )
             .order_by(SavedQuery.updated_at.desc())
         )
