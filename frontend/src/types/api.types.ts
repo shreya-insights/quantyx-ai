@@ -300,6 +300,27 @@ export interface SavedQuery {
   user_email: string | null;
 }
 
+// ─── WebSocket Events ────────────────────────────────────────────────────────
+export type WsConnectionStatus = "connecting" | "connected" | "reconnecting";
+
+export interface WsFraudAlertEvent {
+  type: "fraud_alert";
+  data: FraudAlert;
+  timestamp: string;
+}
+
+export interface WsTransactionEvent {
+  type: "transaction";
+  data: Transaction;
+  timestamp: string;
+}
+
+export interface WsPingEvent {
+  type: "ping";
+}
+
+export type WsEvent = WsFraudAlertEvent | WsTransactionEvent | WsPingEvent;
+
 // ─── Subscriptions ───────────────────────────────────────────────────────────
 export interface PlanDetails {
   name: string;
