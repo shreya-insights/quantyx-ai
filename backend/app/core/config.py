@@ -97,6 +97,11 @@ class Settings(BaseSettings):
     CACHE_TTL_MERCHANT: int = 600     # 10 min
     CACHE_TTL_SEGMENTATION: int = 1800  # 30 min
 
+    # ─── Analytics DB cache (pre-aggregated tables, Celery Beat) ─────────────
+    ANALYTICS_CACHE_FRESHNESS_MINUTES: int = 60
+    ANALYTICS_CACHE_STALE_TX_THRESHOLD: int = 100
+    ANALYTICS_CACHE_IDEMPOTENCY_MINUTES: int = 5
+
     # ─── AI Analyst / LLM (cloud-only, no local models) ──────────────────────
     LLM_PRIMARY_PROVIDER: str = "groq"
     LLM_FALLBACK_PROVIDER: str = "gemini"

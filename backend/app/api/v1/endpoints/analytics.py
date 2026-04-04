@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Response
 
 from app.core.dependencies import AnalystUser, CurrentUser, DBSession
 from app.schemas.analytics import (
@@ -25,6 +25,7 @@ async def _get_service(db: DBSession) -> AnalyticsService:
 
 @router.get("/revenue-trends", response_model=RevenueTrendResponse)
 async def get_revenue_trends(
+    response: Response,
     current_user: CurrentUser,
     db: DBSession,
     months: int = Query(default=12, ge=1, le=36, description="Number of months to look back"),
@@ -36,7 +37,9 @@ async def get_revenue_trends(
     Returns inflow, outflow, net flow, transaction count per month.
     """
     service = await _get_service(db)
-    return await service.get_revenue_trend(current_user.company_id, months)
+    result = await service.get_revenue_trend(current_user.company_id, months)
+    response.headers["X-Cache-Status"] = result.cache_status
+    return result.data
 
 
 @router.get("/customer-segmentation", response_model=RFMResponse)
@@ -72,6 +75,7 @@ async def get_cohort_analysis(
 
 @router.get("/top-merchants", response_model=MerchantRankingResponse)
 async def get_top_merchants(
+    response: Response,
     current_user: CurrentUser,
     db: DBSession,
     days: int = Query(default=30, ge=7, le=365),
@@ -84,11 +88,14 @@ async def get_top_merchants(
     and SUM OVER () for global revenue share percentage.
     """
     service = await _get_service(db)
-    return await service.get_top_merchants(current_user.company_id, days, top_n)
+    result = await service.get_top_merchants(current_user.company_id, days, top_n)
+    response.headers["X-Cache-Status"] = result.cache_status
+    return result.data
 
 
 @router.get("/kpi-summary", response_model=KpiSummary)
 async def get_kpi_summary(
+    response: Response,
     current_user: CurrentUser,
     db: DBSession,
     start_date: date = Query(default=None),
@@ -104,18 +111,23 @@ async def get_kpi_summary(
         start_date = end_date - timedelta(days=30)
 
     service = await _get_service(db)
-    return await service.get_kpi_summary(current_user.company_id, start_date, end_date)
+    result = await service.get_kpi_summary(current_user.company_id, start_date, end_date)
+    response.headers["X-Cache-Status"] = result.cache_status
+    return result.data
 
 
 @router.get("/spending-by-category", response_model=list[SpendingByCategory])
 async def get_spending_by_category(
+    response: Response,
     current_user: CurrentUser,
     db: DBSession,
     days: int = Query(default=30, ge=7, le=365),
 ):
     """Breakdown of debit transactions by merchant category with % share."""
     service = await _get_service(db)
-    return await service.get_spending_by_category(current_user.company_id, days)
+    result = await service.get_spending_by_category(current_user.company_id, days)
+    response.headers["X-Cache-Status"] = result.cache_status
+    return result.data
 
 
 @router.get("/transaction-heatmap", response_model=list[TransactionFrequency])
