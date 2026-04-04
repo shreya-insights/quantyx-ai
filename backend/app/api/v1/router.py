@@ -9,6 +9,8 @@ from app.api.v1.endpoints.subscriptions import router as subscriptions_router
 from app.api.v1.endpoints.transactions import (
     accounts_router,
     merchants_router,
+)
+from app.api.v1.endpoints.transactions import (
     router as transactions_router,
 )
 

@@ -2,7 +2,7 @@ name: CI — Quantyx AI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, dev]
   pull_request:
     branches: [main]
 
@@ -44,7 +44,7 @@ jobs:
 
       - name: Run ruff (lint)
         working-directory: backend
-        run: ruff check app/ --select E,F,I
+        run: ruff check app/
 
       - name: Run mypy (type check)
         working-directory: backend
@@ -54,6 +54,7 @@ jobs:
       - name: Run pytest
         working-directory: backend
         env:
+          PYTHONPATH: .
           SECRET_KEY: ci-test-secret-key-for-github-actions-only
           DB_HOST: localhost
           DB_PORT: 3306

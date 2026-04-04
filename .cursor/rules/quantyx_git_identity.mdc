@@ -1,0 +1,36 @@
+---
+description: 
+alwaysApply: true
+---
+
+# Quantyx AI — Git & GitHub
+
+For **this repository only**, always treat Git authoring and the canonical remote as belonging to **shreya-insights / Quantyx**, not the machine’s **global** Git user.
+
+## Identity (commits)
+
+When creating commits, amending, or fixing author metadata **in this project**, use **local** config (this repo), never `--global`:
+
+- **user.name:** `shreya-insights`
+- **user.email:** `tiwashreyaa@gmail.com`
+
+Preferred checks/fixes:
+
+```bash
+git config user.name "shreya-insights"
+git config user.email "tiwashreyaa@gmail.com"
+```
+
+Do not assume or propagate `8090vikas` or `vikasgupta8090@outlook.com` for Quantyx work.
+
+## Remote (push / clone)
+
+- **Canonical repo:** [https://github.com/shreya-insights/quantyx-ai](https://github.com/shreya-insights/quantyx-ai)
+- **SSH URL:** `git@github.com:shreya-insights/quantyx-ai.git`
+
+Use this remote for instructions or automation tied to Quantyx, unless the user specifies otherwise.
+
+## AI behavior
+
+- Suggest **`git config`** (local) for identity in this repo, not **`git config --global`** for Quantyx author/email.
+- If the user asks about “wrong author on GitHub” for Quantyx, check **local** `user.name` / `user.email` here first and amend/rewrite only this repo’s history as needed.

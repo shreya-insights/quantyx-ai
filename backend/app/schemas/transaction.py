@@ -1,7 +1,18 @@
 from datetime import datetime
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
+
+from app.schemas.fraud import FraudAlertResponse
+
+_FraudPollStatus = Literal[
+    "pending",
+    "analyzing",
+    "clear",
+    "flagged",
+    "unavailable",
+    "not_analyzed",
+]
 
 
 class TransactionCreate(BaseModel):
@@ -37,8 +48,18 @@ class TransactionResponse(BaseModel):
     merchant_name: str | None = None
     category_name: str | None = None
     account_number: str | None = None
+    fraud_check_job_id: str | None = None
+    fraud_check_status: str | None = None
 
     model_config = {"from_attributes": True}
+
+
+class TransactionFraudStatusResponse(BaseModel):
+    """Aggregated fraud check state for polling after async Celery analysis."""
+
+    status: _FraudPollStatus
+    job_id: str | None = None
+    alert: FraudAlertResponse | None = None
 
 
 class TransactionFilter(BaseModel):
@@ -49,6 +70,7 @@ class TransactionFilter(BaseModel):
     min_amount: float | None = None
     max_amount: float | None = None
     account_id: int | None = None
+    transaction_id: int | None = None
     merchant_id: int | None = None
     category_id: int | None = None
 

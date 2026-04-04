@@ -3,7 +3,11 @@ from fastapi import APIRouter, Query
 from app.core.dependencies import AnalystUser, CurrentUser, DBSession
 from app.repositories.fraud_repo import FraudRepository
 from app.schemas.common import PaginatedResponse
-from app.schemas.fraud import FraudAlertResponse, FraudResolveRequest, FraudStatsResponse
+from app.schemas.fraud import (
+    FraudAlertResponse,
+    FraudResolveRequest,
+    FraudStatsResponse,
+)
 from app.services.fraud_service import FraudDetectionService
 from app.utils.pagination import paginate
 

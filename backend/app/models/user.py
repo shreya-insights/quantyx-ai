@@ -1,10 +1,19 @@
 from datetime import datetime
 from enum import Enum as PyEnum
 
-from sqlalchemy import BigInteger, Boolean, DateTime, Enum, ForeignKey, Index, String, func
+from sqlalchemy import (
+    Boolean,
+    DateTime,
+    Enum,
+    ForeignKey,
+    Index,
+    String,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+from app.db.types import BigIntPK
 
 
 class UserRole(str, PyEnum):
@@ -16,9 +25,9 @@ class UserRole(str, PyEnum):
 class User(Base):
     __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
     company_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
     )
     email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)

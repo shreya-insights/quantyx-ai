@@ -1,0 +1,4 @@
+account_id,amount,currency,transaction_type,status,description,transaction_date
+1,-50.00,USD,debit,completed,Invalid negative amount,2026-04-02 10:00:00
+1,100.00,USD,not_a_real_type,completed,Invalid transaction_type,2026-04-02 10:05:00
+1,100.00,USD,debit,completed,Bad date,not-a-date

@@ -1,0 +1,1019 @@
+account_id,amount,currency,transaction_type,status,description,transaction_date,transaction_ref
+2,347.89,USD,debit,completed,Routine debit — baseline day 1,2025-10-06 09:47:00,TRN-4366A8C15D384C4A
+3,108.75,USD,debit,completed,Routine debit — baseline day 1,2025-10-06 15:29:00,TRN-0A55DCB92FC84273
+2,112.2,USD,debit,completed,Small routine debit,2025-10-06 18:08:00,TRN-7EA05FA3E6434FC0
+3,30.16,USD,debit,completed,Small routine debit,2025-10-06 20:44:00,TRN-BD756AFC359044FB
+3,149.6,USD,debit,completed,Routine debit — baseline day 2,2025-10-07 15:37:00,TRN-28DC0536A74D40C8
+2,367.29,USD,debit,completed,Routine debit — baseline day 2,2025-10-07 17:05:00,TRN-4CFBB81A898B486C
+2,139.96,USD,debit,completed,Small routine debit,2025-10-07 18:01:00,TRN-CCE9684A94474996
+3,38.33,USD,debit,completed,Small routine debit,2025-10-07 18:56:00,TRN-962A52B995564679
+3,96.49,USD,debit,completed,Routine debit — baseline day 3,2025-10-08 10:53:00,TRN-FCFA1266E48E4F70
+2,238.74,USD,debit,completed,Routine debit — baseline day 3,2025-10-08 12:32:00,TRN-D7200B4864864966
+3,32.77,USD,debit,completed,Small routine debit,2025-10-08 19:17:00,TRN-AA84C820A55D4267
+2,140.98,USD,debit,completed,Small routine debit,2025-10-08 20:12:00,TRN-004A248E54E44A7D
+3,58.27,USD,debit,completed,Routine debit — baseline day 4,2025-10-09 14:13:00,TRN-3B8FD0F9183348AA
+2,363.2,USD,debit,completed,Routine debit — baseline day 4,2025-10-09 17:26:00,TRN-0C4C42FF54804A44
+3,31.75,USD,debit,completed,Small routine debit,2025-10-09 18:54:00,TRN-A88020EB5A4046D0
+2,107.4,USD,debit,completed,Small routine debit,2025-10-09 20:17:00,TRN-350EB47F73E14B26
+2,381.89,USD,debit,completed,Routine debit — baseline day 5,2025-10-10 09:48:00,TRN-0F6C4F3DB7AA47EE
+3,91.27,USD,debit,completed,Routine debit — baseline day 5,2025-10-10 14:34:00,TRN-D958A8F6D4674C55
+3,41.84,USD,debit,completed,Small routine debit,2025-10-10 20:22:00,TRN-469038DAEA304680
+2,158.91,USD,debit,completed,Small routine debit,2025-10-10 20:27:00,TRN-00F2DBBBE10E4BE0
+2,288.05,USD,debit,completed,Routine debit — baseline day 6,2025-10-11 11:13:00,TRN-7DC22D65BDC6408A
+3,61.06,USD,debit,completed,Routine debit — baseline day 6,2025-10-11 13:12:00,TRN-8109BDB93D13477A
+3,43.3,USD,debit,completed,Small routine debit,2025-10-11 19:05:00,TRN-453B7A1CABF44E00
+2,172.23,USD,debit,completed,Small routine debit,2025-10-11 19:06:00,TRN-B0D0178C669142AA
+3,121.28,USD,debit,completed,Routine debit — baseline day 7,2025-10-12 09:03:00,TRN-169C2FB05FF94AE8
+2,238.55,USD,debit,completed,Routine debit — baseline day 7,2025-10-12 10:22:00,TRN-77A95C68BBA642B3
+3,39.31,USD,debit,completed,Small routine debit,2025-10-12 18:08:00,TRN-641AD4497D824020
+2,162.58,USD,debit,completed,Small routine debit,2025-10-12 20:16:00,TRN-46F7280D7C6B41A1
+3,133.7,USD,debit,completed,Routine debit — baseline day 8,2025-10-13 12:04:00,TRN-43AA81AB11404213
+2,381.43,USD,debit,completed,Routine debit — baseline day 8,2025-10-13 16:34:00,TRN-F74D6868A1EA4236
+2,98.98,USD,debit,completed,Small routine debit,2025-10-13 19:05:00,TRN-2D8795B9D6D74AD4
+3,40.26,USD,debit,completed,Small routine debit,2025-10-13 20:13:00,TRN-473D31FF141B45CF
+3,113.64,USD,debit,completed,Routine debit — baseline day 9,2025-10-14 12:21:00,TRN-B143CE2A65054AF5
+2,330.41,USD,debit,completed,Routine debit — baseline day 9,2025-10-14 14:36:00,TRN-0E8373F3D20D4C0C
+2,104.92,USD,debit,completed,Small routine debit,2025-10-14 18:02:00,TRN-A908CFBF987844FE
+3,39.04,USD,debit,completed,Small routine debit,2025-10-14 20:00:00,TRN-7B4805DEA4944AFC
+2,2964.36,USD,credit,completed,Inbound ACH — payroll,2025-10-15 09:00:00,TRN-2FD0D06D9B8741B3
+3,3402.2,USD,credit,completed,Inbound ACH — payroll,2025-10-15 09:00:00,TRN-EA3F99F1F4714F44
+3,82.73,USD,debit,completed,Routine debit — baseline day 10,2025-10-15 11:08:00,TRN-ADCEB621F0574C34
+2,352.25,USD,debit,completed,Routine debit — baseline day 10,2025-10-15 13:05:00,TRN-0AE1B511C5004C5D
+3,33.88,USD,debit,completed,Small routine debit,2025-10-15 18:07:00,TRN-B636C26913EE4612
+2,163.27,USD,debit,completed,Small routine debit,2025-10-15 18:24:00,TRN-D86B219F6C0E4C46
+3,121.11,USD,debit,completed,Routine debit — baseline day 11,2025-10-16 09:08:00,TRN-AADACD3404294708
+2,275.59,USD,debit,completed,Routine debit — baseline day 11,2025-10-16 14:10:00,TRN-7B396A4E7FDB4A44
+3,22.33,USD,debit,completed,Small routine debit,2025-10-16 18:37:00,TRN-C40833C596974DE1
+2,120.58,USD,debit,completed,Small routine debit,2025-10-16 18:42:00,TRN-0891807D21CC4969
+2,273.4,USD,debit,completed,Routine debit — baseline day 12,2025-10-17 10:38:00,TRN-F150FC5D496249F2
+3,87.38,USD,debit,completed,Routine debit — baseline day 12,2025-10-17 11:16:00,TRN-364CA82EB6384C8D
+3,23.15,USD,debit,completed,Small routine debit,2025-10-17 20:26:00,TRN-AE1D7FB553B94A49
+2,143.88,USD,debit,completed,Small routine debit,2025-10-17 20:46:00,TRN-B4CF65BA239C47EF
+3,107.61,USD,debit,completed,Routine debit — baseline day 13,2025-10-18 10:30:00,TRN-6164E3FFA66E4D15
+2,268.96,USD,debit,completed,Routine debit — baseline day 13,2025-10-18 16:24:00,TRN-E1D0BB32157C443B
+3,31.86,USD,debit,completed,Small routine debit,2025-10-18 19:32:00,TRN-115B98EFAB054496
+2,111.76,USD,debit,completed,Small routine debit,2025-10-18 20:44:00,TRN-7C2F722103734F07
+2,331.39,USD,debit,completed,Routine debit — baseline day 14,2025-10-19 14:53:00,TRN-48AF1AD4640F4A4E
+3,114.37,USD,debit,completed,Routine debit — baseline day 14,2025-10-19 16:32:00,TRN-8C8B28AA59EF4CEB
+2,155.61,USD,debit,completed,Small routine debit,2025-10-19 18:14:00,TRN-11F63ECF148C4CB0
+3,26.87,USD,debit,completed,Small routine debit,2025-10-19 20:02:00,TRN-5C30F7D728024BD8
+2,384.36,USD,debit,completed,Routine debit — baseline day 15,2025-10-20 14:25:00,TRN-698A298C1BFC4C50
+3,127.72,USD,debit,completed,Routine debit — baseline day 15,2025-10-20 17:19:00,TRN-185C325C5D1D4048
+3,32.08,USD,debit,completed,Small routine debit,2025-10-20 18:03:00,TRN-8675682C005244C2
+2,111.56,USD,debit,completed,Small routine debit,2025-10-20 18:58:00,TRN-544269EDD34844DD
+2,408.58,USD,debit,completed,Routine debit — baseline day 16,2025-10-21 14:13:00,TRN-7960EB56D98B4BB0
+3,154.86,USD,debit,completed,Routine debit — baseline day 16,2025-10-21 15:27:00,TRN-4C040C77C5FD40D6
+3,37.09,USD,debit,completed,Small routine debit,2025-10-21 19:45:00,TRN-7140121E3BA74CF6
+2,145.68,USD,debit,completed,Small routine debit,2025-10-21 19:56:00,TRN-3B8C67E45A224B36
+2,2881.28,USD,credit,completed,Inbound ACH — payroll,2025-10-22 09:00:00,TRN-FBD89AF9DEE841C8
+3,2893.09,USD,credit,completed,Inbound ACH — payroll,2025-10-22 09:00:00,TRN-2BF06CF9622F4EEC
+3,145.97,USD,debit,completed,Routine debit — baseline day 17,2025-10-22 10:57:00,TRN-F16B2ED76891416F
+2,402.91,USD,debit,completed,Routine debit — baseline day 17,2025-10-22 16:09:00,TRN-655B7CF1FFE94390
+2,111.31,USD,debit,completed,Small routine debit,2025-10-22 18:47:00,TRN-3F50B5B3307C4EB5
+3,23.78,USD,debit,completed,Small routine debit,2025-10-22 20:09:00,TRN-64E6C281E656453E
+3,61.57,USD,debit,completed,Routine debit — baseline day 18,2025-10-23 13:39:00,TRN-A8D632B7A39E4711
+2,332.27,USD,debit,completed,Routine debit — baseline day 18,2025-10-23 13:47:00,TRN-1FD391A012AD4530
+2,139.44,USD,debit,completed,Small routine debit,2025-10-23 20:25:00,TRN-02EACFC1A65F4CC1
+3,35.93,USD,debit,completed,Small routine debit,2025-10-23 20:45:00,TRN-6DDF08B1C5D3476B
+2,292.4,USD,debit,completed,Routine debit — baseline day 19,2025-10-24 11:32:00,TRN-70ABF54F73F44481
+3,87.52,USD,debit,completed,Routine debit — baseline day 19,2025-10-24 17:18:00,TRN-0B1E4FA00166471B
+2,131.43,USD,debit,completed,Small routine debit,2025-10-24 18:55:00,TRN-AD9BE602BB5B44E7
+3,31.98,USD,debit,completed,Small routine debit,2025-10-24 20:27:00,TRN-9C3485F538464E3A
+3,64.92,USD,debit,completed,Routine debit — baseline day 20,2025-10-25 10:54:00,TRN-DF65908EA9B4478B
+2,241.93,USD,debit,completed,Routine debit — baseline day 20,2025-10-25 11:50:00,TRN-FFA5D500D237487D
+2,147.88,USD,debit,completed,Small routine debit,2025-10-25 20:04:00,TRN-A0F8A350780348E0
+3,36.4,USD,debit,completed,Small routine debit,2025-10-25 20:46:00,TRN-57E6D5D1A4024C56
+3,141.55,USD,debit,completed,Routine debit — baseline day 21,2025-10-26 15:28:00,TRN-6B01CE647D68418E
+2,296.95,USD,debit,completed,Routine debit — baseline day 21,2025-10-26 16:33:00,TRN-FB16CA917D874098
+3,41.54,USD,debit,completed,Small routine debit,2025-10-26 19:21:00,TRN-620E3249A3F34CEB
+2,110.12,USD,debit,completed,Small routine debit,2025-10-26 20:55:00,TRN-9788F69FDCE04565
+2,408.49,USD,debit,completed,Routine debit — baseline day 22,2025-10-27 10:43:00,TRN-7683667BC53F467F
+3,137.74,USD,debit,completed,Routine debit — baseline day 22,2025-10-27 15:26:00,TRN-353ED99195384AD3
+3,38.05,USD,debit,completed,Small routine debit,2025-10-27 19:27:00,TRN-AD49D5F264824D7F
+2,165.86,USD,debit,completed,Small routine debit,2025-10-27 19:49:00,TRN-6580E46751BE4CD5
+2,348.19,USD,debit,completed,Routine debit — baseline day 23,2025-10-28 10:18:00,TRN-3B4D6EC86C4249B6
+3,86.25,USD,debit,completed,Routine debit — baseline day 23,2025-10-28 13:23:00,TRN-3918E6CF450F40FC
+2,126.26,USD,debit,completed,Small routine debit,2025-10-28 19:00:00,TRN-8C319AB32FD54DF8
+3,42.98,USD,debit,completed,Small routine debit,2025-10-28 20:59:00,TRN-0E8294B0BBE94723
+2,3497.15,USD,credit,completed,Inbound ACH — payroll,2025-10-29 09:00:00,TRN-A93F63F6AECB4A91
+3,3412.19,USD,credit,completed,Inbound ACH — payroll,2025-10-29 09:00:00,TRN-064191A8E0F9492C
+3,102.43,USD,debit,completed,Routine debit — baseline day 24,2025-10-29 10:53:00,TRN-C2DBE63ACD0F4E3A
+2,410.76,USD,debit,completed,Routine debit — baseline day 24,2025-10-29 13:32:00,TRN-E356AA92354C4358
+3,23.88,USD,debit,completed,Small routine debit,2025-10-29 19:06:00,TRN-63B81B07C9FC48A1
+2,155.05,USD,debit,completed,Small routine debit,2025-10-29 20:58:00,TRN-200433B5ED3D4D9D
+2,241.28,USD,debit,completed,Routine debit — baseline day 25,2025-10-30 13:53:00,TRN-1040672B170C4037
+3,129.46,USD,debit,completed,Routine debit — baseline day 25,2025-10-30 14:51:00,TRN-CAE07842F3C24CBD
+3,24.86,USD,debit,completed,Small routine debit,2025-10-30 18:37:00,TRN-4FF1457D66AC4F12
+2,144.23,USD,debit,completed,Small routine debit,2025-10-30 20:12:00,TRN-00AEE1775A3A4226
+2,250.57,USD,debit,completed,Routine debit — baseline day 26,2025-10-31 11:34:00,TRN-FEB2C0430CD948AD
+3,150.66,USD,debit,completed,Routine debit — baseline day 26,2025-10-31 17:21:00,TRN-328E4F6E5DB841C7
+3,36.74,USD,debit,completed,Small routine debit,2025-10-31 19:22:00,TRN-E123282A56454A95
+2,171.91,USD,debit,completed,Small routine debit,2025-10-31 20:58:00,TRN-A42CE7830011474B
+2,220.11,USD,debit,completed,Routine debit — baseline day 27,2025-11-01 14:31:00,TRN-A1790E62EBF54D5D
+3,142.36,USD,debit,completed,Routine debit — baseline day 27,2025-11-01 15:55:00,TRN-59CF08BD8B584B20
+3,42.15,USD,debit,completed,Small routine debit,2025-11-01 18:18:00,TRN-23308B628A1C46BF
+2,89.71,USD,debit,completed,Small routine debit,2025-11-01 19:56:00,TRN-0A0D3BC6473E46D6
+2,417.06,USD,debit,completed,Routine debit — baseline day 28,2025-11-02 13:15:00,TRN-559D100F413A493B
+3,115.04,USD,debit,completed,Routine debit — baseline day 28,2025-11-02 14:06:00,TRN-780A1802E23E45A1
+3,34.71,USD,debit,completed,Small routine debit,2025-11-02 18:09:00,TRN-17D43F0500A747A9
+2,93.1,USD,debit,completed,Small routine debit,2025-11-02 20:05:00,TRN-166643D836AD4677
+3,120.67,USD,debit,completed,Routine debit — baseline day 29,2025-11-03 12:54:00,TRN-F71441030CE344B9
+2,237.13,USD,debit,completed,Routine debit — baseline day 29,2025-11-03 16:52:00,TRN-853CF236517C4CED
+3,24.38,USD,debit,completed,Small routine debit,2025-11-03 20:23:00,TRN-EF3F455C5777432C
+2,94.09,USD,debit,completed,Small routine debit,2025-11-03 20:49:00,TRN-DDE8EA8BFCB64C9A
+3,66.49,USD,debit,completed,Routine debit — baseline day 30,2025-11-04 13:36:00,TRN-14D4D9A7A6004F4A
+2,245.15,USD,debit,completed,Routine debit — baseline day 30,2025-11-04 16:35:00,TRN-BFFF01EBF11F4519
+3,26.98,USD,debit,completed,Small routine debit,2025-11-04 19:54:00,TRN-0EEA187A3F474D67
+2,102.53,USD,debit,completed,Small routine debit,2025-11-04 20:55:00,TRN-BF6A11AD80854FA2
+2,2826.05,USD,credit,completed,Inbound ACH — payroll,2025-11-05 09:00:00,TRN-E80AB9E94D6B47F2
+3,3474.9,USD,credit,completed,Inbound ACH — payroll,2025-11-05 09:00:00,TRN-2ED616B0502E4A20
+2,341.32,USD,debit,completed,Routine debit — baseline day 31,2025-11-05 12:59:00,TRN-66253BA3BAD84726
+3,111.1,USD,debit,completed,Routine debit — baseline day 31,2025-11-05 17:01:00,TRN-1D6F9AFC4F3E42F3
+2,135.46,USD,debit,completed,Small routine debit,2025-11-05 20:44:00,TRN-F51071405BE242E1
+3,35.4,USD,debit,completed,Small routine debit,2025-11-05 20:53:00,TRN-DCBA476AFB1D4001
+3,124.35,USD,debit,completed,Routine debit — baseline day 32,2025-11-06 09:11:00,TRN-1CA3B84446194D8A
+2,260.23,USD,debit,completed,Routine debit — baseline day 32,2025-11-06 13:25:00,TRN-59CA83FBE8BE4958
+3,28.01,USD,debit,completed,Small routine debit,2025-11-06 19:58:00,TRN-E76662BDE57F4337
+2,175.57,USD,debit,completed,Small routine debit,2025-11-06 20:23:00,TRN-3A8704BBEB3E44DA
+3,88.98,USD,debit,completed,Routine debit — baseline day 33,2025-11-07 09:11:00,TRN-57B5A5F7F3C941D3
+2,307.62,USD,debit,completed,Routine debit — baseline day 33,2025-11-07 17:28:00,TRN-421C511BC0D843A1
+2,98.65,USD,debit,completed,Small routine debit,2025-11-07 18:04:00,TRN-E347CE4806934452
+3,41.14,USD,debit,completed,Small routine debit,2025-11-07 20:42:00,TRN-74A1E1973B2A43FF
+3,95.08,USD,debit,completed,Routine debit — baseline day 34,2025-11-08 11:47:00,TRN-15C15A71801F4F5C
+2,287.62,USD,debit,completed,Routine debit — baseline day 34,2025-11-08 17:14:00,TRN-DF83D8DBC1B94596
+2,139.78,USD,debit,completed,Small routine debit,2025-11-08 18:04:00,TRN-D705A03AD9C649D0
+3,35.93,USD,debit,completed,Small routine debit,2025-11-08 18:05:00,TRN-B836669E840C42C7
+2,361.57,USD,debit,completed,Routine debit — baseline day 35,2025-11-09 09:14:00,TRN-57E1AE8FDF7244F7
+3,129.61,USD,debit,completed,Routine debit — baseline day 35,2025-11-09 12:24:00,TRN-3805E29054274287
+2,93.93,USD,debit,completed,Small routine debit,2025-11-09 18:55:00,TRN-9625A7CAEE2942FA
+3,31.24,USD,debit,completed,Small routine debit,2025-11-09 19:10:00,TRN-567362C8D706444B
+3,92.01,USD,debit,completed,Routine debit — baseline day 36,2025-11-10 14:49:00,TRN-E1CA08D2C50B4C89
+2,286.09,USD,debit,completed,Routine debit — baseline day 36,2025-11-10 17:15:00,TRN-C38334F356664FBE
+2,112.51,USD,debit,completed,Small routine debit,2025-11-10 19:13:00,TRN-3298AA4ECE5448A9
+3,42.71,USD,debit,completed,Small routine debit,2025-11-10 20:05:00,TRN-53DCD4D737B34453
+3,143.33,USD,debit,completed,Routine debit — baseline day 37,2025-11-11 11:10:00,TRN-79F4B6CB1AB94835
+2,327.85,USD,debit,completed,Routine debit — baseline day 37,2025-11-11 16:15:00,TRN-1D56DB0871824744
+3,38.6,USD,debit,completed,Small routine debit,2025-11-11 18:43:00,TRN-A09BBCA06A9347DD
+2,157.05,USD,debit,completed,Small routine debit,2025-11-11 19:12:00,TRN-6010658D7DF1443A
+2,2831.74,USD,credit,completed,Inbound ACH — payroll,2025-11-12 09:00:00,TRN-452649BF85984ECA
+3,2856.17,USD,credit,completed,Inbound ACH — payroll,2025-11-12 09:00:00,TRN-162EB3E91C59407B
+2,238.87,USD,debit,completed,Routine debit — baseline day 38,2025-11-12 15:22:00,TRN-C78C84DF6BDD445A
+3,63.16,USD,debit,completed,Routine debit — baseline day 38,2025-11-12 16:42:00,TRN-13D222AE721240FE
+2,125.27,USD,debit,completed,Small routine debit,2025-11-12 19:55:00,TRN-66B8BA58D6F14297
+3,31.33,USD,debit,completed,Small routine debit,2025-11-12 20:28:00,TRN-EF612EF0334A4499
+2,365.82,USD,debit,completed,Routine debit — baseline day 39,2025-11-13 10:03:00,TRN-32A3CFCE56BC4472
+3,96.42,USD,debit,completed,Routine debit — baseline day 39,2025-11-13 12:48:00,TRN-60CD956DDC574528
+3,33.27,USD,debit,completed,Small routine debit,2025-11-13 19:27:00,TRN-34F3CD9C64434245
+2,123.43,USD,debit,completed,Small routine debit,2025-11-13 19:51:00,TRN-FA5F4EFAB56B40B7
+2,392.33,USD,debit,completed,Routine debit — baseline day 40,2025-11-14 12:12:00,TRN-CB533F3179D04F40
+3,66.09,USD,debit,completed,Routine debit — baseline day 40,2025-11-14 16:33:00,TRN-DF92C48A7D2F4FD5
+3,36.68,USD,debit,completed,Small routine debit,2025-11-14 18:14:00,TRN-7752868BDD6B4245
+2,104.74,USD,debit,completed,Small routine debit,2025-11-14 19:08:00,TRN-084646FA28D142B2
+3,94.53,USD,debit,completed,Routine debit — baseline day 41,2025-11-15 09:00:00,TRN-26794D387F154079
+2,304.38,USD,debit,completed,Routine debit — baseline day 41,2025-11-15 13:29:00,TRN-3F1488C9933D4FEE
+2,109.98,USD,debit,completed,Small routine debit,2025-11-15 18:28:00,TRN-EA33AFA2461B4A09
+3,26.5,USD,debit,completed,Small routine debit,2025-11-15 18:49:00,TRN-45605C7F02C3400A
+3,68.72,USD,debit,completed,Routine debit — baseline day 42,2025-11-16 13:18:00,TRN-91C8AF63D44C49EE
+2,381.6,USD,debit,completed,Routine debit — baseline day 42,2025-11-16 17:06:00,TRN-7970713389A94DBA
+3,29.22,USD,debit,completed,Small routine debit,2025-11-16 18:31:00,TRN-61DBD2B5DCC24C11
+2,92.45,USD,debit,completed,Small routine debit,2025-11-16 20:53:00,TRN-E02E6E7C162D4BFD
+2,222.95,USD,debit,completed,Routine debit — baseline day 43,2025-11-17 10:59:00,TRN-7433C8D93DAB43EA
+3,129.7,USD,debit,completed,Routine debit — baseline day 43,2025-11-17 11:08:00,TRN-77B4761DD74C40C0
+2,154.31,USD,debit,completed,Small routine debit,2025-11-17 18:10:00,TRN-DC256F3DE01C4DCA
+3,30.36,USD,debit,completed,Small routine debit,2025-11-17 20:14:00,TRN-264A1E94B2E141E4
+3,105.03,USD,debit,completed,Routine debit — baseline day 44,2025-11-18 14:04:00,TRN-7FE755CEEB3D4F35
+2,301.28,USD,debit,completed,Routine debit — baseline day 44,2025-11-18 16:13:00,TRN-1CAB70F3B14A4461
+2,164.09,USD,debit,completed,Small routine debit,2025-11-18 18:10:00,TRN-367DDFAF33B7479F
+3,30.74,USD,debit,completed,Small routine debit,2025-11-18 20:02:00,TRN-B28BBCC657F04467
+2,2881.67,USD,credit,completed,Inbound ACH — payroll,2025-11-19 09:00:00,TRN-6B905DFF3A624973
+3,3064.25,USD,credit,completed,Inbound ACH — payroll,2025-11-19 09:00:00,TRN-9FF764C2AE914800
+2,295.79,USD,debit,completed,Routine debit — baseline day 45,2025-11-19 15:16:00,TRN-8D0EEA36DF194FAF
+3,98.62,USD,debit,completed,Routine debit — baseline day 45,2025-11-19 16:58:00,TRN-2D476CE632CE48F8
+2,169.53,USD,debit,completed,Small routine debit,2025-11-19 19:18:00,TRN-2E5D5F7608B44680
+3,23.71,USD,debit,completed,Small routine debit,2025-11-19 19:36:00,TRN-D91166C56DD3439B
+3,97.93,USD,debit,completed,Routine debit — baseline day 46,2025-11-20 15:45:00,TRN-0D61856BF17A429C
+2,304.6,USD,debit,completed,Routine debit — baseline day 46,2025-11-20 17:42:00,TRN-BDFEE8B54E494049
+2,151.22,USD,debit,completed,Small routine debit,2025-11-20 18:12:00,TRN-C9F5A8645EC44827
+3,36.08,USD,debit,completed,Small routine debit,2025-11-20 19:07:00,TRN-924AD9C7C6C949C1
+2,279.34,USD,debit,completed,Routine debit — baseline day 47,2025-11-21 09:37:00,TRN-360B51D0E60147B9
+3,95.5,USD,debit,completed,Routine debit — baseline day 47,2025-11-21 14:10:00,TRN-679991310B3E49E4
+2,152.74,USD,debit,completed,Small routine debit,2025-11-21 18:47:00,TRN-66DF5C5A6EFA4407
+3,39.63,USD,debit,completed,Small routine debit,2025-11-21 20:29:00,TRN-23BAE6C387EF4273
+2,282.72,USD,debit,completed,Routine debit — baseline day 48,2025-11-22 09:37:00,TRN-C2E8ADA486F44A20
+3,138.2,USD,debit,completed,Routine debit — baseline day 48,2025-11-22 14:05:00,TRN-36B72F19F8C941AB
+3,31.61,USD,debit,completed,Small routine debit,2025-11-22 18:15:00,TRN-9D00B114284F41D9
+2,129.96,USD,debit,completed,Small routine debit,2025-11-22 20:10:00,TRN-1879C018605944C8
+3,98.57,USD,debit,completed,Routine debit — baseline day 49,2025-11-23 15:33:00,TRN-34355E1C0DCA4746
+2,231.38,USD,debit,completed,Routine debit — baseline day 49,2025-11-23 17:05:00,TRN-F6CF6F7A07844B17
+2,162.92,USD,debit,completed,Small routine debit,2025-11-23 18:38:00,TRN-BB48CCFF759A4092
+3,23.73,USD,debit,completed,Small routine debit,2025-11-23 19:47:00,TRN-1D0B83C0AD674A9D
+2,233.59,USD,debit,completed,Routine debit — baseline day 50,2025-11-24 12:25:00,TRN-0FF114EF9D7F4695
+3,88.95,USD,debit,completed,Routine debit — baseline day 50,2025-11-24 14:49:00,TRN-EB4AB305BE084169
+2,98.55,USD,debit,completed,Small routine debit,2025-11-24 20:15:00,TRN-56DDB63E86664870
+3,25.7,USD,debit,completed,Small routine debit,2025-11-24 20:40:00,TRN-283359F802C843FA
+2,335.78,USD,debit,completed,Routine debit — baseline day 51,2025-11-25 09:39:00,TRN-CB71CAE3A4C84068
+3,66.4,USD,debit,completed,Routine debit — baseline day 51,2025-11-25 17:12:00,TRN-B66E654A29154344
+3,41.93,USD,debit,completed,Small routine debit,2025-11-25 19:22:00,TRN-F53C3E3439044034
+2,95.21,USD,debit,completed,Small routine debit,2025-11-25 20:37:00,TRN-B3C76917105F4446
+2,3254.47,USD,credit,completed,Inbound ACH — payroll,2025-11-26 09:00:00,TRN-2546206701054D57
+3,3441.98,USD,credit,completed,Inbound ACH — payroll,2025-11-26 09:00:00,TRN-3B390F5E5AEB405D
+3,127.74,USD,debit,completed,Routine debit — baseline day 52,2025-11-26 11:15:00,TRN-FEC1AE8166224CEB
+2,333.05,USD,debit,completed,Routine debit — baseline day 52,2025-11-26 14:59:00,TRN-4026C26583064B44
+3,24.26,USD,debit,completed,Small routine debit,2025-11-26 19:12:00,TRN-36BBDAA8D878482D
+2,110.95,USD,debit,completed,Small routine debit,2025-11-26 20:45:00,TRN-0215201A499A4673
+3,72.35,USD,debit,completed,Routine debit — baseline day 53,2025-11-27 11:48:00,TRN-B7FBAEE40F4A4DBA
+2,282.84,USD,debit,completed,Routine debit — baseline day 53,2025-11-27 13:25:00,TRN-01B29FB8A3684E24
+3,38.7,USD,debit,completed,Small routine debit,2025-11-27 18:11:00,TRN-71981FF505284AC6
+2,99.52,USD,debit,completed,Small routine debit,2025-11-27 20:19:00,TRN-545F2E3C8D4447A4
+2,311.44,USD,debit,completed,Routine debit — baseline day 54,2025-11-28 10:00:00,TRN-BC7DB7A0C40E4F89
+3,150.13,USD,debit,completed,Routine debit — baseline day 54,2025-11-28 16:29:00,TRN-0180F111E81C404A
+2,128.33,USD,debit,completed,Small routine debit,2025-11-28 20:06:00,TRN-0BD562821D6645B9
+3,38.6,USD,debit,completed,Small routine debit,2025-11-28 20:28:00,TRN-B9559AD833524EAD
+2,234.65,USD,debit,completed,Routine debit — baseline day 55,2025-11-29 12:32:00,TRN-EDCE8DD3C33F4A51
+3,123.11,USD,debit,completed,Routine debit — baseline day 55,2025-11-29 14:55:00,TRN-522898BE8259461C
+3,43.36,USD,debit,completed,Small routine debit,2025-11-29 19:09:00,TRN-9C3AF487D20D4A8B
+2,111.34,USD,debit,completed,Small routine debit,2025-11-29 19:56:00,TRN-F1B8A8A4CC104E07
+2,233.76,USD,debit,completed,Routine debit — baseline day 56,2025-11-30 12:23:00,TRN-C008D7EB24334EDB
+3,98.98,USD,debit,completed,Routine debit — baseline day 56,2025-11-30 16:28:00,TRN-FB72F59EE3D44753
+3,35.89,USD,debit,completed,Small routine debit,2025-11-30 19:37:00,TRN-4DADE38CBD5A4D99
+2,113.08,USD,debit,completed,Small routine debit,2025-11-30 19:53:00,TRN-9DD9C0F06F59486F
+2,328.64,USD,debit,completed,Routine debit — baseline day 57,2025-12-01 13:39:00,TRN-BB6168B8B7DA499F
+3,60.62,USD,debit,completed,Routine debit — baseline day 57,2025-12-01 17:04:00,TRN-0A0C142EEADE4943
+3,28.83,USD,debit,completed,Small routine debit,2025-12-01 19:02:00,TRN-41C8F928D6024DD0
+2,174.58,USD,debit,completed,Small routine debit,2025-12-01 20:33:00,TRN-77E5E9F7F6FE4043
+3,60.69,USD,debit,completed,Routine debit — baseline day 58,2025-12-02 13:04:00,TRN-E0F6F0A186884E3F
+2,221.56,USD,debit,completed,Routine debit — baseline day 58,2025-12-02 17:19:00,TRN-5374E69C5E084BE5
+3,36.18,USD,debit,completed,Small routine debit,2025-12-02 18:39:00,TRN-D93D35F6E3B543D3
+2,169.99,USD,debit,completed,Small routine debit,2025-12-02 18:56:00,TRN-F1237D7B7CBC4C7C
+2,3290.75,USD,credit,completed,Inbound ACH — payroll,2025-12-03 09:00:00,TRN-9DF7DA1423914186
+3,3113.98,USD,credit,completed,Inbound ACH — payroll,2025-12-03 09:00:00,TRN-A384133382614A06
+2,246.86,USD,debit,completed,Routine debit — baseline day 59,2025-12-03 10:56:00,TRN-661DBB2850814EBD
+3,114.41,USD,debit,completed,Routine debit — baseline day 59,2025-12-03 15:29:00,TRN-67A373579F7B4C82
+2,97.42,USD,debit,completed,Small routine debit,2025-12-03 20:09:00,TRN-1C48290654464E8D
+3,34.77,USD,debit,completed,Small routine debit,2025-12-03 20:57:00,TRN-9FD815FB7BA44997
+3,59.1,USD,debit,completed,Routine debit — baseline day 60,2025-12-04 12:20:00,TRN-C4CAC843C1E94945
+2,274.47,USD,debit,completed,Routine debit — baseline day 60,2025-12-04 12:45:00,TRN-B37F8750A87E4869
+3,35.31,USD,debit,completed,Small routine debit,2025-12-04 20:09:00,TRN-50B7DDB0DC0E458B
+2,118.17,USD,debit,completed,Small routine debit,2025-12-04 20:40:00,TRN-9AA0327E5C594C4B
+3,150.77,USD,debit,completed,Routine debit — baseline day 61,2025-12-05 16:06:00,TRN-D790D2C1EB374D2F
+2,390.58,USD,debit,completed,Routine debit — baseline day 61,2025-12-05 17:31:00,TRN-447AD0DFA84A449F
+2,110.1,USD,debit,completed,Small routine debit,2025-12-05 18:05:00,TRN-109959C677854844
+3,39.84,USD,debit,completed,Small routine debit,2025-12-05 19:45:00,TRN-CD5A26C8C6974E42
+3,63.43,USD,debit,completed,Routine debit — baseline day 62,2025-12-06 11:02:00,TRN-6DB62DCC5E214163
+2,346.86,USD,debit,completed,Routine debit — baseline day 62,2025-12-06 13:02:00,TRN-A8B76A90D5DA4028
+2,88.31,USD,debit,completed,Small routine debit,2025-12-06 18:40:00,TRN-A43040B126AE43A6
+3,27.45,USD,debit,completed,Small routine debit,2025-12-06 19:28:00,TRN-8BBAADB151CD441B
+3,107.41,USD,debit,completed,Routine debit — baseline day 63,2025-12-07 11:23:00,TRN-48F1FA3F584E4544
+2,415.96,USD,debit,completed,Routine debit — baseline day 63,2025-12-07 11:47:00,TRN-86285F2813054D19
+3,30.2,USD,debit,completed,Small routine debit,2025-12-07 19:24:00,TRN-7E3829EDA6BC445E
+2,126.88,USD,debit,completed,Small routine debit,2025-12-07 20:27:00,TRN-6CEF7310210D4060
+2,332.18,USD,debit,completed,Routine debit — baseline day 64,2025-12-08 10:04:00,TRN-A96F769446904E63
+3,95.88,USD,debit,completed,Routine debit — baseline day 64,2025-12-08 14:43:00,TRN-77C2FEFB02BD4B6D
+3,35.15,USD,debit,completed,Small routine debit,2025-12-08 20:41:00,TRN-1F46F61494FF46EB
+2,171.16,USD,debit,completed,Small routine debit,2025-12-08 20:57:00,TRN-B5EE27E0BF6A4B8E
+2,249.81,USD,debit,completed,Routine debit — baseline day 65,2025-12-09 09:53:00,TRN-C15B3BA6B8B34D92
+3,88.46,USD,debit,completed,Routine debit — baseline day 65,2025-12-09 14:06:00,TRN-E9A76ADC2C2E4D20
+3,34.28,USD,debit,completed,Small routine debit,2025-12-09 19:18:00,TRN-7E75D15B6EEE453C
+2,120.49,USD,debit,completed,Small routine debit,2025-12-09 20:09:00,TRN-B10F53AD587F4A58
+2,3124.99,USD,credit,completed,Inbound ACH — payroll,2025-12-10 09:00:00,TRN-A6402730EC9A4C61
+3,3423.93,USD,credit,completed,Inbound ACH — payroll,2025-12-10 09:00:00,TRN-A747D41D19704643
+2,305.96,USD,debit,completed,Routine debit — baseline day 66,2025-12-10 09:19:00,TRN-1EE8A0AA07134A17
+3,80.2,USD,debit,completed,Routine debit — baseline day 66,2025-12-10 11:21:00,TRN-4A06BBC1E23D4E4C
+2,120.09,USD,debit,completed,Small routine debit,2025-12-10 18:57:00,TRN-C8FA8CC457FA4B83
+3,23.79,USD,debit,completed,Small routine debit,2025-12-10 20:09:00,TRN-D62DC0F893AC476D
+2,291.56,USD,debit,completed,Routine debit — baseline day 67,2025-12-11 12:42:00,TRN-BEB9E241B620496E
+3,146.67,USD,debit,completed,Routine debit — baseline day 67,2025-12-11 13:41:00,TRN-CFF10B83C4FB4C3F
+3,37.37,USD,debit,completed,Small routine debit,2025-12-11 19:08:00,TRN-4C19DD64F8B9499D
+2,97.05,USD,debit,completed,Small routine debit,2025-12-11 20:56:00,TRN-DCC3B29C29D34E31
+3,114.5,USD,debit,completed,Routine debit — baseline day 68,2025-12-12 10:19:00,TRN-68DA1C242F644060
+2,394.94,USD,debit,completed,Routine debit — baseline day 68,2025-12-12 11:59:00,TRN-CF12E4E553554B70
+2,169.83,USD,debit,completed,Small routine debit,2025-12-12 18:51:00,TRN-55FB356A6DCF4823
+3,34.3,USD,debit,completed,Small routine debit,2025-12-12 20:50:00,TRN-5A0089ABACE64BEF
+3,87.85,USD,debit,completed,Routine debit — baseline day 69,2025-12-13 11:42:00,TRN-ED5345127E074908
+2,382.15,USD,debit,completed,Routine debit — baseline day 69,2025-12-13 15:01:00,TRN-D20CE57620FF4075
+2,103.78,USD,debit,completed,Small routine debit,2025-12-13 19:50:00,TRN-0FCE51E4BFE84A5A
+3,37.46,USD,debit,completed,Small routine debit,2025-12-13 20:43:00,TRN-7D44DC7775584596
+3,146.24,USD,debit,completed,Routine debit — baseline day 70,2025-12-14 10:41:00,TRN-1C8366AC99EA4013
+2,406.16,USD,debit,completed,Routine debit — baseline day 70,2025-12-14 12:17:00,TRN-6708EA76AB9B48F8
+2,102.01,USD,debit,completed,Small routine debit,2025-12-14 20:06:00,TRN-AC2ABD086DA84DDB
+3,36.75,USD,debit,completed,Small routine debit,2025-12-14 20:23:00,TRN-262E53C717B244B7
+2,296.51,USD,debit,completed,Routine debit — baseline day 71,2025-12-15 09:54:00,TRN-2ED73A6928A94A59
+3,56.82,USD,debit,completed,Routine debit — baseline day 71,2025-12-15 13:11:00,TRN-544F7902B1364C57
+2,129.42,USD,debit,completed,Small routine debit,2025-12-15 18:52:00,TRN-C245BC5494C548F5
+3,42.93,USD,debit,completed,Small routine debit,2025-12-15 19:49:00,TRN-5808968962F2451A
+3,103.63,USD,debit,completed,Routine debit — baseline day 72,2025-12-16 12:08:00,TRN-8920BA5862D949B5
+2,403.69,USD,debit,completed,Routine debit — baseline day 72,2025-12-16 14:19:00,TRN-AD64B69CF72A4EBA
+2,160.21,USD,debit,completed,Small routine debit,2025-12-16 18:14:00,TRN-EE847BCB30D94E22
+3,25.41,USD,debit,completed,Small routine debit,2025-12-16 19:54:00,TRN-2E47A132AC1F4984
+2,3244.78,USD,credit,completed,Inbound ACH — payroll,2025-12-17 09:00:00,TRN-8C851E0A84614BDB
+3,3062.12,USD,credit,completed,Inbound ACH — payroll,2025-12-17 09:00:00,TRN-7D21C2641EA4416E
+2,224.73,USD,debit,completed,Routine debit — baseline day 73,2025-12-17 12:25:00,TRN-C903A9FA83D84CAD
+3,133.81,USD,debit,completed,Routine debit — baseline day 73,2025-12-17 17:49:00,TRN-6299326DE099421B
+2,116.89,USD,debit,completed,Small routine debit,2025-12-17 18:49:00,TRN-011560188755459E
+3,33.87,USD,debit,completed,Small routine debit,2025-12-17 20:56:00,TRN-88ACA77988FB456C
+3,107.65,USD,debit,completed,Routine debit — baseline day 74,2025-12-18 14:56:00,TRN-5BA7E74D99644D34
+2,275.82,USD,debit,completed,Routine debit — baseline day 74,2025-12-18 17:25:00,TRN-4917A2713E72495D
+3,38.86,USD,debit,completed,Small routine debit,2025-12-18 18:38:00,TRN-B55758FD35D24761
+2,147.8,USD,debit,completed,Small routine debit,2025-12-18 20:21:00,TRN-707647765A064363
+2,407.85,USD,debit,completed,Routine debit — baseline day 75,2025-12-19 10:56:00,TRN-E36738B57B2C4B32
+3,92.67,USD,debit,completed,Routine debit — baseline day 75,2025-12-19 11:11:00,TRN-52150614A957463A
+2,173.4,USD,debit,completed,Small routine debit,2025-12-19 18:37:00,TRN-4FC6E22045A44EFF
+3,40.29,USD,debit,completed,Small routine debit,2025-12-19 20:51:00,TRN-9DBC21BB068F4C44
+2,412.51,USD,debit,completed,Routine debit — baseline day 76,2025-12-20 13:02:00,TRN-2F149436E8D64E54
+3,145.27,USD,debit,completed,Routine debit — baseline day 76,2025-12-20 16:02:00,TRN-5094E84883B54E70
+2,97.54,USD,debit,completed,Small routine debit,2025-12-20 19:22:00,TRN-2C571BF631B44E96
+3,31.04,USD,debit,completed,Small routine debit,2025-12-20 20:46:00,TRN-9C605035829B408C
+2,365.71,USD,debit,completed,Routine debit — baseline day 77,2025-12-21 14:27:00,TRN-B055FAAC42254B1B
+3,78.75,USD,debit,completed,Routine debit — baseline day 77,2025-12-21 16:39:00,TRN-5B93F58EDB9243D5
+2,141.35,USD,debit,completed,Small routine debit,2025-12-21 20:07:00,TRN-B1C4E4A201BF4538
+3,28.27,USD,debit,completed,Small routine debit,2025-12-21 20:50:00,TRN-54AC85DAF85C4928
+2,297.04,USD,debit,completed,Routine debit — baseline day 78,2025-12-22 12:16:00,TRN-C5FFDD0F0ED94F8A
+3,99.89,USD,debit,completed,Routine debit — baseline day 78,2025-12-22 17:15:00,TRN-A6DC26644E1D4842
+2,91.91,USD,debit,completed,Small routine debit,2025-12-22 19:00:00,TRN-9A000A713B514CA5
+3,28.81,USD,debit,completed,Small routine debit,2025-12-22 19:57:00,TRN-64270C6A449B4FCB
+3,138.51,USD,debit,completed,Routine debit — baseline day 79,2025-12-23 14:43:00,TRN-73BAE23F37124484
+2,323.98,USD,debit,completed,Routine debit — baseline day 79,2025-12-23 17:43:00,TRN-92AE4BC81D80452B
+3,42.84,USD,debit,completed,Small routine debit,2025-12-23 19:29:00,TRN-A72E69A257D1443D
+2,151.31,USD,debit,completed,Small routine debit,2025-12-23 20:47:00,TRN-DDBA63ED616A4998
+2,3253.36,USD,credit,completed,Inbound ACH — payroll,2025-12-24 09:00:00,TRN-8C29B43A3410447E
+3,3474.65,USD,credit,completed,Inbound ACH — payroll,2025-12-24 09:00:00,TRN-296CAFCF42EB43B8
+2,354.13,USD,debit,completed,Routine debit — baseline day 80,2025-12-24 14:27:00,TRN-CF024A4D8D444871
+3,131.94,USD,debit,completed,Routine debit — baseline day 80,2025-12-24 15:32:00,TRN-12B0FC98A6294AC7
+3,33.6,USD,debit,completed,Small routine debit,2025-12-24 18:52:00,TRN-5BDFC00D0632400E
+2,94.16,USD,debit,completed,Small routine debit,2025-12-24 20:58:00,TRN-6EB1343DBDBB4621
+3,74.97,USD,debit,completed,Routine debit — baseline day 81,2025-12-25 11:55:00,TRN-98A0A1BE4700455E
+2,286.04,USD,debit,completed,Routine debit — baseline day 81,2025-12-25 14:42:00,TRN-3892BB573B0C4A9D
+3,27.5,USD,debit,completed,Small routine debit,2025-12-25 20:30:00,TRN-0D284BCDCE7246B2
+2,162.63,USD,debit,completed,Small routine debit,2025-12-25 20:57:00,TRN-2A58A70366944E48
+2,280.06,USD,debit,completed,Routine debit — baseline day 82,2025-12-26 13:42:00,TRN-CFC2FD54A40E4D36
+3,142.41,USD,debit,completed,Routine debit — baseline day 82,2025-12-26 17:59:00,TRN-1CF7F2886BB84F10
+2,123.94,USD,debit,completed,Small routine debit,2025-12-26 19:44:00,TRN-FB808A35E6274CE1
+3,24.26,USD,debit,completed,Small routine debit,2025-12-26 20:54:00,TRN-05645FFF279C43B1
+3,67.47,USD,debit,completed,Routine debit — baseline day 83,2025-12-27 10:48:00,TRN-3A2C0E2F4D50468E
+2,279.13,USD,debit,completed,Routine debit — baseline day 83,2025-12-27 11:12:00,TRN-4DC4EB6C55D44175
+2,125.0,USD,debit,completed,Small routine debit,2025-12-27 19:43:00,TRN-B5294830E016420B
+3,25.53,USD,debit,completed,Small routine debit,2025-12-27 19:57:00,TRN-6A2CB5AB42D3485D
+2,369.63,USD,debit,completed,Routine debit — baseline day 84,2025-12-28 11:39:00,TRN-0A7FB0D7EBE946CF
+3,106.34,USD,debit,completed,Routine debit — baseline day 84,2025-12-28 15:05:00,TRN-DE78806D567D41A8
+3,42.82,USD,debit,completed,Small routine debit,2025-12-28 18:52:00,TRN-BFC9C82B84E149AD
+2,138.08,USD,debit,completed,Small routine debit,2025-12-28 19:35:00,TRN-ECA08220EA3F4538
+2,386.75,USD,debit,completed,Routine debit — baseline day 85,2025-12-29 13:18:00,TRN-A35FB421008D44D5
+3,100.11,USD,debit,completed,Routine debit — baseline day 85,2025-12-29 14:59:00,TRN-A310DDAD9EE4413D
+3,22.59,USD,debit,completed,Small routine debit,2025-12-29 18:25:00,TRN-CE11ABA0847F4C66
+2,106.5,USD,debit,completed,Small routine debit,2025-12-29 20:38:00,TRN-C8E9B3C508E84DB8
+3,105.2,USD,debit,completed,Routine debit — baseline day 86,2025-12-30 12:24:00,TRN-A9FC134F9C424F78
+2,350.94,USD,debit,completed,Routine debit — baseline day 86,2025-12-30 16:28:00,TRN-22BC9EBCC3414A93
+2,126.91,USD,debit,completed,Small routine debit,2025-12-30 18:32:00,TRN-021BB3BDFB184862
+3,43.88,USD,debit,completed,Small routine debit,2025-12-30 19:14:00,TRN-1D8AC4407BAB4B4C
+2,3227.06,USD,credit,completed,Inbound ACH — payroll,2025-12-31 09:00:00,TRN-59F7634A14654F6C
+3,3310.5,USD,credit,completed,Inbound ACH — payroll,2025-12-31 09:00:00,TRN-0EC9CFCEE6E04586
+3,57.82,USD,debit,completed,Routine debit — baseline day 87,2025-12-31 10:53:00,TRN-5526FF1A059D4FA9
+2,314.64,USD,debit,completed,Routine debit — baseline day 87,2025-12-31 11:42:00,TRN-ED57CA8B36544674
+3,37.72,USD,debit,completed,Small routine debit,2025-12-31 19:50:00,TRN-AC6C25CFAC134191
+2,95.46,USD,debit,completed,Small routine debit,2025-12-31 20:42:00,TRN-F65649119BF64F79
+3,69.6,USD,debit,completed,Routine debit — baseline day 88,2026-01-01 09:18:00,TRN-48390DC143DB4C05
+2,346.59,USD,debit,completed,Routine debit — baseline day 88,2026-01-01 14:05:00,TRN-37EC1CF4737242F4
+2,160.02,USD,debit,completed,Small routine debit,2026-01-01 18:43:00,TRN-F5BA20E559AD4280
+3,42.18,USD,debit,completed,Small routine debit,2026-01-01 19:44:00,TRN-7FE1FF709C594EAE
+2,282.08,USD,debit,completed,Routine debit — baseline day 89,2026-01-02 12:09:00,TRN-6F0157C235544FCD
+3,138.11,USD,debit,completed,Routine debit — baseline day 89,2026-01-02 16:28:00,TRN-1ED8207B57CF4963
+3,35.54,USD,debit,completed,Small routine debit,2026-01-02 18:01:00,TRN-B7714DD42A8347FA
+2,90.15,USD,debit,completed,Small routine debit,2026-01-02 18:30:00,TRN-63D2B2FECD864017
+2,342.25,USD,debit,completed,Routine debit — baseline day 90,2026-01-03 10:29:00,TRN-7BA21AD306EF4657
+3,80.59,USD,debit,completed,Routine debit — baseline day 90,2026-01-03 11:35:00,TRN-325419498CDE416F
+3,42.68,USD,debit,completed,Small routine debit,2026-01-03 20:33:00,TRN-86301A622E094C33
+2,124.47,USD,debit,completed,Small routine debit,2026-01-03 20:36:00,TRN-EC546AA624704453
+2,258.89,USD,debit,completed,Routine debit slot 1,2026-01-04 10:44:00,TRN-7CE951BD06414E80
+3,97.33,USD,debit,completed,Routine debit slot 1,2026-01-04 10:49:00,TRN-6020645DFE6C4D40
+3,83.81,USD,debit,completed,Routine debit slot 2,2026-01-04 13:19:00,TRN-FC739702D8714989
+2,296.8,USD,debit,completed,Routine debit slot 2,2026-01-04 13:25:00,TRN-7A0984D1E96E44CB
+3,67.18,USD,debit,completed,Routine debit slot 3,2026-01-04 16:15:00,TRN-93DA9D30C59F46B6
+2,268.8,USD,debit,completed,Routine debit slot 3,2026-01-04 16:41:00,TRN-396F2649B7124F48
+3,96.98,USD,debit,completed,Routine debit slot 1,2026-01-05 10:50:00,TRN-FF06890BC81A41BB
+2,357.52,USD,debit,completed,Routine debit slot 1,2026-01-05 10:57:00,TRN-9BE63D38D1C54106
+3,117.28,USD,debit,completed,Routine debit slot 2,2026-01-05 13:04:00,TRN-8A3E8ABF111B47B2
+2,370.19,USD,debit,completed,Routine debit slot 2,2026-01-05 13:49:00,TRN-02384EADB20E43CB
+2,397.09,USD,debit,completed,Routine debit slot 3,2026-01-05 16:49:00,TRN-FEF6D9BA81D84903
+3,66.09,USD,debit,completed,Routine debit slot 3,2026-01-05 16:57:00,TRN-BAC0B5D79EA24FEB
+2,305.03,USD,debit,completed,Routine debit slot 1,2026-01-06 10:11:00,TRN-192F2BD59122400F
+3,104.98,USD,debit,completed,Routine debit slot 1,2026-01-06 10:34:00,TRN-A6443871B9684CBA
+3,56.64,USD,debit,completed,Routine debit slot 2,2026-01-06 13:32:00,TRN-166D3EDE71144E2B
+2,380.82,USD,debit,completed,Routine debit slot 2,2026-01-06 13:44:00,TRN-EE67716DF6034960
+2,323.59,USD,debit,completed,Routine debit slot 3,2026-01-06 16:03:00,TRN-708F6318DED04164
+3,112.5,USD,debit,completed,Routine debit slot 3,2026-01-06 16:45:00,TRN-135442756BBC41F3
+2,119.93,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-07 03:00:00,TRN-8D1AE1CEE7554955
+2,3029.6,USD,credit,completed,Inbound ACH — payroll,2026-01-07 09:00:00,TRN-232BAB0741CF4508
+3,3249.07,USD,credit,completed,Inbound ACH — payroll,2026-01-07 09:00:00,TRN-84685BE209BD4F3B
+3,69.36,USD,debit,completed,Routine debit slot 1,2026-01-07 10:27:00,TRN-1CDA8382ED644198
+2,331.48,USD,debit,completed,Routine debit slot 1,2026-01-07 10:58:00,TRN-99121ECACD534B22
+3,55.16,USD,debit,completed,Routine debit slot 2,2026-01-07 13:22:00,TRN-A7741F83DB6F46C3
+2,389.67,USD,debit,completed,Routine debit slot 2,2026-01-07 13:29:00,TRN-731F98679DE14D8A
+3,79.06,USD,debit,completed,Routine debit slot 3,2026-01-07 16:26:00,TRN-1C9BEAA57C8F4654
+2,246.67,USD,debit,completed,Routine debit slot 3,2026-01-07 16:29:00,TRN-A940F1431D324F28
+2,15049.26,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-07 17:29:00,TRN-59990A77D6C94997
+2,353.52,USD,debit,completed,Routine debit slot 1,2026-01-08 10:35:00,TRN-BE4788CA7E2E499F
+3,73.73,USD,debit,completed,Routine debit slot 1,2026-01-08 10:42:00,TRN-FADB46612F6748FD
+3,63.56,USD,debit,completed,Routine debit slot 2,2026-01-08 13:23:00,TRN-1CC5EFB5C9624550
+2,339.09,USD,debit,completed,Routine debit slot 2,2026-01-08 13:48:00,TRN-B957C4E08AFA44CC
+3,61.77,USD,debit,completed,Routine debit slot 3,2026-01-08 16:33:00,TRN-C00FA05AF9354B4A
+2,398.29,USD,debit,completed,Routine debit slot 3,2026-01-08 16:39:00,TRN-6C7E59F6942E4D62
+2,14571.86,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-08 18:21:00,TRN-23B53276D62A434F
+3,42.28,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-09 04:52:00,TRN-203E0E763F514F91
+3,109.41,USD,debit,completed,Routine debit slot 1,2026-01-09 10:50:00,TRN-75FE341836B542BA
+2,383.0,USD,debit,completed,Routine debit slot 1,2026-01-09 10:57:00,TRN-D677FB758143478E
+3,153.83,USD,debit,completed,Routine debit slot 2,2026-01-09 13:35:00,TRN-98C49B5D619C4914
+2,320.96,USD,debit,completed,Routine debit slot 2,2026-01-09 13:53:00,TRN-E1841F9701DD43F6
+2,401.37,USD,debit,completed,Routine debit slot 3,2026-01-09 16:28:00,TRN-AEE19B6D54C94951
+3,57.03,USD,debit,completed,Routine debit slot 3,2026-01-09 16:55:00,TRN-A4FAB9B00CFF4F36
+3,102.01,USD,debit,completed,Routine debit slot 1,2026-01-10 10:40:00,TRN-33C25C90049E4A72
+2,399.44,USD,debit,completed,Routine debit slot 1,2026-01-10 10:47:00,TRN-97DBFA513EBD4A25
+3,93.69,USD,debit,completed,Routine debit slot 2,2026-01-10 13:23:00,TRN-E0CE4E5FF79B4AB7
+2,392.3,USD,debit,completed,Routine debit slot 2,2026-01-10 13:28:00,TRN-095D0B5FCAFC40F4
+3,80.37,USD,debit,completed,Routine debit slot 3,2026-01-10 16:01:00,TRN-53753B705A15463E
+2,271.84,USD,debit,completed,Routine debit slot 3,2026-01-10 16:15:00,TRN-058DEA0EF15F4F0D
+3,5087.78,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-10 17:34:00,TRN-85711C24ED5C46E0
+3,90.71,USD,debit,completed,Routine debit slot 1,2026-01-11 10:04:00,TRN-3ED659CC31464C85
+2,387.97,USD,debit,completed,Routine debit slot 1,2026-01-11 10:17:00,TRN-E153C3E36BDA4025
+2,373.16,USD,debit,completed,Routine debit slot 2,2026-01-11 13:33:00,TRN-F81345B8892C40CF
+3,89.48,USD,debit,completed,Routine debit slot 2,2026-01-11 13:46:00,TRN-33CE76FC4C944995
+3,120.71,USD,debit,completed,Routine debit slot 3,2026-01-11 16:06:00,TRN-2034FA003C9E45AE
+2,316.92,USD,debit,completed,Routine debit slot 3,2026-01-11 16:15:00,TRN-BB19CAC2F0BD4DF9
+2,274.92,USD,debit,completed,Routine debit slot 1,2026-01-12 10:04:00,TRN-068F930AAD524D62
+3,132.15,USD,debit,completed,Routine debit slot 1,2026-01-12 10:47:00,TRN-1EAE6B4463FE4F18
+3,130.67,USD,debit,completed,Routine debit slot 2,2026-01-12 13:08:00,TRN-E200EC1F8CCD4438
+2,362.71,USD,debit,completed,Routine debit slot 2,2026-01-12 13:15:00,TRN-D347537FAEB94AFD
+2,274.34,USD,debit,completed,Routine debit slot 3,2026-01-12 16:20:00,TRN-5788CD69B4B84146
+3,59.43,USD,debit,completed,Routine debit slot 3,2026-01-12 16:34:00,TRN-F813AF203C6C4A7F
+3,4863.76,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-12 19:18:00,TRN-56C2439216DA4E2B
+2,398.61,USD,debit,completed,Routine debit slot 1,2026-01-13 10:05:00,TRN-C5EA62B86A8D4AFE
+3,88.85,USD,debit,completed,Routine debit slot 1,2026-01-13 10:41:00,TRN-F29A69922FF7422B
+2,247.67,USD,debit,completed,Routine debit slot 2,2026-01-13 13:14:00,TRN-9E870FE913924008
+3,72.51,USD,debit,completed,Routine debit slot 2,2026-01-13 13:49:00,TRN-542A38F0ADD444A6
+2,296.61,USD,debit,completed,Routine debit slot 3,2026-01-13 16:09:00,TRN-03360FC12E114DA4
+3,123.47,USD,debit,completed,Routine debit slot 3,2026-01-13 16:44:00,TRN-D654A8D0AB7D4858
+3,5037.01,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-13 18:45:00,TRN-E2E767D1C8794BBC
+2,184.4,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-14 04:25:00,TRN-0082ABB072D7432C
+2,3460.22,USD,credit,completed,Inbound ACH — payroll,2026-01-14 09:00:00,TRN-30E2F9943F964A44
+3,2894.8,USD,credit,completed,Inbound ACH — payroll,2026-01-14 09:00:00,TRN-72F8F5EA4159483E
+2,361.28,USD,debit,completed,Routine debit slot 1,2026-01-14 10:04:00,TRN-76ADFB7D747B4560
+3,102.85,USD,debit,completed,Routine debit slot 1,2026-01-14 10:11:00,TRN-CE5BA286B9C2454B
+3,136.15,USD,debit,completed,Routine debit slot 2,2026-01-14 13:04:00,TRN-97D8B67B73584BB1
+2,302.97,USD,debit,completed,Routine debit slot 2,2026-01-14 13:21:00,TRN-ABD57436BF1844F3
+2,328.52,USD,debit,completed,Routine debit slot 3,2026-01-14 16:26:00,TRN-BED8F258BE774042
+3,126.6,USD,debit,completed,Routine debit slot 3,2026-01-14 16:29:00,TRN-0B02A3ECB6584CF1
+2,119.91,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-15 03:20:00,TRN-7F5525CC09994624
+3,58.7,USD,debit,completed,Routine debit slot 1,2026-01-15 10:12:00,TRN-725C001E4071467B
+2,232.45,USD,debit,completed,Routine debit slot 1,2026-01-15 10:53:00,TRN-ADAC3530F37F46CB
+3,59.38,USD,debit,completed,Routine debit slot 2,2026-01-15 13:12:00,TRN-BFDA39C2461F4133
+2,304.03,USD,debit,completed,Routine debit slot 2,2026-01-15 13:57:00,TRN-4422684693E1499E
+3,143.58,USD,debit,completed,Routine debit slot 3,2026-01-15 16:20:00,TRN-FCF2D85A85724424
+2,373.96,USD,debit,completed,Routine debit slot 3,2026-01-15 16:44:00,TRN-C4FB15173F774C29
+2,12721.58,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-15 19:50:00,TRN-EAA83348E79A41C9
+3,4301.37,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-15 19:50:00,TRN-25C02D193F854C2C
+2,189.3,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-16 04:43:00,TRN-57D1F9C7EF134AFE
+3,148.34,USD,debit,completed,Routine debit slot 1,2026-01-16 10:32:00,TRN-F7771353B0394306
+2,223.91,USD,debit,completed,Routine debit slot 1,2026-01-16 10:56:00,TRN-F382AABACDBF494E
+2,373.12,USD,debit,completed,Routine debit slot 2,2026-01-16 13:24:00,TRN-7B8E0F162E584E33
+3,94.82,USD,debit,completed,Routine debit slot 2,2026-01-16 13:52:00,TRN-7012AE059F4A4109
+3,109.3,USD,debit,completed,Routine debit slot 3,2026-01-16 16:16:00,TRN-4CA2BFE7B0C6470D
+2,315.4,USD,debit,completed,Routine debit slot 3,2026-01-16 16:22:00,TRN-2FD251954E5E48E5
+2,15250.88,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-16 18:14:00,TRN-15198D4C2DE44C1B
+2,279.72,USD,debit,completed,Routine debit slot 1,2026-01-17 10:24:00,TRN-78B11822ECC64C8B
+3,58.66,USD,debit,completed,Routine debit slot 1,2026-01-17 10:41:00,TRN-5D0A9D6BA30049ED
+3,74.11,USD,debit,completed,Routine debit slot 2,2026-01-17 13:22:00,TRN-7044B2B1F0D64ACA
+2,390.69,USD,debit,completed,Routine debit slot 2,2026-01-17 13:53:00,TRN-4539617939AA4C79
+3,141.21,USD,debit,completed,Routine debit slot 3,2026-01-17 16:03:00,TRN-93825A68E955472F
+2,303.8,USD,debit,completed,Routine debit slot 3,2026-01-17 16:47:00,TRN-506053E3F4AF463B
+3,141.58,USD,debit,completed,Routine debit slot 1,2026-01-18 10:21:00,TRN-1F578A5A93ED47D6
+2,366.93,USD,debit,completed,Routine debit slot 1,2026-01-18 10:51:00,TRN-1DDDCCADFEC84D9E
+2,340.65,USD,debit,completed,Routine debit slot 2,2026-01-18 13:14:00,TRN-CD95894A060946A2
+3,82.32,USD,debit,completed,Routine debit slot 2,2026-01-18 13:51:00,TRN-B1E525C5C0F345EB
+2,317.65,USD,debit,completed,Routine debit slot 3,2026-01-18 16:17:00,TRN-8B0836B740354883
+3,91.8,USD,debit,completed,Routine debit slot 3,2026-01-18 16:56:00,TRN-12F4A7ACE8464818
+3,49.74,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-19 03:08:00,TRN-82C5A03586094CCE
+2,307.17,USD,debit,completed,Routine debit slot 1,2026-01-19 10:01:00,TRN-2CB7E434210E4FEF
+3,95.0,USD,debit,completed,Routine debit slot 1,2026-01-19 10:28:00,TRN-4C967D07A12D456A
+3,144.46,USD,debit,completed,Routine debit slot 2,2026-01-19 13:24:00,TRN-85C4A1D6557445F4
+2,297.77,USD,debit,completed,Routine debit slot 2,2026-01-19 13:42:00,TRN-F9B048B1114A420E
+3,88.9,USD,debit,completed,Routine debit slot 3,2026-01-19 16:11:00,TRN-22C8FCE555094404
+2,355.83,USD,debit,completed,Routine debit slot 3,2026-01-19 16:25:00,TRN-50661C095CA34A39
+3,104.62,USD,debit,completed,Routine debit slot 1,2026-01-20 10:31:00,TRN-0F96DA63A064477F
+2,364.84,USD,debit,completed,Routine debit slot 1,2026-01-20 10:53:00,TRN-E415328486D74C8A
+2,313.48,USD,debit,completed,Routine debit slot 2,2026-01-20 13:08:00,TRN-7FE54905963A4560
+3,91.73,USD,debit,completed,Routine debit slot 2,2026-01-20 13:51:00,TRN-EAE31413FD3D455A
+2,416.14,USD,debit,completed,Routine debit slot 3,2026-01-20 16:34:00,TRN-C28BC0D5D43B410E
+3,106.93,USD,debit,completed,Routine debit slot 3,2026-01-20 16:51:00,TRN-17E7D8EB07EE4F40
+2,3233.68,USD,credit,completed,Inbound ACH — payroll,2026-01-21 09:00:00,TRN-3B81A0C82CDA4A2B
+3,2925.99,USD,credit,completed,Inbound ACH — payroll,2026-01-21 09:00:00,TRN-47561D85208746D8
+2,225.39,USD,debit,completed,Routine debit slot 1,2026-01-21 10:25:00,TRN-AE8ED7482BFB4EF9
+3,63.26,USD,debit,completed,Routine debit slot 1,2026-01-21 10:27:00,TRN-72BE8CE6C2394DA5
+3,62.89,USD,debit,completed,Routine debit slot 2,2026-01-21 13:38:00,TRN-3B61241C0EAC482A
+2,338.38,USD,debit,completed,Routine debit slot 2,2026-01-21 13:42:00,TRN-166A9B7531FA4BA6
+3,154.51,USD,debit,completed,Routine debit slot 3,2026-01-21 16:11:00,TRN-3A79523294A34F60
+2,225.42,USD,debit,completed,Routine debit slot 3,2026-01-21 16:41:00,TRN-72AD1A1C58004EF8
+3,4730.69,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-21 18:12:00,TRN-A82B0C28BFF9412B
+2,210.17,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-22 04:31:00,TRN-2D5F7820175D42F9
+3,109.55,USD,debit,completed,Routine debit slot 1,2026-01-22 10:20:00,TRN-4953A491AE004817
+2,305.72,USD,debit,completed,Routine debit slot 1,2026-01-22 10:55:00,TRN-6F7FC9E71766491F
+2,312.34,USD,debit,completed,Routine debit slot 2,2026-01-22 13:03:00,TRN-6D06DFEA23CF4BB8
+3,65.26,USD,debit,completed,Routine debit slot 2,2026-01-22 13:20:00,TRN-3B45DBCF376945B8
+3,121.09,USD,debit,completed,Routine debit slot 3,2026-01-22 16:19:00,TRN-8292D264CAE94878
+2,272.03,USD,debit,completed,Routine debit slot 3,2026-01-22 16:20:00,TRN-2811397D725744EF
+2,262.33,USD,debit,completed,Routine debit slot 1,2026-01-23 10:20:00,TRN-DA4CDF7544EC4829
+3,99.59,USD,debit,completed,Routine debit slot 1,2026-01-23 10:45:00,TRN-A05A2A2BA01A47FE
+3,97.61,USD,debit,completed,Routine debit slot 2,2026-01-23 13:44:00,TRN-5140E4E02EB940E7
+2,287.5,USD,debit,completed,Routine debit slot 2,2026-01-23 13:56:00,TRN-A6E1745B3E044930
+3,99.39,USD,debit,completed,Routine debit slot 3,2026-01-23 16:28:00,TRN-711EF6C0F7CF4134
+2,295.83,USD,debit,completed,Routine debit slot 3,2026-01-23 16:48:00,TRN-BCF8A64E60B3414A
+2,410.24,USD,debit,completed,Routine debit slot 1,2026-01-24 10:26:00,TRN-7BF183BC98AB46BF
+3,59.24,USD,debit,completed,Routine debit slot 1,2026-01-24 10:55:00,TRN-98EA530C2B8B4D97
+2,270.45,USD,debit,completed,Routine debit slot 2,2026-01-24 13:05:00,TRN-F772E0AC445D47C5
+3,146.16,USD,debit,completed,Routine debit slot 2,2026-01-24 13:39:00,TRN-8D7D486186B04024
+3,154.82,USD,debit,completed,Routine debit slot 3,2026-01-24 16:17:00,TRN-BC597DDAA23549EB
+2,314.06,USD,debit,completed,Routine debit slot 3,2026-01-24 16:47:00,TRN-15D17E0F324E4336
+3,5070.48,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-24 18:20:00,TRN-17FC79BECC014CDE
+2,12835.7,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-24 19:23:00,TRN-0696FC94CBE54A80
+2,327.88,USD,debit,completed,Routine debit slot 1,2026-01-25 10:22:00,TRN-8C0D6708C7314E1F
+3,118.95,USD,debit,completed,Routine debit slot 1,2026-01-25 10:50:00,TRN-7101EFC53E65448E
+2,264.84,USD,debit,completed,Routine debit slot 2,2026-01-25 13:04:00,TRN-5760F80BB6CF4A02
+3,149.79,USD,debit,completed,Routine debit slot 2,2026-01-25 13:04:00,TRN-48436328BCE54A57
+3,122.12,USD,debit,completed,Routine debit slot 3,2026-01-25 16:25:00,TRN-55ADD8AB85B34025
+2,376.25,USD,debit,completed,Routine debit slot 3,2026-01-25 16:41:00,TRN-A26ECF9A17EF4734
+3,31.89,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-26 04:32:00,TRN-F1ED19FAE76E4131
+2,228.05,USD,debit,completed,Routine debit slot 1,2026-01-26 10:01:00,TRN-191B544157B74960
+3,91.33,USD,debit,completed,Routine debit slot 1,2026-01-26 10:51:00,TRN-AA91C488249B4027
+3,129.99,USD,debit,completed,Routine debit slot 2,2026-01-26 13:10:00,TRN-6702A016318449F2
+2,409.92,USD,debit,completed,Routine debit slot 2,2026-01-26 13:12:00,TRN-25B813BA7565453E
+3,150.28,USD,debit,completed,Routine debit slot 3,2026-01-26 16:09:00,TRN-57C99D26EC434DD0
+2,387.85,USD,debit,completed,Routine debit slot 3,2026-01-26 16:39:00,TRN-5359D966EA394C36
+2,250.48,USD,debit,completed,Routine debit slot 1,2026-01-27 10:08:00,TRN-6DF9CC5961664088
+3,139.87,USD,debit,completed,Routine debit slot 1,2026-01-27 10:43:00,TRN-09C9CEA2C10A4CAF
+3,133.13,USD,debit,completed,Routine debit slot 2,2026-01-27 13:02:00,TRN-6EE879FCFB8B45F0
+2,314.71,USD,debit,completed,Routine debit slot 2,2026-01-27 13:07:00,TRN-83FDBA57B08F44CB
+2,14872.27,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-27 15:15:00,TRN-F2A82BC2555D4145
+2,332.79,USD,debit,completed,Routine debit slot 3,2026-01-27 16:13:00,TRN-6894B9DD68A64CA3
+3,67.62,USD,debit,completed,Routine debit slot 3,2026-01-27 16:15:00,TRN-6894E7617E9343FA
+2,3130.03,USD,credit,completed,Inbound ACH — payroll,2026-01-28 09:00:00,TRN-53656A14FA0A40C8
+3,3000.96,USD,credit,completed,Inbound ACH — payroll,2026-01-28 09:00:00,TRN-E983AE174E084F56
+2,313.01,USD,debit,completed,Routine debit slot 1,2026-01-28 10:16:00,TRN-7027DAD8C84A4C7C
+3,132.85,USD,debit,completed,Routine debit slot 1,2026-01-28 10:23:00,TRN-DF44C7C27BD745AD
+2,373.38,USD,debit,completed,Routine debit slot 2,2026-01-28 13:10:00,TRN-1814FF47F823423D
+3,91.22,USD,debit,completed,Routine debit slot 2,2026-01-28 13:36:00,TRN-FC0CDE5944464E40
+3,58.24,USD,debit,completed,Routine debit slot 3,2026-01-28 16:09:00,TRN-C7EFE4E2A1FA4D73
+2,341.18,USD,debit,completed,Routine debit slot 3,2026-01-28 16:47:00,TRN-99E824C6E2564572
+2,12937.32,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-28 19:54:00,TRN-31C38DA2AACC41DF
+3,122.91,USD,debit,completed,Routine debit slot 1,2026-01-29 10:23:00,TRN-A51A2AC6ACAA4A76
+2,363.67,USD,debit,completed,Routine debit slot 1,2026-01-29 10:49:00,TRN-6776386E5E124619
+2,383.86,USD,debit,completed,Routine debit slot 2,2026-01-29 13:19:00,TRN-4B3244959F6B4DB4
+3,92.2,USD,debit,completed,Routine debit slot 2,2026-01-29 13:48:00,TRN-064693678FC24A49
+2,241.62,USD,debit,completed,Routine debit slot 3,2026-01-29 16:01:00,TRN-6A07832DCB084700
+3,62.69,USD,debit,completed,Routine debit slot 3,2026-01-29 16:08:00,TRN-5970704BB9754F56
+3,46.8,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-30 03:48:00,TRN-C0389A2907D444B8
+2,216.86,USD,debit,completed,Unusual hour debit — night pattern demo,2026-01-30 04:32:00,TRN-8B3A34684C2E4B09
+3,107.95,USD,debit,completed,Routine debit slot 1,2026-01-30 10:25:00,TRN-48D0A18C01844CA6
+2,405.78,USD,debit,completed,Routine debit slot 1,2026-01-30 10:36:00,TRN-215CCDB5A7E34E57
+3,86.44,USD,debit,completed,Routine debit slot 2,2026-01-30 13:17:00,TRN-832ACB2E85D64247
+2,355.47,USD,debit,completed,Routine debit slot 2,2026-01-30 13:24:00,TRN-32CBF60D474A46C2
+3,79.96,USD,debit,completed,Routine debit slot 3,2026-01-30 16:07:00,TRN-B2D166EF31FF477F
+2,299.33,USD,debit,completed,Routine debit slot 3,2026-01-30 16:45:00,TRN-DFD2342C55C34365
+3,4448.28,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-30 17:11:00,TRN-D9F4EECA107F49C7
+3,57.59,USD,debit,completed,Routine debit slot 1,2026-01-31 10:11:00,TRN-FCFAD723E7E043AA
+2,259.67,USD,debit,completed,Routine debit slot 1,2026-01-31 10:37:00,TRN-B113CDFCA0294713
+3,104.9,USD,debit,completed,Routine debit slot 2,2026-01-31 13:24:00,TRN-D36433B3A549481C
+2,358.12,USD,debit,completed,Routine debit slot 2,2026-01-31 13:40:00,TRN-DEFD91A9B062400C
+3,146.35,USD,debit,completed,Routine debit slot 3,2026-01-31 16:07:00,TRN-331E26D97AE943A7
+2,268.57,USD,debit,completed,Routine debit slot 3,2026-01-31 16:44:00,TRN-132A18D56652442A
+3,4100.58,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-01-31 18:36:00,TRN-EA22527A188546CA
+2,140.19,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-01 04:55:00,TRN-B3F30B2DA44042F0
+3,81.18,USD,debit,completed,Routine debit slot 1,2026-02-01 10:16:00,TRN-4AC3048935CB4998
+2,374.5,USD,debit,completed,Routine debit slot 1,2026-02-01 10:54:00,TRN-8236CF67D4EB402E
+3,125.4,USD,debit,completed,Routine debit slot 2,2026-02-01 13:13:00,TRN-E8E422BC6FA54AB0
+2,356.85,USD,debit,completed,Routine debit slot 2,2026-02-01 13:51:00,TRN-D6B918C328574D95
+3,154.64,USD,debit,completed,Routine debit slot 3,2026-02-01 16:18:00,TRN-823AF1B77F4A40B6
+2,244.21,USD,debit,completed,Routine debit slot 3,2026-02-01 16:36:00,TRN-2EAC0DCD72704ED0
+2,173.75,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-02 04:08:00,TRN-0A845B8923144178
+2,376.53,USD,debit,completed,Routine debit slot 1,2026-02-02 10:22:00,TRN-4FDA2B2305534366
+3,124.4,USD,debit,completed,Routine debit slot 1,2026-02-02 10:31:00,TRN-0A825D7C4D1C4CA6
+3,75.02,USD,debit,completed,Routine debit slot 2,2026-02-02 13:08:00,TRN-8FF6D315574C418C
+2,326.55,USD,debit,completed,Routine debit slot 2,2026-02-02 13:42:00,TRN-C5D58172CB834B70
+3,140.28,USD,debit,completed,Routine debit slot 3,2026-02-02 16:28:00,TRN-4CBA82C5C10B43AE
+2,294.11,USD,debit,completed,Routine debit slot 3,2026-02-02 16:32:00,TRN-44002A9C41624332
+2,14408.88,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-02-02 17:33:00,TRN-8B2272CBB3F54E90
+3,41.4,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-03 04:34:00,TRN-4AC88699553D4B40
+2,349.51,USD,debit,completed,Routine debit slot 1,2026-02-03 10:00:00,TRN-BEAB60DED4A24D55
+3,72.27,USD,debit,completed,Routine debit slot 1,2026-02-03 10:45:00,TRN-EE737589BFBA45E8
+3,99.51,USD,debit,completed,Routine debit slot 2,2026-02-03 13:05:00,TRN-F641377EDA94438C
+2,389.92,USD,debit,completed,Routine debit slot 2,2026-02-03 13:52:00,TRN-E93FA90DFE52468A
+2,318.04,USD,debit,completed,Routine debit slot 3,2026-02-03 16:27:00,TRN-D6BDC6918D1B44A6
+3,136.05,USD,debit,completed,Routine debit slot 3,2026-02-03 16:54:00,TRN-33CC44F6B6D84D66
+2,148.76,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-04 04:12:00,TRN-922D9E219EFA467E
+2,3272.39,USD,credit,completed,Inbound ACH — payroll,2026-02-04 09:00:00,TRN-D014F7AC2A3D42AB
+3,3130.45,USD,credit,completed,Inbound ACH — payroll,2026-02-04 09:00:00,TRN-A407CA1B33F940E4
+2,412.16,USD,debit,completed,Routine debit slot 1,2026-02-04 10:40:00,TRN-36CE7BB72EFF4BC0
+3,153.66,USD,debit,completed,Routine debit slot 1,2026-02-04 10:42:00,TRN-02362F7B53C4478C
+3,89.74,USD,debit,completed,Routine debit slot 2,2026-02-04 13:04:00,TRN-B6C0F07E3D624F64
+2,398.32,USD,debit,completed,Routine debit slot 2,2026-02-04 13:29:00,TRN-A375D08A8BAF49AA
+3,110.0,USD,debit,completed,Routine debit slot 3,2026-02-04 16:18:00,TRN-B509B7B8E62F424A
+2,361.46,USD,debit,completed,Routine debit slot 3,2026-02-04 16:27:00,TRN-7D8B8F4529534937
+2,13298.73,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-02-04 18:57:00,TRN-F7C87ED0E5334E3D
+2,255.23,USD,debit,completed,Routine debit slot 1,2026-02-05 10:33:00,TRN-BF33174D7A1A49A5
+3,144.13,USD,debit,completed,Routine debit slot 1,2026-02-05 10:54:00,TRN-8FC246F7FE2843BD
+2,413.09,USD,debit,completed,Routine debit slot 2,2026-02-05 13:17:00,TRN-B0595437B43A4E69
+3,70.75,USD,debit,completed,Routine debit slot 2,2026-02-05 13:45:00,TRN-CD930D3003CD43C7
+3,147.73,USD,debit,completed,Routine debit slot 3,2026-02-05 16:40:00,TRN-19BB281A50B04FDF
+2,343.18,USD,debit,completed,Routine debit slot 3,2026-02-05 16:58:00,TRN-53E01255EEF443FD
+3,45.86,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-06 03:19:00,TRN-4DC59E169CB84898
+2,209.37,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-06 04:02:00,TRN-F37DB576F35349C3
+3,72.41,USD,debit,completed,Routine debit slot 1,2026-02-06 10:23:00,TRN-0D4F0A73D9044306
+2,327.63,USD,debit,completed,Routine debit slot 1,2026-02-06 10:30:00,TRN-609F775400B2425D
+3,105.88,USD,debit,completed,Routine debit slot 2,2026-02-06 13:07:00,TRN-FD377FC888CC478F
+2,312.97,USD,debit,completed,Routine debit slot 2,2026-02-06 13:52:00,TRN-5E7A31B660914BC7
+2,366.21,USD,debit,completed,Routine debit slot 3,2026-02-06 16:17:00,TRN-73CA76BA89F44A31
+3,153.51,USD,debit,completed,Routine debit slot 3,2026-02-06 16:50:00,TRN-B0ACFA24144B4A74
+2,284.46,USD,debit,completed,Routine debit slot 1,2026-02-07 10:15:00,TRN-D11DCC2077644F44
+3,68.89,USD,debit,completed,Routine debit slot 1,2026-02-07 10:50:00,TRN-4F71FE12D75541AC
+2,386.15,USD,debit,completed,Routine debit slot 2,2026-02-07 13:05:00,TRN-FC5851B121534E09
+3,104.4,USD,debit,completed,Routine debit slot 2,2026-02-07 13:23:00,TRN-6312A43E858D49FC
+3,110.4,USD,debit,completed,Routine debit slot 3,2026-02-07 16:23:00,TRN-367F308C9D154521
+2,275.79,USD,debit,completed,Routine debit slot 3,2026-02-07 16:28:00,TRN-239D0B9165A54D80
+2,268.77,USD,debit,completed,Routine debit slot 1,2026-02-08 10:29:00,TRN-1F7C5E7142BB47CF
+3,101.74,USD,debit,completed,Routine debit slot 1,2026-02-08 10:35:00,TRN-4B8B6FEFCDCC4CA7
+2,333.97,USD,debit,completed,Routine debit slot 2,2026-02-08 13:42:00,TRN-F9F87B68D1204B3A
+3,67.98,USD,debit,completed,Routine debit slot 2,2026-02-08 13:56:00,TRN-7514E94F26084718
+2,295.8,USD,debit,completed,Routine debit slot 3,2026-02-08 16:01:00,TRN-FF9712A39682463F
+3,63.62,USD,debit,completed,Routine debit slot 3,2026-02-08 16:19:00,TRN-661D9ED5D3D1414B
+3,4585.94,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-02-08 21:11:00,TRN-5BCEE8780585411E
+2,15469.17,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-02-08 21:58:00,TRN-E03EB66684674A24
+3,52.69,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-09 03:23:00,TRN-33EE0A8234864853
+2,318.86,USD,debit,completed,Routine debit slot 1,2026-02-09 10:20:00,TRN-3D4E8BE0686F454D
+3,94.82,USD,debit,completed,Routine debit slot 1,2026-02-09 10:45:00,TRN-7BBDFDC4F2FB4BCF
+2,256.37,USD,debit,completed,Routine debit slot 2,2026-02-09 13:13:00,TRN-AD638C1F79A34092
+3,126.89,USD,debit,completed,Routine debit slot 2,2026-02-09 13:33:00,TRN-219EFCCD69B84666
+2,290.96,USD,debit,completed,Routine debit slot 3,2026-02-09 16:16:00,TRN-DF429669F6D745CA
+3,96.08,USD,debit,completed,Routine debit slot 3,2026-02-09 16:26:00,TRN-DE448B37A44841E0
+3,137.33,USD,debit,completed,Routine debit slot 1,2026-02-10 10:04:00,TRN-9C345813135447D5
+2,288.07,USD,debit,completed,Routine debit slot 1,2026-02-10 10:56:00,TRN-BE38F08101D6455C
+3,67.53,USD,debit,completed,Routine debit slot 2,2026-02-10 13:20:00,TRN-89AD4AC688624B2F
+2,339.23,USD,debit,completed,Routine debit slot 2,2026-02-10 13:56:00,TRN-1F88AA8528404C9A
+2,275.25,USD,debit,completed,Routine debit slot 3,2026-02-10 16:00:00,TRN-C66984625E4844BA
+3,119.23,USD,debit,completed,Routine debit slot 3,2026-02-10 16:28:00,TRN-A45D33EA7B4A413F
+3,29.65,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-11 04:07:00,TRN-B2E91BF7BE154FC4
+2,124.54,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-11 04:56:00,TRN-CC87ED77BBA844B1
+2,3060.03,USD,credit,completed,Inbound ACH — payroll,2026-02-11 09:00:00,TRN-AF31F38C3B6D4E92
+3,3490.3,USD,credit,completed,Inbound ACH — payroll,2026-02-11 09:00:00,TRN-3ADA24297D98476F
+2,323.33,USD,debit,completed,Routine debit slot 1,2026-02-11 10:12:00,TRN-0419BF2D32734673
+3,101.58,USD,debit,completed,Routine debit slot 1,2026-02-11 10:33:00,TRN-E8AC92CF3E284B1B
+2,237.12,USD,debit,completed,Routine debit slot 2,2026-02-11 13:46:00,TRN-A89E093246DD4AB7
+3,89.45,USD,debit,completed,Routine debit slot 2,2026-02-11 13:56:00,TRN-DBEA4A2085084DE5
+2,301.29,USD,debit,completed,Routine debit slot 3,2026-02-11 16:35:00,TRN-4220FD71BB654B51
+3,137.91,USD,debit,completed,Routine debit slot 3,2026-02-11 16:35:00,TRN-1922510F89284834
+2,142.47,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-12 03:51:00,TRN-ED23DE947D9646AB
+3,118.98,USD,debit,completed,Routine debit slot 1,2026-02-12 10:11:00,TRN-F2FDE934D91D4746
+2,371.63,USD,debit,completed,Routine debit slot 1,2026-02-12 10:44:00,TRN-1411A2DA924341D4
+3,131.78,USD,debit,completed,Routine debit slot 2,2026-02-12 13:08:00,TRN-C21CE6123AF7403B
+2,315.22,USD,debit,completed,Routine debit slot 2,2026-02-12 13:45:00,TRN-44978FC4F7B3448E
+2,318.16,USD,debit,completed,Routine debit slot 3,2026-02-12 16:50:00,TRN-9828FB259F534C3E
+3,98.26,USD,debit,completed,Routine debit slot 3,2026-02-12 16:58:00,TRN-D38A7278805E4BE9
+2,223.45,USD,debit,completed,Routine debit slot 1,2026-02-13 10:18:00,TRN-52AC654ED61B48EE
+3,141.82,USD,debit,completed,Routine debit slot 1,2026-02-13 10:53:00,TRN-53CC1C3AF91349CF
+3,67.42,USD,debit,completed,Routine debit slot 2,2026-02-13 13:09:00,TRN-E45F643D1E8A4B6C
+2,264.32,USD,debit,completed,Routine debit slot 2,2026-02-13 13:44:00,TRN-113A93D2F1AC42DE
+3,85.41,USD,debit,completed,Routine debit slot 3,2026-02-13 16:10:00,TRN-92ECF0B1D2694248
+2,268.66,USD,debit,completed,Routine debit slot 3,2026-02-13 16:42:00,TRN-9E310FB85CA94D23
+3,41.61,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-14 03:36:00,TRN-4130B6B70D164D05
+2,336.31,USD,debit,completed,Routine debit slot 1,2026-02-14 10:30:00,TRN-A647109E27424288
+3,87.27,USD,debit,completed,Routine debit slot 1,2026-02-14 10:45:00,TRN-2ADD05AA07A645C5
+2,330.69,USD,debit,completed,Routine debit slot 2,2026-02-14 13:22:00,TRN-B3C1BE3AC29A4231
+3,77.55,USD,debit,completed,Routine debit slot 2,2026-02-14 13:33:00,TRN-53266554EEAD4267
+2,305.1,USD,debit,completed,Routine debit slot 3,2026-02-14 16:47:00,TRN-5E061721595B42C9
+3,144.49,USD,debit,completed,Routine debit slot 3,2026-02-14 16:54:00,TRN-33C4DF81D65D4346
+2,122.67,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-15 02:09:00,TRN-8AD353AAA5F74E97
+3,62.89,USD,debit,completed,Routine debit slot 1,2026-02-15 10:12:00,TRN-13044BAE995A4BBA
+2,330.08,USD,debit,completed,Routine debit slot 1,2026-02-15 10:22:00,TRN-FBF0C44C88BB4316
+2,360.57,USD,debit,completed,Routine debit slot 2,2026-02-15 13:17:00,TRN-2638665A8AE547C9
+3,118.51,USD,debit,completed,Routine debit slot 2,2026-02-15 13:35:00,TRN-22DCCCB48A834208
+2,281.32,USD,debit,completed,Routine debit slot 3,2026-02-15 16:14:00,TRN-8F799BE04D874E99
+3,82.45,USD,debit,completed,Routine debit slot 3,2026-02-15 16:40:00,TRN-3CEB92EDF8054D61
+3,29.09,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-16 03:43:00,TRN-5A0B2DB93E184C83
+2,178.3,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-16 04:48:00,TRN-C0A5B56693834219
+2,244.13,USD,debit,completed,Routine debit slot 1,2026-02-16 10:12:00,TRN-3B0DDD5880314DD2
+3,85.28,USD,debit,completed,Routine debit slot 1,2026-02-16 10:34:00,TRN-0D714A15B95C46C4
+3,64.34,USD,debit,completed,Routine debit slot 2,2026-02-16 13:41:00,TRN-17FF0D0EE2EA4A22
+2,283.11,USD,debit,completed,Routine debit slot 2,2026-02-16 13:47:00,TRN-D4E76FAF27FA4B86
+3,71.86,USD,debit,completed,Routine debit slot 3,2026-02-16 16:37:00,TRN-E98A68FAA42349A1
+2,327.17,USD,debit,completed,Routine debit slot 3,2026-02-16 16:48:00,TRN-56A9D03B69FE4095
+2,358.03,USD,debit,completed,Routine debit slot 1,2026-02-17 10:12:00,TRN-CCD19021C1F8479C
+3,70.42,USD,debit,completed,Routine debit slot 1,2026-02-17 10:42:00,TRN-58C8FD7C926D44B1
+2,263.28,USD,debit,completed,Routine debit slot 2,2026-02-17 13:30:00,TRN-BBEFBDD4DD534186
+3,117.45,USD,debit,completed,Routine debit slot 2,2026-02-17 13:57:00,TRN-E1CCFBBA32F643BA
+2,275.3,USD,debit,completed,Routine debit slot 3,2026-02-17 16:37:00,TRN-BF848FFB59144808
+3,115.51,USD,debit,completed,Routine debit slot 3,2026-02-17 16:53:00,TRN-4A894D702D1F4F24
+3,41.81,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-18 02:43:00,TRN-2EBAF11B3AF94EAE
+2,3246.98,USD,credit,completed,Inbound ACH — payroll,2026-02-18 09:00:00,TRN-EA8444810EE04C73
+3,3425.95,USD,credit,completed,Inbound ACH — payroll,2026-02-18 09:00:00,TRN-BFA690DF04C5424C
+3,147.39,USD,debit,completed,Routine debit slot 1,2026-02-18 10:02:00,TRN-A65C397B3627486F
+2,415.32,USD,debit,completed,Routine debit slot 1,2026-02-18 10:33:00,TRN-36890285226B49B5
+3,137.52,USD,debit,completed,Routine debit slot 2,2026-02-18 13:01:00,TRN-F9AD1FB63F2641BF
+2,339.36,USD,debit,completed,Routine debit slot 2,2026-02-18 13:06:00,TRN-F18203E4D60E4838
+2,386.53,USD,debit,completed,Routine debit slot 3,2026-02-18 16:18:00,TRN-4A66D5BFC8164578
+3,63.12,USD,debit,completed,Routine debit slot 3,2026-02-18 16:41:00,TRN-D039FB4FE5A347C4
+3,5314.42,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-02-18 18:56:00,TRN-2130E91F5EF64B08
+2,15736.42,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-02-18 20:06:00,TRN-BADF0ACB1541419F
+3,52.89,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-19 04:49:00,TRN-A47C1E45F11C49F5
+2,265.5,USD,debit,completed,Routine debit slot 1,2026-02-19 10:11:00,TRN-D95623A1F03340B8
+3,132.1,USD,debit,completed,Routine debit slot 1,2026-02-19 10:16:00,TRN-64B0852819E3407F
+2,280.45,USD,debit,completed,Routine debit slot 2,2026-02-19 13:45:00,TRN-CE9B82590CD8445C
+3,120.11,USD,debit,completed,Routine debit slot 2,2026-02-19 13:49:00,TRN-0BD32B06A20142EC
+2,326.83,USD,debit,completed,Routine debit slot 3,2026-02-19 16:17:00,TRN-1A1EA4C0108B490B
+3,112.21,USD,debit,completed,Routine debit slot 3,2026-02-19 16:39:00,TRN-9938B9069CA84389
+2,229.1,USD,debit,completed,Routine debit slot 1,2026-02-20 10:03:00,TRN-E401D3752CCB4EDB
+3,118.9,USD,debit,completed,Routine debit slot 1,2026-02-20 10:31:00,TRN-1A2B760216234C30
+3,143.9,USD,debit,completed,Routine debit slot 2,2026-02-20 13:34:00,TRN-704A3918930E47D4
+2,330.67,USD,debit,completed,Routine debit slot 2,2026-02-20 13:44:00,TRN-1E6BBD196634474E
+3,83.97,USD,debit,completed,Routine debit slot 3,2026-02-20 16:19:00,TRN-A02F656BD1ED47C1
+2,408.82,USD,debit,completed,Routine debit slot 3,2026-02-20 16:40:00,TRN-EACF02E35EB44340
+2,393.69,USD,debit,completed,Routine debit slot 1,2026-02-21 10:31:00,TRN-6679E85E88F1419D
+3,103.29,USD,debit,completed,Routine debit slot 1,2026-02-21 10:51:00,TRN-0F4736175B6E4818
+2,240.52,USD,debit,completed,Routine debit slot 2,2026-02-21 13:00:00,TRN-6B9A18D1F3E44206
+3,135.73,USD,debit,completed,Routine debit slot 2,2026-02-21 13:25:00,TRN-FD72A80F61774D7C
+3,84.74,USD,debit,completed,Routine debit slot 3,2026-02-21 16:04:00,TRN-B1B530F08E4C4348
+2,334.81,USD,debit,completed,Routine debit slot 3,2026-02-21 16:30:00,TRN-1C5953F2FD254534
+2,202.22,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-22 04:06:00,TRN-BB4537B13E1A4384
+3,33.15,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-22 04:31:00,TRN-3712A9BB3C414671
+3,123.86,USD,debit,completed,Routine debit slot 1,2026-02-22 10:10:00,TRN-37314BD818A048D2
+2,315.74,USD,debit,completed,Routine debit slot 1,2026-02-22 10:21:00,TRN-574D3AE956584CE3
+2,256.87,USD,debit,completed,Routine debit slot 2,2026-02-22 13:03:00,TRN-2F6344472D9541CA
+3,98.96,USD,debit,completed,Routine debit slot 2,2026-02-22 13:30:00,TRN-305F7E76E7344DE0
+3,101.44,USD,debit,completed,Routine debit slot 3,2026-02-22 16:21:00,TRN-692AC09ECDC5452E
+2,270.5,USD,debit,completed,Routine debit slot 3,2026-02-22 16:55:00,TRN-35BC5699927E4554
+2,192.96,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-23 02:55:00,TRN-D3D3A3C5CEDB4309
+3,115.67,USD,debit,completed,Routine debit slot 1,2026-02-23 10:20:00,TRN-CD4FC5635DB34351
+2,315.55,USD,debit,completed,Routine debit slot 1,2026-02-23 10:52:00,TRN-FB70897C12004548
+3,141.15,USD,debit,completed,Routine debit slot 2,2026-02-23 13:20:00,TRN-A92AE922D32D4E5F
+2,233.07,USD,debit,completed,Routine debit slot 2,2026-02-23 13:31:00,TRN-FA32B74B7E5A4B91
+2,234.82,USD,debit,completed,Routine debit slot 3,2026-02-23 16:40:00,TRN-AB3EA94DA3DF410A
+3,128.42,USD,debit,completed,Routine debit slot 3,2026-02-23 16:55:00,TRN-C874DBF946524B4E
+2,185.44,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-24 04:03:00,TRN-F51D7E12338F4EA8
+2,357.29,USD,debit,completed,Routine debit slot 1,2026-02-24 10:09:00,TRN-448C1F4DBB024055
+3,89.54,USD,debit,completed,Routine debit slot 1,2026-02-24 10:25:00,TRN-ACB8FBA1DF264DAB
+3,68.08,USD,debit,completed,Routine debit slot 2,2026-02-24 13:23:00,TRN-5ACA623665024373
+2,249.84,USD,debit,completed,Routine debit slot 2,2026-02-24 13:36:00,TRN-A2668BAC634840F1
+2,409.83,USD,debit,completed,Routine debit slot 3,2026-02-24 16:05:00,TRN-346A1368BDF74F99
+3,106.5,USD,debit,completed,Routine debit slot 3,2026-02-24 16:06:00,TRN-23D7852EA09C4109
+2,3066.72,USD,credit,completed,Inbound ACH — payroll,2026-02-25 09:00:00,TRN-4034CC22B1BA4581
+3,2842.18,USD,credit,completed,Inbound ACH — payroll,2026-02-25 09:00:00,TRN-1EB2314F8AB840DC
+2,418.78,USD,debit,completed,Routine debit slot 1,2026-02-25 10:07:00,TRN-FAE431F05A894A69
+3,86.91,USD,debit,completed,Routine debit slot 1,2026-02-25 10:29:00,TRN-808D4D0E3A414E64
+2,331.61,USD,debit,completed,Routine debit slot 2,2026-02-25 13:26:00,TRN-D2AA8C9F7E4E4CAD
+3,67.25,USD,debit,completed,Routine debit slot 2,2026-02-25 13:28:00,TRN-B5F31E030D65421F
+3,79.79,USD,debit,completed,Routine debit slot 3,2026-02-25 16:06:00,TRN-0B119B83E0494C47
+2,341.26,USD,debit,completed,Routine debit slot 3,2026-02-25 16:50:00,TRN-ABAB418280B141D6
+3,31.62,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-26 03:54:00,TRN-7207DB8FC71A4D54
+3,60.06,USD,debit,completed,Routine debit slot 1,2026-02-26 10:24:00,TRN-764B17BA236B4944
+2,343.68,USD,debit,completed,Routine debit slot 1,2026-02-26 10:49:00,TRN-5D17344408A2422B
+3,141.42,USD,debit,completed,Routine debit slot 2,2026-02-26 13:26:00,TRN-2ECFC98C940041CE
+2,324.51,USD,debit,completed,Routine debit slot 2,2026-02-26 13:28:00,TRN-A3616E8AE2A742C4
+2,401.7,USD,debit,completed,Routine debit slot 3,2026-02-26 16:19:00,TRN-93BA5C0735264E97
+3,79.83,USD,debit,completed,Routine debit slot 3,2026-02-26 16:55:00,TRN-95494016A0AD44C0
+3,39.79,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-27 04:23:00,TRN-26E9901CF3CA431E
+2,392.03,USD,debit,completed,Routine debit slot 1,2026-02-27 10:27:00,TRN-CD51DD6AAD4147F2
+3,145.23,USD,debit,completed,Routine debit slot 1,2026-02-27 10:52:00,TRN-73648A6219C84052
+3,87.74,USD,debit,completed,Routine debit slot 2,2026-02-27 13:36:00,TRN-144AD277548C4F10
+2,281.08,USD,debit,completed,Routine debit slot 2,2026-02-27 13:39:00,TRN-DE68A24D42DB4265
+3,127.11,USD,debit,completed,Routine debit slot 3,2026-02-27 16:12:00,TRN-E5C9717AEA124E5E
+2,232.05,USD,debit,completed,Routine debit slot 3,2026-02-27 16:47:00,TRN-CB6DA2DBB4B04C35
+2,143.98,USD,debit,completed,Unusual hour debit — night pattern demo,2026-02-28 03:02:00,TRN-C05D540B65B147EB
+3,131.31,USD,debit,completed,Routine debit slot 1,2026-02-28 10:31:00,TRN-2A53EEBE0F71439D
+2,239.85,USD,debit,completed,Routine debit slot 1,2026-02-28 10:48:00,TRN-369AA413AC0E463C
+2,261.56,USD,debit,completed,Routine debit slot 2,2026-02-28 13:13:00,TRN-F724AFF4786A4C2B
+3,154.6,USD,debit,completed,Routine debit slot 2,2026-02-28 13:29:00,TRN-A9B7E10610354160
+2,272.93,USD,debit,completed,Routine debit slot 3,2026-02-28 16:05:00,TRN-288EF19487374E2E
+3,104.88,USD,debit,completed,Routine debit slot 3,2026-02-28 16:19:00,TRN-E223ADCC3847446D
+3,33.51,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-01 02:43:00,TRN-81109AE69E47480E
+3,104.74,USD,debit,completed,Routine debit slot 1,2026-03-01 10:05:00,TRN-71DCCCEC1E074FFA
+2,251.41,USD,debit,completed,Routine debit slot 1,2026-03-01 10:11:00,TRN-282CE2BB080F4A95
+2,330.4,USD,debit,completed,Routine debit slot 2,2026-03-01 13:10:00,TRN-01D3D1727BDF4518
+3,149.52,USD,debit,completed,Routine debit slot 2,2026-03-01 13:32:00,TRN-8795BDAAFDD64C5D
+3,100.72,USD,debit,completed,Routine debit slot 3,2026-03-01 16:15:00,TRN-274637CBE79E4328
+2,220.54,USD,debit,completed,Routine debit slot 3,2026-03-01 16:28:00,TRN-2565147729134C46
+2,210.55,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-02 03:51:00,TRN-FBA808948BFB4757
+3,29.2,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-02 04:57:00,TRN-7C41C8AABD834479
+3,76.51,USD,debit,completed,Routine debit slot 1,2026-03-02 10:22:00,TRN-87017A98A26E4BF8
+2,357.87,USD,debit,completed,Routine debit slot 1,2026-03-02 10:30:00,TRN-A0FCC8FD67D742A0
+2,278.25,USD,debit,completed,Routine debit slot 2,2026-03-02 13:14:00,TRN-11CA45C9DE7A4CC8
+3,59.87,USD,debit,completed,Routine debit slot 2,2026-03-02 13:18:00,TRN-8C98188A230347B9
+2,277.62,USD,debit,completed,Routine debit slot 3,2026-03-02 16:18:00,TRN-BEBC1B6F6E394C75
+3,104.49,USD,debit,completed,Routine debit slot 3,2026-03-02 16:56:00,TRN-D0FDF0EFC4E54C6C
+2,360.6,USD,debit,completed,Routine debit slot 1,2026-03-03 10:29:00,TRN-BBD161AA8ACE4FB6
+3,139.28,USD,debit,completed,Routine debit slot 1,2026-03-03 10:43:00,TRN-0B7A4279F67B4DEC
+2,234.24,USD,debit,completed,Routine debit slot 2,2026-03-03 13:14:00,TRN-86F49FD422AE41A6
+3,102.06,USD,debit,completed,Routine debit slot 2,2026-03-03 13:34:00,TRN-FFE4CCA40ECC4E68
+3,5047.23,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-03 14:58:00,TRN-26D74A362B6D4C6C
+3,55.82,USD,debit,completed,Routine debit slot 3,2026-03-03 16:06:00,TRN-553127EECCF94D34
+2,404.78,USD,debit,completed,Routine debit slot 3,2026-03-03 16:50:00,TRN-168B624261664826
+2,2983.51,USD,credit,completed,Inbound ACH — payroll,2026-03-04 09:00:00,TRN-3E32770401284120
+3,3178.81,USD,credit,completed,Inbound ACH — payroll,2026-03-04 09:00:00,TRN-EAEB062EE4DC4280
+2,378.25,USD,debit,completed,Routine debit slot 1,2026-03-04 10:37:00,TRN-414C680682194A8C
+3,98.09,USD,debit,completed,Routine debit slot 1,2026-03-04 10:56:00,TRN-595EB28936DB4878
+3,81.45,USD,debit,completed,Routine debit slot 2,2026-03-04 13:23:00,TRN-6349F39C26074CC2
+2,352.24,USD,debit,completed,Routine debit slot 2,2026-03-04 13:59:00,TRN-41CBA291759742E6
+3,4435.31,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-04 14:58:00,TRN-39FB86019E2C413A
+2,259.56,USD,debit,completed,Routine debit slot 3,2026-03-04 16:07:00,TRN-86F0CF8E6D094393
+3,131.39,USD,debit,completed,Routine debit slot 3,2026-03-04 16:23:00,TRN-8E2DAAB6166F4397
+3,59.52,USD,debit,completed,Routine debit slot 1,2026-03-05 10:03:00,TRN-2444A053594D4221
+2,328.91,USD,debit,completed,Routine debit slot 1,2026-03-05 10:41:00,TRN-263D1204DB8E46F8
+3,112.03,USD,debit,completed,Routine debit slot 2,2026-03-05 13:12:00,TRN-3EDD1599F7B249DE
+2,249.8,USD,debit,completed,Routine debit slot 2,2026-03-05 13:17:00,TRN-E0F6F7EA104843B4
+2,385.33,USD,debit,completed,Routine debit slot 3,2026-03-05 16:04:00,TRN-0489559A16464271
+3,91.25,USD,debit,completed,Routine debit slot 3,2026-03-05 16:18:00,TRN-770A44BF684F41BB
+3,62.35,USD,debit,completed,Routine debit slot 1,2026-03-06 10:32:00,TRN-E95CD1D133484547
+2,231.93,USD,debit,completed,Routine debit slot 1,2026-03-06 10:50:00,TRN-6034D8D229384D92
+3,100.04,USD,debit,completed,Routine debit slot 2,2026-03-06 13:35:00,TRN-5FEC66CA746F48E1
+2,281.52,USD,debit,completed,Routine debit slot 2,2026-03-06 13:47:00,TRN-AFD483E9296B48A6
+3,82.97,USD,debit,completed,Routine debit slot 3,2026-03-06 16:39:00,TRN-A426E2DAD9794220
+2,384.85,USD,debit,completed,Routine debit slot 3,2026-03-06 16:58:00,TRN-278AD0808A844D93
+2,192.22,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-07 02:12:00,TRN-132E4867037843B4
+2,277.72,USD,debit,completed,Routine debit slot 1,2026-03-07 10:07:00,TRN-1501D5F4A4204B98
+3,123.04,USD,debit,completed,Routine debit slot 1,2026-03-07 10:07:00,TRN-1900C5E7CFCC47E3
+3,67.87,USD,debit,completed,Routine debit slot 2,2026-03-07 13:06:00,TRN-85A827DC141744FC
+2,313.74,USD,debit,completed,Routine debit slot 2,2026-03-07 13:19:00,TRN-D2BB657B88B44633
+2,359.95,USD,debit,completed,Routine debit slot 3,2026-03-07 16:17:00,TRN-03EF96FBE0CA4F00
+3,94.39,USD,debit,completed,Routine debit slot 3,2026-03-07 16:50:00,TRN-E9AC39EFD98F409F
+3,4874.79,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-07 20:52:00,TRN-1F8B61E5620F4001
+2,320.09,USD,debit,completed,Routine debit slot 1,2026-03-08 10:31:00,TRN-6CABA27C33964F5D
+3,153.68,USD,debit,completed,Routine debit slot 1,2026-03-08 10:35:00,TRN-DBD817C785574438
+2,307.55,USD,debit,completed,Routine debit slot 2,2026-03-08 13:38:00,TRN-A8210B0687374334
+3,148.89,USD,debit,completed,Routine debit slot 2,2026-03-08 13:48:00,TRN-CB8ED8E7565C419B
+2,227.97,USD,debit,completed,Routine debit slot 3,2026-03-08 16:27:00,TRN-392F6DC0F2FB42AA
+3,69.43,USD,debit,completed,Routine debit slot 3,2026-03-08 16:38:00,TRN-9956C525E9DA4E1F
+3,40.65,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-09 03:47:00,TRN-FB1782448CE24153
+3,105.91,USD,debit,completed,Routine debit slot 1,2026-03-09 10:32:00,TRN-C0AFA93D0C1E43E1
+2,366.91,USD,debit,completed,Routine debit slot 1,2026-03-09 10:38:00,TRN-D213A4793207454B
+3,59.03,USD,debit,completed,Routine debit slot 2,2026-03-09 13:02:00,TRN-B9160B81499D49C9
+2,270.07,USD,debit,completed,Routine debit slot 2,2026-03-09 13:05:00,TRN-22E05E20C1354C52
+3,68.7,USD,debit,completed,Routine debit slot 3,2026-03-09 16:21:00,TRN-D7CB124E468B4D1B
+2,265.78,USD,debit,completed,Routine debit slot 3,2026-03-09 16:43:00,TRN-500F4169EFCC4B89
+3,135.4,USD,debit,completed,Routine debit slot 1,2026-03-10 10:33:00,TRN-0F3C6F7B7839403B
+2,387.19,USD,debit,completed,Routine debit slot 1,2026-03-10 10:36:00,TRN-CD56A43D0A054B94
+2,337.42,USD,debit,completed,Routine debit slot 2,2026-03-10 13:01:00,TRN-AE3995FFDA584B7A
+3,100.7,USD,debit,completed,Routine debit slot 2,2026-03-10 13:38:00,TRN-331D2A5F49094FB5
+3,144.31,USD,debit,completed,Routine debit slot 3,2026-03-10 16:08:00,TRN-4257B7270A63484C
+2,419.91,USD,debit,completed,Routine debit slot 3,2026-03-10 16:43:00,TRN-572B59E4F22B46F2
+2,3324.31,USD,credit,completed,Inbound ACH — payroll,2026-03-11 09:00:00,TRN-AEC6DF377E974D4D
+3,3290.27,USD,credit,completed,Inbound ACH — payroll,2026-03-11 09:00:00,TRN-C0116CBB37A04806
+2,384.28,USD,debit,completed,Routine debit slot 1,2026-03-11 10:36:00,TRN-42A0B11DF756437D
+3,87.8,USD,debit,completed,Routine debit slot 1,2026-03-11 10:39:00,TRN-829C6BEB5F36490C
+3,86.85,USD,debit,completed,Routine debit slot 2,2026-03-11 13:25:00,TRN-E267D05076214B9D
+2,228.05,USD,debit,completed,Routine debit slot 2,2026-03-11 13:48:00,TRN-E0F685EC8D06493B
+2,255.04,USD,debit,completed,Routine debit slot 3,2026-03-11 16:33:00,TRN-65140474CF2D4EA6
+3,154.06,USD,debit,completed,Routine debit slot 3,2026-03-11 16:47:00,TRN-00FC8709B89D4CF6
+2,201.61,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-12 03:49:00,TRN-7C98336F42F843D6
+3,139.26,USD,debit,completed,Routine debit slot 1,2026-03-12 10:37:00,TRN-1244A03A2AE4414A
+2,350.3,USD,debit,completed,Routine debit slot 1,2026-03-12 10:58:00,TRN-03FB80FFCEB4468D
+2,275.63,USD,debit,completed,Routine debit slot 2,2026-03-12 13:37:00,TRN-29790A61837A41C1
+3,88.64,USD,debit,completed,Routine debit slot 2,2026-03-12 13:53:00,TRN-607261728A8D4A95
+3,105.97,USD,debit,completed,Routine debit slot 3,2026-03-12 16:31:00,TRN-2940948662BA4A33
+2,307.18,USD,debit,completed,Routine debit slot 3,2026-03-12 16:52:00,TRN-EAA51FF441D742B1
+3,5141.9,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-12 19:10:00,TRN-791B32509AC342EF
+2,318.35,USD,debit,completed,Routine debit slot 1,2026-03-13 10:05:00,TRN-23EB56554BB748EE
+3,125.87,USD,debit,completed,Routine debit slot 1,2026-03-13 10:19:00,TRN-CE0752412C1048D1
+3,102.49,USD,debit,completed,Routine debit slot 2,2026-03-13 13:01:00,TRN-3E70E06FBDB94873
+2,314.0,USD,debit,completed,Routine debit slot 2,2026-03-13 13:26:00,TRN-1921F6095C5B4E3E
+2,286.66,USD,debit,completed,Routine debit slot 3,2026-03-13 16:42:00,TRN-29933DF809F840A3
+3,91.84,USD,debit,completed,Routine debit slot 3,2026-03-13 16:43:00,TRN-4C968EC89C0F4282
+2,15217.69,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-13 20:41:00,TRN-61A022FC177341FB
+2,216.4,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-14 04:23:00,TRN-9A93FDE280A14A65
+2,240.92,USD,debit,completed,Routine debit slot 1,2026-03-14 10:10:00,TRN-90970A5971654A7F
+3,65.96,USD,debit,completed,Routine debit slot 1,2026-03-14 10:26:00,TRN-E8396EE54874488E
+2,285.96,USD,debit,completed,Routine debit slot 2,2026-03-14 13:44:00,TRN-C05AABF3BAF44DBE
+3,113.37,USD,debit,completed,Routine debit slot 2,2026-03-14 13:50:00,TRN-02CC53B8F0844155
+2,319.09,USD,debit,completed,Routine debit slot 3,2026-03-14 16:42:00,TRN-38F47A65D5454923
+3,144.88,USD,debit,completed,Routine debit slot 3,2026-03-14 16:55:00,TRN-EAD8D81583794609
+2,13335.29,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-14 20:39:00,TRN-274EF1582065486A
+3,54.69,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-15 03:26:00,TRN-A494C4917BC54EE6
+3,123.8,USD,debit,completed,Routine debit slot 1,2026-03-15 10:01:00,TRN-0C6DE0B149BB465B
+2,409.04,USD,debit,completed,Routine debit slot 1,2026-03-15 10:52:00,TRN-AFB379C9B0D941F5
+2,372.1,USD,debit,completed,Routine debit slot 2,2026-03-15 13:02:00,TRN-DE6571CC846F4023
+3,114.69,USD,debit,completed,Routine debit slot 2,2026-03-15 13:16:00,TRN-8719C5FB023F4A65
+2,310.97,USD,debit,completed,Routine debit slot 3,2026-03-15 16:20:00,TRN-37474510508640C3
+3,151.71,USD,debit,completed,Routine debit slot 3,2026-03-15 16:50:00,TRN-A6D10925A9844D6F
+3,4663.37,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-15 22:33:00,TRN-1D82ADB7854C47F9
+2,270.48,USD,debit,completed,Routine debit slot 1,2026-03-16 10:07:00,TRN-D78A54F50B1D47D6
+3,152.21,USD,debit,completed,Routine debit slot 1,2026-03-16 10:37:00,TRN-66CC37B6E9EF4A30
+2,414.04,USD,debit,completed,Routine debit slot 2,2026-03-16 13:25:00,TRN-1A1F05C49BF94962
+3,112.76,USD,debit,completed,Routine debit slot 2,2026-03-16 13:46:00,TRN-8F36792815FA4C4E
+3,60.14,USD,debit,completed,Routine debit slot 3,2026-03-16 16:30:00,TRN-4549DF32200F4AEE
+2,392.98,USD,debit,completed,Routine debit slot 3,2026-03-16 16:52:00,TRN-B12A617D15F64381
+2,16607.39,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-16 21:55:00,TRN-F5290C7A051440C0
+3,49.69,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-17 04:01:00,TRN-BEF72539F51C4D67
+3,72.05,USD,debit,completed,Routine debit slot 1,2026-03-17 10:40:00,TRN-97346B03026A42DC
+2,417.62,USD,debit,completed,Routine debit slot 1,2026-03-17 10:42:00,TRN-D18DDB6A59B44622
+2,393.87,USD,debit,completed,Routine debit slot 2,2026-03-17 13:29:00,TRN-EE1D29A6E427437C
+3,127.12,USD,debit,completed,Routine debit slot 2,2026-03-17 13:49:00,TRN-4831853637D54324
+3,139.12,USD,debit,completed,Routine debit slot 3,2026-03-17 16:09:00,TRN-4C6569F89C2B450E
+2,302.65,USD,debit,completed,Routine debit slot 3,2026-03-17 16:12:00,TRN-15E9D320183A4B8E
+2,3058.01,USD,credit,completed,Inbound ACH — payroll,2026-03-18 09:00:00,TRN-DDA46E0EA92448BF
+3,3096.59,USD,credit,completed,Inbound ACH — payroll,2026-03-18 09:00:00,TRN-3E0AFE39175E4F12
+3,137.17,USD,debit,completed,Routine debit slot 1,2026-03-18 10:15:00,TRN-0D52C29405324FCD
+2,323.69,USD,debit,completed,Routine debit slot 1,2026-03-18 10:39:00,TRN-ABEC010E4A144330
+2,371.29,USD,debit,completed,Routine debit slot 2,2026-03-18 13:40:00,TRN-84219EFCF6104E09
+3,58.16,USD,debit,completed,Routine debit slot 2,2026-03-18 13:44:00,TRN-848B54278AC64BEF
+3,65.99,USD,debit,completed,Routine debit slot 3,2026-03-18 16:01:00,TRN-E2870AFAADA54108
+2,308.41,USD,debit,completed,Routine debit slot 3,2026-03-18 16:03:00,TRN-E95841289EAE4A70
+2,210.48,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-19 02:16:00,TRN-371B5E16FD5C4633
+3,99.1,USD,debit,completed,Routine debit slot 1,2026-03-19 10:26:00,TRN-91F4EA5501DC4609
+2,260.71,USD,debit,completed,Routine debit slot 1,2026-03-19 10:35:00,TRN-DB1278BA5E3042EF
+2,246.2,USD,debit,completed,Routine debit slot 2,2026-03-19 13:18:00,TRN-F45AFB58F2EE40AA
+3,70.14,USD,debit,completed,Routine debit slot 2,2026-03-19 13:44:00,TRN-0C411DF7C9EE4051
+3,75.39,USD,debit,completed,Routine debit slot 3,2026-03-19 16:32:00,TRN-077B7ED545F64DC7
+2,307.62,USD,debit,completed,Routine debit slot 3,2026-03-19 16:44:00,TRN-3B25C3D94B2A4217
+3,44.4,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-20 02:08:00,TRN-7EC6FE7E5A094DFD
+2,316.94,USD,debit,completed,Routine debit slot 1,2026-03-20 10:01:00,TRN-A42D7452E1F145DB
+3,132.5,USD,debit,completed,Routine debit slot 1,2026-03-20 10:58:00,TRN-707374BE8AB243E4
+2,414.63,USD,debit,completed,Routine debit slot 2,2026-03-20 13:38:00,TRN-DE2F9569BA0248AB
+3,102.16,USD,debit,completed,Routine debit slot 2,2026-03-20 13:54:00,TRN-C2E5A0C2920942E3
+3,5180.77,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-20 14:53:00,TRN-4FE71FC947CE4A0E
+2,15793.55,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-20 15:28:00,TRN-B801796C01874BCF
+3,128.58,USD,debit,completed,Routine debit slot 3,2026-03-20 16:03:00,TRN-C1E1C171EABF4D77
+2,379.86,USD,debit,completed,Routine debit slot 3,2026-03-20 16:45:00,TRN-C7AE117B8F0F417F
+3,36.05,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-21 02:40:00,TRN-B75F7A6B58AD486F
+3,125.58,USD,debit,completed,Routine debit slot 1,2026-03-21 10:33:00,TRN-FEEAC046E00147B4
+2,251.68,USD,debit,completed,Routine debit slot 1,2026-03-21 10:35:00,TRN-63625732060A4466
+3,75.73,USD,debit,completed,Routine debit slot 2,2026-03-21 13:20:00,TRN-69D8F8C3487F451D
+2,222.73,USD,debit,completed,Routine debit slot 2,2026-03-21 13:26:00,TRN-6329C7CAC6B345BD
+3,154.81,USD,debit,completed,Routine debit slot 3,2026-03-21 16:30:00,TRN-D3524026FBCF46E4
+2,238.64,USD,debit,completed,Routine debit slot 3,2026-03-21 16:53:00,TRN-631D43EF302E4DF0
+3,107.55,USD,debit,completed,Routine debit slot 1,2026-03-22 10:20:00,TRN-417B2FF607B049E3
+2,402.59,USD,debit,completed,Routine debit slot 1,2026-03-22 10:29:00,TRN-B1CCFDEE3B0345B1
+3,150.67,USD,debit,completed,Routine debit slot 2,2026-03-22 13:29:00,TRN-9F51E3CF6BA44610
+2,409.41,USD,debit,completed,Routine debit slot 2,2026-03-22 13:41:00,TRN-5CFA4DF89B4B4489
+3,146.21,USD,debit,completed,Routine debit slot 3,2026-03-22 16:21:00,TRN-D959C8A34CB14A38
+2,386.43,USD,debit,completed,Routine debit slot 3,2026-03-22 16:31:00,TRN-19ACF7AFFCE64A00
+2,197.87,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-23 04:51:00,TRN-0464EE4396C54C68
+2,406.53,USD,debit,completed,Routine debit slot 1,2026-03-23 10:18:00,TRN-7BB7431D9E274897
+3,109.63,USD,debit,completed,Routine debit slot 1,2026-03-23 10:43:00,TRN-B88126819C344107
+2,321.77,USD,debit,completed,Routine debit slot 2,2026-03-23 13:17:00,TRN-0ABE8A3E76394DE5
+3,132.2,USD,debit,completed,Routine debit slot 2,2026-03-23 13:46:00,TRN-9CE1729A28404D0A
+2,303.1,USD,debit,completed,Routine debit slot 3,2026-03-23 16:30:00,TRN-D6C34175A40945CD
+3,123.07,USD,debit,completed,Routine debit slot 3,2026-03-23 16:51:00,TRN-7464F9BB2E594CDD
+2,15279.2,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-23 21:16:00,TRN-A3D6F3EB8C33420D
+2,416.05,USD,debit,completed,Routine debit slot 1,2026-03-24 10:15:00,TRN-CF8AF4D211514687
+3,124.33,USD,debit,completed,Routine debit slot 1,2026-03-24 10:39:00,TRN-73CE00503D5446C7
+2,311.36,USD,debit,completed,Routine debit slot 2,2026-03-24 13:09:00,TRN-1A4F852B80D44407
+3,103.42,USD,debit,completed,Routine debit slot 2,2026-03-24 13:15:00,TRN-F4A6C59D646E4B9E
+3,82.9,USD,debit,completed,Routine debit slot 3,2026-03-24 16:19:00,TRN-972BF616E7B6475C
+2,296.72,USD,debit,completed,Routine debit slot 3,2026-03-24 16:58:00,TRN-541AD25101714338
+2,2886.51,USD,credit,completed,Inbound ACH — payroll,2026-03-25 09:00:00,TRN-F50E3A5ED33C4E36
+3,2851.12,USD,credit,completed,Inbound ACH — payroll,2026-03-25 09:00:00,TRN-7E680308F8064985
+3,77.49,USD,debit,completed,Routine debit slot 1,2026-03-25 10:19:00,TRN-506C512C5A654699
+2,339.88,USD,debit,completed,Routine debit slot 1,2026-03-25 10:47:00,TRN-470C9695203E4197
+3,132.12,USD,debit,completed,Routine debit slot 2,2026-03-25 13:45:00,TRN-4D6D409BEBB64B84
+2,395.87,USD,debit,completed,Routine debit slot 2,2026-03-25 13:55:00,TRN-7D3B1F96112E4D09
+3,75.73,USD,debit,completed,Routine debit slot 3,2026-03-25 16:45:00,TRN-65EB7900CC34464F
+2,233.96,USD,debit,completed,Routine debit slot 3,2026-03-25 16:49:00,TRN-1216E1D0ED3A4B27
+2,378.0,USD,debit,completed,Routine debit slot 1,2026-03-26 10:26:00,TRN-E1E0D47B32324CB4
+3,103.9,USD,debit,completed,Routine debit slot 1,2026-03-26 10:30:00,TRN-DE9D422383D44EA9
+2,287.98,USD,debit,completed,Routine debit slot 2,2026-03-26 13:50:00,TRN-BC0126A9BF6D4F5B
+3,89.88,USD,debit,completed,Routine debit slot 2,2026-03-26 13:59:00,TRN-B4206DEE0E7947FE
+3,148.45,USD,debit,completed,Routine debit slot 3,2026-03-26 16:46:00,TRN-60D0F1E227604DB0
+2,321.55,USD,debit,completed,Routine debit slot 3,2026-03-26 16:52:00,TRN-A1063CA80BD04E11
+3,5293.99,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-26 20:56:00,TRN-9FDFA1D2294B4D89
+3,82.35,USD,debit,completed,Routine debit slot 1,2026-03-27 10:07:00,TRN-2F4536CFE0DA4CFB
+2,220.51,USD,debit,completed,Routine debit slot 1,2026-03-27 10:46:00,TRN-BA4B412C47B04D92
+3,112.35,USD,debit,completed,Routine debit slot 2,2026-03-27 13:34:00,TRN-45618398A1A542C5
+2,279.71,USD,debit,completed,Routine debit slot 2,2026-03-27 13:37:00,TRN-C48C310A65D24F03
+3,92.97,USD,debit,completed,Routine debit slot 3,2026-03-27 16:25:00,TRN-F55D5A3F687E4D14
+2,335.98,USD,debit,completed,Routine debit slot 3,2026-03-27 16:42:00,TRN-15C463573181424F
+2,317.93,USD,debit,completed,Routine debit slot 1,2026-03-28 10:09:00,TRN-BB389BFDE41D42E3
+3,136.84,USD,debit,completed,Routine debit slot 1,2026-03-28 10:49:00,TRN-14B2A2E6220A464C
+3,135.46,USD,debit,completed,Routine debit slot 2,2026-03-28 13:18:00,TRN-A7AF82040BD3400F
+2,309.31,USD,debit,completed,Routine debit slot 2,2026-03-28 13:30:00,TRN-B20CB867637D4EDE
+2,289.02,USD,debit,completed,Routine debit slot 3,2026-03-28 16:35:00,TRN-A31ACE618B3D4D4B
+3,59.21,USD,debit,completed,Routine debit slot 3,2026-03-28 16:45:00,TRN-85F12D62EF4E4480
+2,15432.3,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-28 22:24:00,TRN-D1E1BF621EA14B24
+3,38.39,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-29 02:47:00,TRN-7CD028510DE842FD
+2,372.57,USD,debit,completed,Routine debit slot 1,2026-03-29 10:24:00,TRN-93C082EFF59046E0
+3,62.9,USD,debit,completed,Routine debit slot 1,2026-03-29 10:59:00,TRN-441203621A074C76
+3,99.24,USD,debit,completed,Routine debit slot 2,2026-03-29 13:16:00,TRN-345AF9F4B359424E
+2,311.07,USD,debit,completed,Routine debit slot 2,2026-03-29 13:20:00,TRN-E898CD4C01964042
+3,129.73,USD,debit,completed,Routine debit slot 3,2026-03-29 16:13:00,TRN-DA88673A823F43AC
+2,393.92,USD,debit,completed,Routine debit slot 3,2026-03-29 16:44:00,TRN-15A73D78EF5F48E7
+2,267.76,USD,debit,completed,Routine debit slot 1,2026-03-30 10:24:00,TRN-A1634E2D823149D8
+3,75.21,USD,debit,completed,Routine debit slot 1,2026-03-30 10:34:00,TRN-66390A8FB0B640FA
+3,82.11,USD,debit,completed,Routine debit slot 2,2026-03-30 13:35:00,TRN-6AB24978C4684F4C
+2,266.71,USD,debit,completed,Routine debit slot 2,2026-03-30 13:49:00,TRN-E0E5F0B8E4504FF8
+3,124.62,USD,debit,completed,Routine debit slot 3,2026-03-30 16:08:00,TRN-915BFF05AF85426E
+2,302.16,USD,debit,completed,Routine debit slot 3,2026-03-30 16:20:00,TRN-536A232E5CC14EA3
+2,217.57,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-31 04:25:00,TRN-3A73D5DE05084077
+3,30.0,USD,debit,completed,Unusual hour debit — night pattern demo,2026-03-31 04:28:00,TRN-6BFA8E3848AA45B6
+2,368.94,USD,debit,completed,Routine debit slot 1,2026-03-31 10:45:00,TRN-B755036201BE43E9
+3,65.92,USD,debit,completed,Routine debit slot 1,2026-03-31 10:47:00,TRN-C71A56F45F5D4D4C
+3,113.68,USD,debit,completed,Routine debit slot 2,2026-03-31 13:15:00,TRN-844F9B404BEE4AF4
+2,402.69,USD,debit,completed,Routine debit slot 2,2026-03-31 13:24:00,TRN-559B90BFF19645BA
+2,14330.62,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-03-31 16:10:00,TRN-F8ADE86A942049D4
+2,297.22,USD,debit,completed,Routine debit slot 3,2026-03-31 16:42:00,TRN-40FDCEDB43184651
+3,60.08,USD,debit,completed,Routine debit slot 3,2026-03-31 16:57:00,TRN-45D11FFC2E3F4769
+3,48.26,USD,debit,completed,Unusual hour debit — night pattern demo,2026-04-01 02:33:00,TRN-CA43A0363F4446B7
+2,2985.12,USD,credit,completed,Inbound ACH — payroll,2026-04-01 09:00:00,TRN-4280E72DA1EB4186
+3,2952.53,USD,credit,completed,Inbound ACH — payroll,2026-04-01 09:00:00,TRN-0294D31A56C64983
+3,4716.78,USD,debit,completed,Fraud signal — anomalous high-value debit,2026-04-01 16:54:00,TRN-189FC43A45904008

@@ -1,5 +1,12 @@
 import { api } from "@/lib/axios";
-import type { Account, BulkUploadResult, Merchant, PaginatedResponse, Transaction } from "@/types/api.types";
+import type {
+  Account,
+  BulkUploadResult,
+  Merchant,
+  PaginatedResponse,
+  Transaction,
+  TransactionFraudStatus,
+} from "@/types/api.types";
 
 export interface TransactionFilters {
   page?: number;
@@ -22,11 +29,7 @@ export const transactionsService = {
   bulkUpload: (file: File) => {
     const form = new FormData();
     form.append("file", file);
-    return api
-      .post<BulkUploadResult>("/transactions/bulk-upload", form, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((r) => r.data);
+    return api.post<BulkUploadResult>("/transactions/bulk-upload", form).then((r) => r.data);
   },
 
   listAccounts: () => api.get<Account[]>("/accounts").then((r) => r.data),
@@ -40,4 +43,11 @@ export const transactionsService = {
   }) => api.post<Account>("/accounts", payload).then((r) => r.data),
 
   listMerchants: () => api.get<Merchant[]>("/merchants").then((r) => r.data),
+
+  getFraudStatus: (transactionId: number, jobId: string | null) =>
+    api
+      .get<TransactionFraudStatus>(`/transactions/${transactionId}/fraud-status`, {
+        params: jobId ? { job_id: jobId } : {},
+      })
+      .then((r) => r.data),
 };

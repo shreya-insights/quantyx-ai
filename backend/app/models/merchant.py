@@ -1,17 +1,18 @@
 from datetime import datetime
 
-from sqlalchemy import BigInteger, Boolean, DateTime, ForeignKey, Index, String, func
+from sqlalchemy import Boolean, DateTime, ForeignKey, Index, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+from app.db.types import BigIntPK
 
 
 class Merchant(Base):
     __tablename__ = "merchants"
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
     company_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
     )
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     category_code: Mapped[str | None] = mapped_column(String(10))

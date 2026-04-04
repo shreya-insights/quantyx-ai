@@ -1,10 +1,21 @@
 from datetime import date, datetime
 from enum import Enum as PyEnum
 
-from sqlalchemy import BigInteger, Boolean, Date, DateTime, Enum, ForeignKey, Index, Numeric, String, func
+from sqlalchemy import (
+    Boolean,
+    Date,
+    DateTime,
+    Enum,
+    ForeignKey,
+    Index,
+    Numeric,
+    String,
+    func,
+)
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+from app.db.types import BigIntPK
 
 
 class AccountType(str, PyEnum):
@@ -17,12 +28,12 @@ class AccountType(str, PyEnum):
 class Account(Base):
     __tablename__ = "accounts"
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
     company_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
     )
     user_id: Mapped[int | None] = mapped_column(
-        BigInteger, ForeignKey("users.id", ondelete="SET NULL")
+        BigIntPK, ForeignKey("users.id", ondelete="SET NULL")
     )
     account_number: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
     account_type: Mapped[AccountType] = mapped_column(

@@ -4,7 +4,7 @@ from io import BytesIO
 from fastapi import APIRouter, Query
 from fastapi.responses import StreamingResponse
 
-from app.core.dependencies import AnalystUser, CurrentUser, DBSession
+from app.core.dependencies import AnalystUser, DBSession
 from app.services.analytics_service import AnalyticsService
 from app.utils.cache import get_cache_manager
 
@@ -62,7 +62,13 @@ async def download_kpi_pdf(
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
     from reportlab.lib.styles import getSampleStyleSheet
-    from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+    from reportlab.platypus import (
+        Paragraph,
+        SimpleDocTemplate,
+        Spacer,
+        Table,
+        TableStyle,
+    )
 
     if not end_date:
         end_date = date.today()

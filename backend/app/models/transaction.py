@@ -2,12 +2,11 @@ from datetime import datetime
 from enum import Enum as PyEnum
 
 from sqlalchemy import (
-    BigInteger,
+    JSON,
     DateTime,
     Enum,
     ForeignKey,
     Index,
-    JSON,
     Numeric,
     String,
     Text,
@@ -16,6 +15,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+from app.db.types import BigIntPK
 
 
 class TransactionType(str, PyEnum):
@@ -35,18 +35,18 @@ class TransactionStatus(str, PyEnum):
 class Transaction(Base):
     __tablename__ = "transactions"
 
-    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(BigIntPK, primary_key=True, autoincrement=True)
     company_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("companies.id", ondelete="CASCADE"), nullable=False
     )
     account_id: Mapped[int] = mapped_column(
-        BigInteger, ForeignKey("accounts.id", ondelete="CASCADE"), nullable=False
+        BigIntPK, ForeignKey("accounts.id", ondelete="CASCADE"), nullable=False
     )
     merchant_id: Mapped[int | None] = mapped_column(
-        BigInteger, ForeignKey("merchants.id", ondelete="SET NULL")
+        BigIntPK, ForeignKey("merchants.id", ondelete="SET NULL")
     )
     category_id: Mapped[int | None] = mapped_column(
-        BigInteger, ForeignKey("categories.id", ondelete="SET NULL")
+        BigIntPK, ForeignKey("categories.id", ondelete="SET NULL")
     )
     transaction_ref: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     amount: Mapped[float] = mapped_column(Numeric(18, 2), nullable=False)
@@ -69,6 +69,10 @@ class Transaction(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime, server_default=func.now(), nullable=False
     )
+    fraud_analyzed_at: Mapped[datetime | None] = mapped_column(
+        DateTime, nullable=True, default=None
+    )
+    fraud_check_job_id: Mapped[str | None] = mapped_column(String(80), nullable=True)
 
     # Relationships
     company: Mapped["Company"] = relationship("Company", back_populates="transactions")  # noqa: F821

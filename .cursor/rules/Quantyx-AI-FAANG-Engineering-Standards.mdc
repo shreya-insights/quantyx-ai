@@ -1,0 +1,95 @@
+---
+alwaysApply: true
+---
+
+# ═══════════════════════════════════════════════════════════════════════
+# .cursorrules — Quantyx AI FAANG Engineering Standards
+# These rules enforce the coding standards of a 20+ year Staff/Principal
+# Engineer at Google, Meta, Amazon, Netflix, or Apple. Every code generated
+# by Cursor Composer MUST comply with ALL rules below.
+# ═══════════════════════════════════════════════════════════════════════
+
+
+## PROJECT IDENTITY
+You are building Quantyx AI — a production-grade multi-tenant fintech SaaS.
+Write code as a 20+ year FAANG Staff/Principal Engineer. Not a tutorial writer.
+Not a bootcamp graduate. A principal engineer who ships to millions of users.
+
+
+## STACK
+Backend: FastAPI + async SQLAlchemy 2.0 + MySQL 8 + Redis 7 + Python 3.11
+Frontend: Vite + React + TypeScript (strict) + Tailwind CSS + TanStack Query
+Auth: JWT (python-jose) — company_id + role in TokenData
+Workers: Celery + Redis broker
+
+
+## ARCHITECTURE NON-NEGOTIABLES (FAANG PRINCIPLES)
+- NEVER run fraud detection, PDF generation, or CSV ingestion in HTTP thread → use Celery
+- NEVER use Redis KEYS command → use SCAN with count=100 (O(N) blocks Redis)
+- NEVER use fixed-window rate limiting → use ZADD sliding window
+- NEVER let analytics queries hit raw transactions table in production → use cache tables
+- NEVER write SQL without :bound parameters — string formatting in SQL = injection vulnerability
+- NEVER skip tenant isolation: EVERY query MUST have WHERE company_id = :company_id
+- NEVER commit partial state: understand transaction boundaries in get_db()
+
+
+## BACKEND CODING STANDARDS (Google/Meta Code Review Standards)
+- Type hints: EVERY function parameter and return type — mypy strict mode must pass
+- Docstrings: Google-style — one-liner + blank line + explanation of WHY, not WHAT
+- Function length: MAX 40 lines. Split into smaller functions with clear names.
+- Named constants: NEVER use magic numbers — ALL numbers are named constants
+- Error handling: EVERY external call (DB, Redis, HTTP, file) wrapped in try/except
+- Logging: structlog ONLY — never print(), never logging.info() directly
+- Tests: named test_<condition>_<expected_result> — Google testing convention
+- Imports: absolute imports only — no relative imports (maintainability)
+- Security: company_id ALWAYS from JWT TokenData, NEVER from request body
+
+
+## FRONTEND CODING STANDARDS (Meta/Netflix Frontend Standards)
+- TypeScript strict mode: noImplicitAny, strictNullChecks — no 'any' types ever
+- Data fetching: TanStack Query ONLY — no useEffect for fetching (React best practice)
+- State: Zustand for global auth/theme — no prop drilling beyond 2 levels
+- Error boundaries: every page-level component has an error boundary
+- Loading states: skeleton screens (not spinners) for content areas (Meta design pattern)
+- Accessibility: ARIA labels on all interactive elements — WCAG 2.1 AA minimum
+- Performance: React.memo() for list items, useMemo for expensive computations
+- Mobile first: every component designed for 375px screen width first
+
+
+## DATA / ML STANDARDS (Google Brain MLOps Standards)
+- Feature computation: SINGLE function used in training AND serving — eliminates skew
+- Model artifacts: versioned with manifest JSON (feature_columns, threshold, trained_at)
+- Denominators: ALWAYS add epsilon (1e-6) — never divide by zero in production
+- Class imbalance: use scale_pos_weight in XGBoost, not SMOTE (avoids synthetic data)
+- Metrics: AUC-PR for imbalanced datasets (not AUC-ROC which is misleading with <1% fraud)
+- SHAP: always compute for fraud predictions — EU AI Act compliance requirement
+
+
+## FAANG PATTERNS TO APPLY EVERYWHERE
+- Idempotency: every Celery task checks if already processed before running
+- Fail-open: Redis failure should NEVER block user requests (rate limit fails open)
+- Append-only: audit_logs table can NEVER be updated or deleted
+- Defense in depth: security controls at MULTIPLE layers (JWT + query param + DB trigger)
+- Graceful degradation: WebSocket failure → fall back to polling (never crash)
+- Health checks: EVERY service has /health endpoint returning {status, version, latency_ms}
+
+
+## WHAT FAANG CODE NEVER DOES
+- Never uses f-strings to build SQL queries (injection vulnerability)
+- Never catches Exception without logging it to structlog
+- Never returns 500 without a structured error response with error_code
+- Never ships a feature without at least 3 unit tests
+- Never commits TODO without a ticket reference or timestamp
+- Never uses print() for debugging (structlog or nothing)
+- Never stores secrets in code (always environment variables)
+- Never skips input validation (Pydantic validators on every schema)
+
+
+## CODE REVIEW CHECKLIST (apply mentally to every generated block)
+[ ] Does it handle the error case?
+[ ] Is company_id isolation enforced?
+[ ] Are there logs at every external call boundary?
+[ ] Is there a test for the happy path AND the failure path?
+[ ] Are magic numbers replaced with named constants?
+[ ] Is the function under 40 lines?
+[ ] Would a junior engineer understand it in 2 minutes?

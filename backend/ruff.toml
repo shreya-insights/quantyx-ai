@@ -1,0 +1,10 @@
+# Aligns with CI: ruff check app/ (see .github/workflows/ci.yml)
+line-length = 100
+target-version = "py311"
+
+[lint.pycodestyle]
+max-line-length = 100
+
+[lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]

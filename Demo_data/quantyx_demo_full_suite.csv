@@ -1,0 +1,60 @@
+account_id,amount,currency,transaction_type,status,description,transaction_date
+1,1200.00,USD,debit,completed,Grocery debit baseline 0,2026-01-15 12:00:00
+1,1300.00,USD,debit,completed,Grocery debit baseline 1,2026-01-18 12:00:00
+1,1400.00,USD,debit,completed,Grocery debit baseline 2,2026-01-21 12:00:00
+1,1500.00,USD,debit,completed,Grocery debit baseline 3,2026-01-24 12:00:00
+1,1600.00,USD,debit,completed,Grocery debit baseline 4,2026-01-27 12:00:00
+1,1200.00,USD,debit,completed,Grocery debit baseline 5,2026-01-30 12:00:00
+1,1300.00,USD,debit,completed,Grocery debit baseline 6,2026-02-02 12:00:00
+1,1400.00,USD,debit,completed,Grocery debit baseline 7,2026-02-05 12:00:00
+1,1500.00,USD,debit,completed,Grocery debit baseline 8,2026-02-08 12:00:00
+1,1600.00,USD,debit,completed,Grocery debit baseline 9,2026-02-11 12:00:00
+1,1200.00,USD,debit,completed,Grocery debit baseline 10,2026-02-14 12:00:00
+1,1300.00,USD,debit,completed,Grocery debit baseline 11,2026-02-17 12:00:00
+1,1400.00,USD,debit,completed,Grocery debit baseline 12,2026-02-20 12:00:00
+1,1500.00,USD,debit,completed,Grocery debit baseline 13,2026-02-23 12:00:00
+1,1600.00,USD,debit,completed,Grocery debit baseline 14,2026-02-26 12:00:00
+1,1200.00,USD,debit,completed,Grocery debit baseline 15,2026-03-01 12:00:00
+1,1300.00,USD,debit,completed,Grocery debit baseline 16,2026-03-04 12:00:00
+1,1400.00,USD,debit,completed,Grocery debit baseline 17,2026-03-07 12:00:00
+1,1500.00,USD,debit,completed,Grocery debit baseline 18,2026-03-10 12:00:00
+1,1600.00,USD,debit,completed,Grocery debit baseline 19,2026-03-13 12:00:00
+1,1200.00,USD,debit,completed,Grocery debit baseline 20,2026-03-16 12:00:00
+1,1300.00,USD,debit,completed,Grocery debit baseline 21,2026-03-19 12:00:00
+1,1400.00,USD,debit,completed,Grocery debit baseline 22,2026-03-22 12:00:00
+1,1500.00,USD,debit,completed,Grocery debit baseline 23,2026-03-25 12:00:00
+1,4500.00,USD,credit,completed,Payroll credit 0,2026-01-15 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 1,2026-01-20 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 2,2026-01-25 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 3,2026-01-30 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 4,2026-02-04 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 5,2026-02-09 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 6,2026-02-14 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 7,2026-02-19 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 8,2026-02-24 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 9,2026-03-01 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 10,2026-03-06 14:00:00
+1,4500.00,USD,credit,completed,Payroll credit 11,2026-03-11 14:00:00
+2,250.00,EUR,debit,completed,Coffee shop — EUR,2026-01-17 12:00:00
+2,800.00,EUR,credit,completed,Cashback — EUR,2026-01-18 12:00:00
+2,300.00,GBP,transfer,completed,Internal transfer,2026-01-19 12:00:00
+3,99.99,USD,refund,completed,Partial refund,2026-01-20 12:00:00
+1,75.00,USD,debit,pending,ACH pending,2026-03-16 12:00:00
+1,88.00,USD,debit,failed,Card declined,2026-03-17 12:00:00
+2,400.00,USD,debit,reversed,Chargeback reversed,2026-03-18 12:00:00
+1,199.00,USD,debit,completed,Night window debit (02–05 UTC),2026-03-20 03:15:00
+1,25.00,USD,debit,completed,Velocity micro-payment 1/6,2026-03-28 14:00:00
+1,26.00,USD,debit,completed,Velocity micro-payment 2/6,2026-03-28 14:04:00
+1,27.00,USD,debit,completed,Velocity micro-payment 3/6,2026-03-28 14:08:00
+1,28.00,USD,debit,completed,Velocity micro-payment 4/6,2026-03-28 14:12:00
+1,29.00,USD,debit,completed,Velocity micro-payment 5/6,2026-03-28 14:16:00
+1,30.00,USD,debit,completed,Velocity micro-payment 6/6,2026-03-28 14:20:00
+1,125000.00,USD,debit,completed,Large debit vs 90d average,2026-03-30 16:10:00
+1,500.00,INR,debit,completed,Retail analytics row 0,2026-04-01 11:30:00
+2,700.00,INR,debit,completed,Retail analytics row 1,2026-04-02 11:30:00
+3,900.00,INR,debit,completed,Retail analytics row 2,2026-04-03 11:30:00
+1,1100.00,INR,debit,completed,Retail analytics row 3,2026-04-04 11:30:00
+2,1300.00,INR,debit,completed,Retail analytics row 4,2026-04-05 11:30:00
+3,1500.00,INR,debit,completed,Retail analytics row 5,2026-04-06 11:30:00
+1,1700.00,INR,debit,completed,Retail analytics row 6,2026-04-07 11:30:00
+2,1900.00,INR,debit,completed,Retail analytics row 7,2026-04-08 11:30:00

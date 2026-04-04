@@ -1,11 +1,16 @@
-from typing import Annotated
-
+import structlog
+from celery.result import AsyncResult
 from fastapi import APIRouter, File, Query, UploadFile
+from sqlalchemy import select, update
 
+from app.core.config import settings
 from app.core.dependencies import AnalystUser, CurrentUser, DBSession
+from app.core.exceptions import NotFoundError
+from app.models.fraud_alert import AlertSeverity, FraudAlert
 from app.models.transaction import Transaction, TransactionStatus, TransactionType
 from app.repositories.transaction_repo import TransactionRepository
 from app.schemas.common import PaginatedResponse
+from app.schemas.fraud import FraudAlertResponse
 from app.schemas.transaction import (
     AccountCreate,
     AccountResponse,
@@ -14,13 +19,32 @@ from app.schemas.transaction import (
     MerchantResponse,
     TransactionCreate,
     TransactionFilter,
+    TransactionFraudStatusResponse,
     TransactionResponse,
 )
-from app.services.fraud_service import FraudDetectionService
+from app.services.fraud_async_status import merge_fraud_poll_status
 from app.services.ingestion_service import IngestionService
 from app.utils.pagination import paginate
+from app.worker.celery_app import celery_app
+from app.worker.tasks.fraud_tasks import analyze_transaction_fraud
+
+logger = structlog.get_logger(__name__)
 
 router = APIRouter(prefix="/transactions", tags=["Transactions"])
+
+_SEVERITY_RANK: dict[str, int] = {
+    AlertSeverity.CRITICAL.value: 0,
+    AlertSeverity.HIGH.value: 1,
+    AlertSeverity.MEDIUM.value: 2,
+    AlertSeverity.LOW.value: 3,
+}
+
+
+def _sort_alerts_for_display(alerts: list[FraudAlert]) -> list[FraudAlert]:
+    return sorted(
+        alerts,
+        key=lambda a: _SEVERITY_RANK.get(a.severity.value, 99),
+    )
 
 
 @router.get("", response_model=PaginatedResponse[TransactionResponse])
@@ -61,9 +85,8 @@ async def list_transactions(
 async def create_transaction(
     request: TransactionCreate, current_user: AnalystUser, db: DBSession
 ):
-    """Create a single transaction. Fraud detection runs automatically."""
+    """Create a single transaction; fraud analysis runs asynchronously via Celery."""
     repo = TransactionRepository(db)
-    fraud_svc = FraudDetectionService(db)
 
     ref = await repo.generate_ref()
     tx = Transaction(
@@ -85,19 +108,29 @@ async def create_transaction(
         transaction_date=request.transaction_date,
     )
     created = await repo.create(tx)
+    await db.commit()
 
-    # Run fraud detection asynchronously (fire and persist)
-    await fraud_svc.analyze_transaction(created)
+    task = analyze_transaction_fraud.delay(created.id, current_user.company_id)
+    await db.execute(
+        update(Transaction)
+        .where(
+            Transaction.id == created.id,
+            Transaction.company_id == current_user.company_id,
+        )
+        .values(fraud_check_job_id=task.id)
+    )
+    await db.commit()
 
-    # Return enriched response
     rows, _ = await repo.get_company_transactions(
         current_user.company_id,
-        TransactionFilter(account_id=request.account_id),
+        TransactionFilter(transaction_id=created.id),
         offset=0,
         limit=1,
     )
     if rows:
-        return TransactionResponse(**rows[0])
+        row = dict(rows[0])
+        row["fraud_check_status"] = "pending"
+        return TransactionResponse(**row)
     return TransactionResponse(
         id=created.id,
         company_id=created.company_id,
@@ -112,6 +145,81 @@ async def create_transaction(
         description=created.description,
         transaction_date=created.transaction_date,
         created_at=created.created_at,
+        fraud_check_job_id=task.id,
+        fraud_check_status="pending",
+    )
+
+
+@router.get(
+    "/{transaction_id}/fraud-status",
+    response_model=TransactionFraudStatusResponse,
+)
+async def get_transaction_fraud_status(
+    transaction_id: int,
+    current_user: CurrentUser,
+    db: DBSession,
+    job_id: str | None = Query(
+        default=None,
+        description="Celery task id returned from create transaction",
+    ),
+):
+    """Poll fraud analysis status; Celery state plus committed FraudAlert rows."""
+    tx_result = await db.execute(
+        select(Transaction).where(
+            Transaction.id == transaction_id,
+            Transaction.company_id == current_user.company_id,
+        )
+    )
+    tx = tx_result.scalar_one_or_none()
+    if tx is None:
+        raise NotFoundError("Transaction")
+
+    alert_result = await db.execute(
+        select(FraudAlert).where(
+            FraudAlert.transaction_id == transaction_id,
+            FraudAlert.company_id == current_user.company_id,
+        )
+    )
+    alerts = list(alert_result.scalars().all())
+    sorted_alerts = _sort_alerts_for_display(alerts)
+    primary = sorted_alerts[0] if sorted_alerts else None
+
+    effective_job_id = job_id or tx.fraud_check_job_id
+    celery_state: str | None = None
+    if effective_job_id:
+        try:
+            async_result = AsyncResult(effective_job_id, app=celery_app)
+            celery_state = async_result.state
+        except Exception as exc:
+            logger.warning(
+                "fraud_status.celery_backend_unavailable",
+                transaction_id=transaction_id,
+                job_id=effective_job_id,
+                error=str(exc),
+            )
+            celery_state = "FAILURE"
+
+    analyzed_done = tx.fraud_analyzed_at is not None
+    if sorted_alerts:
+        merged = "flagged"
+    elif analyzed_done:
+        merged = "clear"
+    elif not effective_job_id:
+        merged = "not_analyzed"
+    else:
+        merged = merge_fraud_poll_status(
+            alerts_exist=False,
+            celery_state=celery_state,
+        )
+    alert_out = (
+        FraudAlertResponse.model_validate(primary, from_attributes=True)
+        if primary
+        else None
+    )
+    return TransactionFraudStatusResponse(
+        status=merged,
+        job_id=effective_job_id,
+        alert=alert_out,
     )
 
 
@@ -134,7 +242,22 @@ async def bulk_upload(
 
     content = await file.read()
     service = IngestionService(db)
-    result = await service.ingest_csv(current_user.company_id, content)
+    result, inserted_ids = await service.ingest_csv(current_user.company_id, content)
+
+    if inserted_ids:
+        await db.commit()
+        cap = settings.BULK_UPLOAD_MAX_FRAUD_TASKS
+        to_analyze = inserted_ids[:cap]
+        if len(inserted_ids) > cap:
+            logger.warning(
+                "bulk_upload.fraud_task_cap",
+                company_id=current_user.company_id,
+                inserted=len(inserted_ids),
+                capped=cap,
+            )
+        for tx_id in to_analyze:
+            analyze_transaction_fraud.delay(tx_id, current_user.company_id)
+
     return result
 
 
@@ -165,9 +288,13 @@ async def create_account(
 @accounts_router.get("", response_model=list[AccountResponse])
 async def list_accounts(current_user: CurrentUser, db: DBSession):
     from sqlalchemy import select
+
     from app.models.account import Account
     result = await db.execute(
-        select(Account).where(Account.company_id == current_user.company_id, Account.is_active == True)
+        select(Account).where(
+            Account.company_id == current_user.company_id,
+            Account.is_active.is_(True),
+        )
     )
     return list(result.scalars().all())
 
@@ -198,6 +325,7 @@ async def create_merchant(
 @merchants_router.get("", response_model=list[MerchantResponse])
 async def list_merchants(current_user: CurrentUser, db: DBSession):
     from sqlalchemy import select
+
     from app.models.merchant import Merchant
     result = await db.execute(
         select(Merchant).where(Merchant.company_id == current_user.company_id)
