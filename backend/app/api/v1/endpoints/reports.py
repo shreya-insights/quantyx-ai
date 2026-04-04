@@ -3,29 +3,45 @@ from io import BytesIO
 
 from fastapi import APIRouter, Query
 from fastapi.responses import StreamingResponse
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.dependencies import AnalystUser, DBSession
+from app.repositories.analytics_repo import AnalyticsRepository
 from app.services.analytics_service import AnalyticsService
 from app.utils.cache import get_cache_manager
 
 router = APIRouter(prefix="/reports", tags=["Reports"])
 
 
+async def _resolve_kpi_export_dates(
+    db: AsyncSession,
+    company_id: int,
+    start_date: date | None,
+    end_date: date | None,
+) -> tuple[date, date]:
+    if start_date is None and end_date is None:
+        return await AnalyticsRepository(db).resolve_dashboard_kpi_window(company_id)
+    if end_date is None:
+        end_date = date.today()
+    if start_date is None:
+        start_date = end_date - timedelta(days=30)
+    return start_date, end_date
+
+
 @router.get("/generate/csv")
 async def download_kpi_csv(
     current_user: AnalystUser,
     db: DBSession,
-    start_date: date = Query(default=None),
-    end_date: date = Query(default=None),
+    start_date: date | None = Query(default=None),
+    end_date: date | None = Query(default=None),
 ):
     """Export KPI summary + revenue trend as CSV."""
     import csv
     import io
 
-    if not end_date:
-        end_date = date.today()
-    if not start_date:
-        start_date = end_date - timedelta(days=30)
+    start_date, end_date = await _resolve_kpi_export_dates(
+        db, current_user.company_id, start_date, end_date
+    )
 
     cache = await get_cache_manager()
     service = AnalyticsService(db, cache)
@@ -55,8 +71,8 @@ async def download_kpi_csv(
 async def download_kpi_pdf(
     current_user: AnalystUser,
     db: DBSession,
-    start_date: date = Query(default=None),
-    end_date: date = Query(default=None),
+    start_date: date | None = Query(default=None),
+    end_date: date | None = Query(default=None),
 ):
     """Export KPI summary as PDF report using ReportLab."""
     from reportlab.lib import colors
@@ -70,10 +86,9 @@ async def download_kpi_pdf(
         TableStyle,
     )
 
-    if not end_date:
-        end_date = date.today()
-    if not start_date:
-        start_date = end_date - timedelta(days=30)
+    start_date, end_date = await _resolve_kpi_export_dates(
+        db, current_user.company_id, start_date, end_date
+    )
 
     cache = await get_cache_manager()
     service = AnalyticsService(db, cache)

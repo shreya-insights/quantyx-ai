@@ -16,10 +16,7 @@ from sqlalchemy.ext.asyncio import (
 
 from app.core.config import settings
 from app.models.company import Company
-from app.repositories.analytics_cache_repo import (
-    AnalyticsCacheRepository,
-    default_kpi_period_dates,
-)
+from app.repositories.analytics_cache_repo import AnalyticsCacheRepository
 from app.repositories.analytics_repo import AnalyticsRepository
 
 logger = structlog.get_logger(__name__)
@@ -81,7 +78,7 @@ async def _refresh_one_company(session: AsyncSession, company_id: int) -> str:
         await cache_repo.upsert_merchant_cache(
             company_id, days, merch_rows, snapshot
         )
-    start_d, end_d = default_kpi_period_dates()
+    start_d, end_d = await analytics.resolve_dashboard_kpi_window(company_id)
     period_key = AnalyticsCacheRepository.kpi_period_type(start_d, end_d)
     kpi = await analytics.get_kpi_summary(company_id, str(start_d), str(end_d))
     fraud = await analytics.get_fraud_kpi(company_id, str(start_d), str(end_d))
