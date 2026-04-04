@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import time
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
@@ -6,20 +7,35 @@ from typing import AsyncGenerator
 import structlog
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
+from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 
 from app.api.v1.router import api_router
 from app.core.config import settings
 from app.core.exceptions import QuantyxException
 from app.core.middleware import RequestLoggingMiddleware
 
+
 # ─── Structured Logging Setup ─────────────────────────────────────────────────
+def _rename_level_for_elk(_logger: object, _name: str, event_dict: dict) -> dict:
+    raw = event_dict.pop("level", None)
+    if raw is None:
+        return event_dict
+    if isinstance(raw, int):
+        event_dict["log_level"] = logging.getLevelName(raw)
+    else:
+        event_dict["log_level"] = str(raw)
+    return event_dict
+
+
 structlog.configure(
     processors=[
         structlog.stdlib.add_log_level,
+        _rename_level_for_elk,
         structlog.stdlib.add_logger_name,
         structlog.processors.TimeStamper(fmt="iso"),
         structlog.processors.StackInfoRenderer(),
+        structlog.processors.format_exc_info,
         structlog.processors.JSONRenderer(),
     ],
     wrapper_class=structlog.make_filtering_bound_logger(20),
@@ -34,6 +50,9 @@ logger = structlog.get_logger()
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifespan: load ML model at startup, clean up Redis at shutdown."""
     from app.services.ml_fraud_service import MLFraudService
+    from app.utils.metrics import init_metrics_at_startup
+
+    init_metrics_at_startup()
 
     try:
         await asyncio.to_thread(MLFraudService.load)
@@ -100,6 +119,13 @@ def create_application() -> FastAPI:
 
     # ─── Routers ─────────────────────────────────────────────────────────────
     app.include_router(api_router)
+
+    @app.get("/metrics", include_in_schema=False)
+    async def metrics() -> Response:
+        from app.utils.metrics import refresh_celery_queue_depths
+
+        await asyncio.to_thread(refresh_celery_queue_depths)
+        return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
     # ─── Health Check ────────────────────────────────────────────────────────
     @app.get("/health", tags=["Health"])

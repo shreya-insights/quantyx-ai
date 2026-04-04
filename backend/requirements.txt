@@ -23,6 +23,7 @@ bcrypt==3.2.2
 
 # ─── Cache / Task queue ───────────────────────────────────────────────────────
 redis==5.0.8
+prometheus-client>=0.20
 celery[redis]==5.4.0
 celery-redbeat==2.3.3
 

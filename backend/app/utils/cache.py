@@ -19,8 +19,11 @@ import structlog
 from redis.asyncio.client import Redis
 
 from app.core.config import settings
+from app.utils.metrics import REDIS_OPERATIONS_TOTAL
 
 logger = structlog.get_logger(__name__)
+
+REDIS_CACHE_TYPE_LABEL = "json"
 
 REDIS_MAX_CONNECTIONS = 50
 REDIS_HEALTH_CHECK_INTERVAL_SECONDS = 30
@@ -105,7 +108,13 @@ class CacheManager:
         try:
             raw = await self.redis.get(self._build_key(key))
             if raw is None:
+                REDIS_OPERATIONS_TOTAL.labels(
+                    operation="get", cache_type=REDIS_CACHE_TYPE_LABEL, hit_or_miss="miss"
+                ).inc()
                 return None
+            REDIS_OPERATIONS_TOTAL.labels(
+                operation="get", cache_type=REDIS_CACHE_TYPE_LABEL, hit_or_miss="hit"
+            ).inc()
             return json.loads(raw)
         except Exception as exc:
             logger.warning("cache.get.error", key=key, error=str(exc))
@@ -119,6 +128,9 @@ class CacheManager:
                 ttl,
                 json.dumps(value, default=str),
             )
+            REDIS_OPERATIONS_TOTAL.labels(
+                operation="set", cache_type=REDIS_CACHE_TYPE_LABEL, hit_or_miss="write"
+            ).inc()
             return True
         except Exception as exc:
             logger.warning("cache.set.error", key=key, error=str(exc))

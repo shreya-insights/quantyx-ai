@@ -22,6 +22,7 @@ import structlog
 from pydantic import BaseModel
 
 from app.core.config import settings
+from app.utils.metrics import ML_FRAUD_SCORE_DISTRIBUTION
 
 if TYPE_CHECKING:
     import shap
@@ -122,10 +123,16 @@ class MLFraudService:
     def is_loaded(cls) -> bool:
         return cls._model is not None and cls._explainer is not None
 
-    def predict_with_explanation(self, features: dict[str, float]) -> MLFraudResult:
+    def predict_with_explanation(
+        self,
+        features: dict[str, float],
+        *,
+        company_id: int | None = None,
+    ) -> MLFraudResult:
         """Score one transaction and return top-N SHAP reasons.
 
         features must contain all keys in _feature_columns (extras are ignored).
+        company_id scopes ML score histogram to tenant (omit only in tests).
         """
         import numpy as np
         import pandas as pd
@@ -140,6 +147,9 @@ class MLFraudService:
         )
 
         prob = float(self._model.predict_proba(X)[0, 1])  # type: ignore[union-attr]
+
+        if company_id is not None:
+            ML_FRAUD_SCORE_DISTRIBUTION.labels(company_id=str(company_id)).observe(prob)
 
         import xgboost as xgb
 
