@@ -1,9 +1,10 @@
 from datetime import datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from app.schemas.fraud import FraudAlertResponse
+from app.utils.masking import mask_account_number
 
 _FraudPollStatus = Literal[
     "pending",
@@ -52,6 +53,58 @@ class TransactionResponse(BaseModel):
     fraud_check_status: str | None = None
 
     model_config = {"from_attributes": True}
+
+
+class TransactionResponseFull(TransactionResponse):
+    """Full transaction payload for admin and analyst roles.
+
+    Adds PII fields (ip_address, device_fingerprint) that are excluded
+    from the viewer-facing response. Only returned when role in (admin, analyst).
+    """
+
+    ip_address: str | None = None
+    device_fingerprint: str | None = None
+
+
+class TransactionResponseViewer(BaseModel):
+    """Viewer-safe transaction payload with PII masked at serialization time.
+
+    - account_number: masked to last 4 digits via mask_account_number()
+    - ip_address / device_fingerprint: excluded entirely (not present in schema)
+
+    Masking happens in the model_validator before field assignment so
+    raw PII never touches application business logic — only the API boundary.
+    """
+
+    id: int
+    company_id: int
+    account_id: int
+    merchant_id: int | None
+    category_id: int | None
+    transaction_ref: str
+    amount: float
+    currency: str
+    transaction_type: str
+    status: str
+    description: str | None
+    transaction_date: datetime
+    created_at: datetime
+    merchant_name: str | None = None
+    category_name: str | None = None
+    account_number: str | None = None
+    fraud_check_job_id: str | None = None
+    fraud_check_status: str | None = None
+
+    model_config = {"from_attributes": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def _mask_pii_fields(cls, data: Any) -> Any:
+        """Mask account_number at the serialization boundary before field assignment."""
+        if isinstance(data, dict):
+            data = dict(data)
+            data["account_number"] = mask_account_number(data.get("account_number"))
+        return data
 
 
 class TransactionFraudStatusResponse(BaseModel):
