@@ -3,6 +3,7 @@ from celery.result import AsyncResult
 from fastapi import APIRouter, File, Query, UploadFile
 from sqlalchemy import select, update
 
+from app.core.config import settings
 from app.core.dependencies import AnalystUser, CurrentUser, DBSession
 from app.core.exceptions import NotFoundError
 from app.models.fraud_alert import AlertSeverity, FraudAlert
@@ -241,7 +242,22 @@ async def bulk_upload(
 
     content = await file.read()
     service = IngestionService(db)
-    result = await service.ingest_csv(current_user.company_id, content)
+    result, inserted_ids = await service.ingest_csv(current_user.company_id, content)
+
+    if inserted_ids:
+        await db.commit()
+        cap = settings.BULK_UPLOAD_MAX_FRAUD_TASKS
+        to_analyze = inserted_ids[:cap]
+        if len(inserted_ids) > cap:
+            logger.warning(
+                "bulk_upload.fraud_task_cap",
+                company_id=current_user.company_id,
+                inserted=len(inserted_ids),
+                capped=cap,
+            )
+        for tx_id in to_analyze:
+            analyze_transaction_fraud.delay(tx_id, current_user.company_id)
+
     return result
 
 

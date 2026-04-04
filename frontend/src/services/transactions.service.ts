@@ -29,8 +29,6 @@ export const transactionsService = {
   bulkUpload: (file: File) => {
     const form = new FormData();
     form.append("file", file);
-    // Do not set Content-Type manually — multipart needs a boundary; axios strips
-    // the default application/json header when data is FormData.
     return api.post<BulkUploadResult>("/transactions/bulk-upload", form).then((r) => r.data);
   },
 

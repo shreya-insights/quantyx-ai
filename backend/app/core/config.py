@@ -84,6 +84,9 @@ class Settings(BaseSettings):
     FRAUD_LOCATION_RADIUS_KM: float = 200.0
     FRAUD_DUPLICATE_WINDOW_MIN: int = 5
 
+    # Cap Celery fan-out after CSV bulk upload (each inserted row may enqueue one task).
+    BULK_UPLOAD_MAX_FRAUD_TASKS: int = 2000
+
     # ─── ML Model ─────────────────────────────────────────────────────────────
     ML_MODEL_DIR: str = "backend/ml"
 

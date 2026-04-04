@@ -183,7 +183,7 @@ export function RulesOnlyBadge() {
   return (
     <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500 py-2">
       <Info className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-      Rule-based detection — ML model not yet trained
+      Rule-based detection — ML model not yet scored for this alert
     </div>
   );
 }

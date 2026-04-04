@@ -179,6 +179,7 @@ def train() -> None:
         colsample_bytree=COLSAMPLE_BYTREE,
         scale_pos_weight=scale_pos_weight,
         eval_metric="aucpr",
+        early_stopping_rounds=EARLY_STOPPING_ROUNDS,
         random_state=RANDOM_SEED,
         n_jobs=-1,
     )
@@ -187,7 +188,6 @@ def train() -> None:
         y_train,
         eval_set=[(X_val, y_val)],
         verbose=50,
-        early_stopping_rounds=EARLY_STOPPING_ROUNDS,
     )
 
     val_probs = model.predict_proba(X_val)[:, 1]

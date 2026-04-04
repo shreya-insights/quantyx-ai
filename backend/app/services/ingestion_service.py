@@ -26,12 +26,15 @@ class IngestionService:
 
     async def ingest_csv(
         self, company_id: int, csv_bytes: bytes
-    ) -> BulkUploadResponse:
+    ) -> tuple[BulkUploadResponse, list[int]]:
         try:
             df = pd.read_csv(io.BytesIO(csv_bytes))
         except Exception as e:
-            return BulkUploadResponse(
-                total_rows=0, inserted=0, failed=0, errors=[f"Cannot parse CSV: {e}"]
+            return (
+                BulkUploadResponse(
+                    total_rows=0, inserted=0, failed=0, errors=[f"Cannot parse CSV: {e}"]
+                ),
+                [],
             )
 
         # Normalize column names
@@ -39,17 +42,21 @@ class IngestionService:
 
         missing = REQUIRED_COLUMNS - set(df.columns)
         if missing:
-            return BulkUploadResponse(
-                total_rows=len(df),
-                inserted=0,
-                failed=len(df),
-                errors=[f"Missing required columns: {', '.join(missing)}"],
+            return (
+                BulkUploadResponse(
+                    total_rows=len(df),
+                    inserted=0,
+                    failed=len(df),
+                    errors=[f"Missing required columns: {', '.join(missing)}"],
+                ),
+                [],
             )
 
         total_rows = len(df)
         inserted = 0
         errors: list[str] = []
         transactions: list[Transaction] = []
+        inserted_ids: list[int] = []
 
         for idx, row in df.iterrows():
             row_num = int(idx) + 2  # 1-based + header
@@ -109,12 +116,16 @@ class IngestionService:
             try:
                 count = await self.tx_repo.bulk_insert(chunk)
                 inserted += count
+                inserted_ids.extend(tx.id for tx in chunk if tx.id is not None)
             except Exception as e:
                 errors.append(f"Batch insert error (rows {i+2}–{i+CHUNK_SIZE+1}): {e}")
 
-        return BulkUploadResponse(
-            total_rows=total_rows,
-            inserted=inserted,
-            failed=total_rows - inserted,
-            errors=errors[:100],  # cap error list
+        return (
+            BulkUploadResponse(
+                total_rows=total_rows,
+                inserted=inserted,
+                failed=total_rows - inserted,
+                errors=errors[:100],  # cap error list
+            ),
+            inserted_ids,
         )

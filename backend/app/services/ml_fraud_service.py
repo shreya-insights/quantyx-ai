@@ -89,7 +89,6 @@ class MLFraudService:
         Callers should catch this and fall back to rules-only mode.
         """
         import joblib
-        import shap as shap_lib
         from xgboost import XGBClassifier as _XGB  # noqa: F401
 
         model_dir = Path(settings.ML_MODEL_DIR)
@@ -107,7 +106,10 @@ class MLFraudService:
         cls._threshold = float(manifest.get("threshold", ML_THRESHOLD_DEFAULT))
         cls._model_version = manifest.get("trained_at", "unknown")
 
-        cls._explainer = shap_lib.TreeExplainer(cls._model)
+        # Use XGBoost's native SHAP via booster.predict(pred_contribs=True).
+        # shap.TreeExplainer has a known incompatibility with XGBoost >=3.x
+        # (base_score stored as array instead of scalar).
+        cls._explainer = cls._model.get_booster()
 
         logger.info(
             "ml_model.loaded",
@@ -139,11 +141,12 @@ class MLFraudService:
 
         prob = float(self._model.predict_proba(X)[0, 1])  # type: ignore[union-attr]
 
-        raw_shap = self._explainer.shap_values(X)  # type: ignore[union-attr]
-        if isinstance(raw_shap, list):
-            shap_row = raw_shap[1][0]
-        else:
-            shap_row = raw_shap[0]
+        import xgboost as xgb
+
+        dmatrix = xgb.DMatrix(X)
+        # pred_contribs returns shape (n_samples, n_features + 1); last col is bias term.
+        contribs = self._explainer.predict(dmatrix, pred_contribs=True)  # type: ignore[union-attr]
+        shap_row = contribs[0, :-1]
 
         reasons = sorted(
             [

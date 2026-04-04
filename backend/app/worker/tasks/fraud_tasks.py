@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from typing import Any
 
@@ -20,10 +21,9 @@ import redis
 import structlog
 from celery import shared_task
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from app.core.config import settings
-from app.db.session import AsyncSessionLocal
 from app.models.fraud_alert import AlertSeverity, AlertType, FraudAlert
 from app.models.transaction import Transaction
 from app.services.fraud_service import FraudDetectionService
@@ -171,8 +171,37 @@ async def _run_ml_scoring(
         return None
 
 
+@asynccontextmanager
+async def _task_session():
+    """Create a per-task async engine so there is no event-loop mismatch.
+
+    asyncio.run() starts a brand-new event loop each time a Celery task runs.
+    Reusing the module-level engine (bound to a previous loop) causes
+    'Future attached to a different loop'. Disposing after each task avoids
+    connection-pool leaks.
+    """
+    engine = create_async_engine(
+        settings.DATABASE_URL,
+        pool_pre_ping=True,
+        pool_size=2,
+        max_overflow=3,
+    )
+    session_factory = async_sessionmaker(
+        bind=engine,
+        class_=AsyncSession,
+        expire_on_commit=False,
+        autocommit=False,
+        autoflush=False,
+    )
+    try:
+        async with session_factory() as session:
+            yield session
+    finally:
+        await engine.dispose()
+
+
 async def _analyze_fraud_async(transaction_id: int, company_id: int) -> dict[str, Any]:
-    async with AsyncSessionLocal() as session:
+    async with _task_session() as session:
         tx = await _load_transaction(session, transaction_id)
         if not tx or tx.company_id != company_id:
             logger.error(
