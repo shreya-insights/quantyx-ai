@@ -62,7 +62,7 @@ class TransactionRepository(BaseRepository[Transaction]):
                 t.id, t.company_id, t.account_id, t.merchant_id, t.category_id,
                 t.transaction_ref, t.amount, t.currency, t.transaction_type,
                 t.status, t.description, t.transaction_date, t.created_at,
-                t.fraud_check_job_id,
+                t.fraud_check_job_id, t.ip_address, t.device_fingerprint,
                 m.name AS merchant_name,
                 c.name AS category_name,
                 a.account_number

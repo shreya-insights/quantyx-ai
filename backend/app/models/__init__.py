@@ -1,4 +1,5 @@
 from app.models.account import Account, AccountType
+from app.models.audit_log import AuditLog
 from app.models.category import Category
 from app.models.company import Company, SubscriptionTier
 from app.models.feature_store import MerchantFeatures, UserFeatures, VelocityFeature
@@ -21,6 +22,7 @@ __all__ = [
     "Account",
     "AccountType",
     "AlertSeverity",
+    "AuditLog",
     "AlertType",
     "BillingCycle",
     "Category",

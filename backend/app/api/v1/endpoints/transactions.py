@@ -1,6 +1,6 @@
 import structlog
 from celery.result import AsyncResult
-from fastapi import APIRouter, File, Query, UploadFile
+from fastapi import APIRouter, File, Query, Request, Response, UploadFile
 from sqlalchemy import select, update
 
 from app.core.config import settings
@@ -21,12 +21,17 @@ from app.schemas.transaction import (
     TransactionFilter,
     TransactionFraudStatusResponse,
     TransactionResponse,
+    TransactionResponseFull,
+    TransactionResponseViewer,
 )
 from app.services.fraud_async_status import merge_fraud_poll_status
 from app.services.ingestion_service import IngestionService
+from app.utils.audit import log_audit_event
 from app.utils.pagination import paginate
 from app.worker.celery_app import celery_app
 from app.worker.tasks.fraud_tasks import analyze_transaction_fraud
+
+_ADMIN_ANALYST_ROLES: frozenset[str] = frozenset({"admin", "analyst"})
 
 logger = structlog.get_logger(__name__)
 
@@ -49,6 +54,8 @@ def _sort_alerts_for_display(alerts: list[FraudAlert]) -> list[FraudAlert]:
 
 @router.get("", response_model=PaginatedResponse[TransactionResponse])
 async def list_transactions(
+    request: Request,
+    response: Response,
     current_user: CurrentUser,
     db: DBSession,
     page: int = Query(default=1, ge=1),
@@ -63,6 +70,7 @@ async def list_transactions(
 ):
     """List paginated transactions with filters. Auto-scoped to current tenant."""
     from datetime import datetime
+
     repo = TransactionRepository(db)
     filters = TransactionFilter(
         start_date=datetime.fromisoformat(start_date) if start_date else None,
@@ -77,7 +85,23 @@ async def list_transactions(
     rows, total = await repo.get_company_transactions(
         current_user.company_id, filters, offset=offset, limit=page_size
     )
-    data = [TransactionResponse(**r) for r in rows]
+
+    is_privileged = current_user.role in _ADMIN_ANALYST_ROLES
+    schema = TransactionResponseFull if is_privileged else TransactionResponseViewer
+    data = [schema(**r) for r in rows]
+
+    if not is_privileged:
+        response.headers["X-Data-Masking"] = "active"
+
+    await log_audit_event(
+        db=db,
+        action="data.read",
+        resource_type="transaction",
+        current_user=current_user,
+        request=request,
+        metadata={"page": page, "page_size": page_size, "total": total},
+    )
+
     return paginate(data, total, page, page_size)
 
 
