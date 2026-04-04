@@ -16,11 +16,13 @@ import {
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useKpiSummary, useRevenueTrends } from "../hooks/useDashboard";
+import { LiveFeedPanel } from "../components/LiveFeedPanel";
 import { StatCard, KpiCardSkeleton } from "@/components/ui";
 import { PageHeader } from "@/components/common/PageHeader";
 import { EmptyState } from "@/components/common/EmptyState";
 import { formatCurrency, formatNumber, formatPercent } from "@/utils/format";
 import { useChartColors } from "@/hooks/useChartColors";
+import { useAuthStore } from "@/stores/auth.store";
 
 const cardContainer = {
   hidden: {},
@@ -41,6 +43,7 @@ export default function DashboardPage() {
   const kpiQuery   = useKpiSummary();
   const trendQuery = useRevenueTrends(6);
   const c          = useChartColors();
+  const { user }   = useAuthStore();
 
   const kpi   = kpiQuery.data;
   const trend = trendQuery.data?.data ?? [];
@@ -146,6 +149,13 @@ export default function DashboardPage() {
           )}
         </div>
       </div>
+
+      {/* Live Fraud Feed */}
+      {user && (
+        <div className="mb-8">
+          <LiveFeedPanel companyId={user.company_id} />
+        </div>
+      )}
 
       {/* MoM Table */}
       {trend.length > 0 && (
