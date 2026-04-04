@@ -2,6 +2,7 @@ import time
 from datetime import datetime, timezone
 from typing import Annotated
 
+import structlog
 from fastapi import Depends, Request, Response
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jose import JWTError
@@ -18,6 +19,8 @@ from app.core.security import decode_token
 from app.db.session import get_db
 from app.services.rate_limit_service import RateLimitService, first_day_next_month_utc
 from app.utils.cache import CacheManager, get_redis_client
+
+logger = structlog.get_logger(__name__)
 
 bearer_scheme = HTTPBearer(auto_error=False)
 
@@ -85,6 +88,22 @@ async def check_rate_limit(
     """Layered limits: per-IP, per-user/plan per minute, monthly quota (metered)."""
     if request.method == "OPTIONS":
         return
+
+    # Developer / admin bypass: skip all limits when the token email is in the
+    # RATE_LIMIT_BYPASS_EMAILS set. Email is read from the JWT (server-authoritative),
+    # never from the request body.
+    if credentials and credentials.credentials and settings.RATE_LIMIT_BYPASS_EMAILS:
+        try:
+            _bp = decode_token(credentials.credentials)
+            if str(_bp.get("email", "")).lower() in settings.RATE_LIMIT_BYPASS_EMAILS:
+                logger.debug(
+                    "rate_limit.bypassed",
+                    email=_bp.get("email"),
+                    path=request.url.path,
+                )
+                return
+        except JWTError:
+            pass  # fall through to normal enforcement
 
     forwarded = request.headers.get("x-forwarded-for")
     peer = request.client.host if request.client else None
