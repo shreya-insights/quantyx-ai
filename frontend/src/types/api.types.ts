@@ -347,6 +347,11 @@ export interface Subscription {
   created_at: string;
 }
 
+export interface DailyUsage {
+  date: string;
+  calls: number;
+}
+
 export interface UsageStats {
   plan_name: string;
   api_calls_used: number;
@@ -355,4 +360,7 @@ export interface UsageStats {
   usage_pct: number | null;
   transaction_count_this_month: number;
   transaction_limit: number | null;
+  current_month_calls: number;
+  reset_date: string;
+  daily_breakdown: DailyUsage[];
 }

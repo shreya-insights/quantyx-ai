@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.exceptions import ConflictError, NotFoundError, SubscriptionLimitError
+from app.core.exceptions import ConflictError, NotFoundError
 from app.models.subscription import (
     PLAN_LIMITS,
     PLAN_PRICING,
@@ -17,6 +17,8 @@ from app.schemas.subscription import (
     SubscribeRequest,
     UsageResponse,
 )
+from app.services.rate_limit_service import RateLimitService, first_day_next_month_utc
+from app.utils.cache import CacheManager, get_redis_client
 
 
 class SubscriptionService:
@@ -83,6 +85,7 @@ class SubscriptionService:
         )
         self.session.add(sub)
         await self.session.flush()
+        await RateLimitService.invalidate_plan_cache(company_id)
         return sub
 
     async def get_usage(self, company_id: int) -> UsageResponse:
@@ -106,37 +109,28 @@ class SubscriptionService:
         )
         tx_count = result.scalar_one() or 0
 
-        used = sub.api_calls_used
+        db_used = int(sub.api_calls_used or 0)
         limit = sub.api_calls_limit
-        remaining = (limit - used) if limit is not None else None
-        usage_pct = round(used / limit * 100, 2) if limit else None
+
+        redis = await get_redis_client()
+        meter = RateLimitService(CacheManager(redis))
+        current_month = await meter.get_effective_monthly_calls(company_id, db_used)
+        daily = await meter.get_daily_breakdown(company_id)
+
+        remaining = (limit - current_month) if limit is not None else None
+        usage_pct = (
+            round(current_month / limit * 100, 2) if limit and limit > 0 else None
+        )
 
         return UsageResponse(
             plan_name=sub.plan_name.value,
-            api_calls_used=used,
+            api_calls_used=db_used,
             api_calls_limit=limit,
             api_calls_remaining=remaining,
             usage_pct=usage_pct,
             transaction_count_this_month=tx_count,
             transaction_limit=sub.transaction_limit,
+            current_month_calls=current_month,
+            reset_date=first_day_next_month_utc().isoformat(),
+            daily_breakdown=daily,
         )
-
-    async def increment_api_calls(self, company_id: int) -> None:
-        from sqlalchemy import update
-        await self.session.execute(
-            update(Subscription)
-            .where(
-                Subscription.company_id == company_id,
-                Subscription.status.in_([SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIAL]),
-            )
-            .values(api_calls_used=Subscription.api_calls_used + 1)
-        )
-
-    async def check_limit(self, company_id: int) -> None:
-        sub = await self.get_active_subscription(company_id)
-        if sub and sub.api_calls_limit is not None:
-            if sub.api_calls_used >= sub.api_calls_limit:
-                raise SubscriptionLimitError(
-                    f"API call limit reached ({sub.api_calls_limit}/month). "
-                    "Please upgrade your plan."
-                )

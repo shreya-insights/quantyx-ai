@@ -1,7 +1,7 @@
 from functools import lru_cache
 from typing import Optional
 
-from pydantic import field_validator
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -67,9 +67,19 @@ class Settings(BaseSettings):
             return [origin.strip() for origin in v.split(",")]
         return v
 
-    # ─── Rate Limiting ────────────────────────────────────────────────────────
-    RATE_LIMIT_REQUESTS: int = 100
-    RATE_LIMIT_WINDOW: int = 60  # seconds
+    # ─── Rate limiting & API metering (Redis + Subscription.api_calls_used) ─
+    IP_RATE_LIMIT_PER_MINUTE: int = 100
+    API_RATE_LIMIT_WINDOW_SECONDS: int = 60
+    PLAN_RATE_LIMITS_PER_MINUTE: dict[str, int] = Field(
+        default_factory=lambda: {
+            "starter": 60,
+            "growth": 300,
+            "enterprise": 1000,
+        }
+    )
+    QUOTA_SYNC_INTERVAL: int = 100
+    PLAN_CACHE_TTL_SECONDS: int = 300
+    DAILY_USAGE_KEY_TTL_SECONDS: int = 32 * 86_400
 
     # ─── Seed ─────────────────────────────────────────────────────────────────
     FIRST_ADMIN_EMAIL: str = "admin@quantyx.ai"

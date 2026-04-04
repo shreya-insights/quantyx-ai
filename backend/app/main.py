@@ -115,6 +115,7 @@ def create_application() -> FastAPI:
         return JSONResponse(
             status_code=exc.status_code,
             content={"error_code": exc.error_code, "detail": exc.detail},
+            headers=dict(exc.headers) if exc.headers else None,
         )
 
     # ─── Routers ─────────────────────────────────────────────────────────────
