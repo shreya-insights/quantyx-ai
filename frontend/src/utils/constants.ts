@@ -46,4 +46,5 @@ export const ROUTES = {
   QUERY_LAB:    "/query-lab",
   REPORTS:      "/reports",
   SETTINGS:     "/settings",
+  AI_ANALYST:   "/ai-analyst",
 } as const;

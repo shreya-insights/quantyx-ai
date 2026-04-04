@@ -8,19 +8,34 @@ function toDate(d: Date) {
   return d.toISOString().split("T")[0];
 }
 
-const today        = toDate(new Date());
+const today         = toDate(new Date());
 const thirtyDaysAgo = toDate(new Date(Date.now() - 30 * 24 * 60 * 60 * 1000));
 
-export default function ReportsPage() {
-  const [startDate, setStartDate] = useState(thirtyDaysAgo);
-  const [endDate, setEndDate]     = useState(today);
+type DownloadType = "csv" | "pdf";
 
-  const downloadFile = (url: string) => {
-    const a = document.createElement("a");
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.click();
+export default function ReportsPage() {
+  const [startDate, setStartDate]   = useState(thirtyDaysAgo);
+  const [endDate, setEndDate]       = useState(today);
+  const [loadingCsv, setLoadingCsv] = useState(false);
+  const [loadingPdf, setLoadingPdf] = useState(false);
+  const [error, setError]           = useState<string | null>(null);
+
+  const handleDownload = async (type: DownloadType) => {
+    const setLoading = type === "csv" ? setLoadingCsv : setLoadingPdf;
+    setError(null);
+    setLoading(true);
+    try {
+      if (type === "csv") {
+        await reportsService.downloadCsv(startDate, endDate);
+      } else {
+        await reportsService.downloadPdf(startDate, endDate);
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Download failed. Please try again.";
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -59,6 +74,13 @@ export default function ReportsPage() {
           </div>
         </div>
 
+        {/* Error banner */}
+        {error && (
+          <div role="alert" className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800 px-4 py-3 text-sm text-red-700 dark:text-red-400">
+            {error}
+          </div>
+        )}
+
         {/* CSV Report */}
         <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5">
           <div className="flex items-start gap-4">
@@ -72,10 +94,12 @@ export default function ReportsPage() {
                 variant="secondary"
                 size="sm"
                 className="mt-3"
-                onClick={() => downloadFile(reportsService.getCsvUrl(startDate, endDate))}
+                onClick={() => handleDownload("csv")}
+                disabled={loadingCsv}
+                aria-label="Download Revenue Trend CSV report"
                 leftIcon={<Download size={14} aria-hidden="true" />}
               >
-                Download CSV
+                {loadingCsv ? "Downloading…" : "Download CSV"}
               </Button>
             </div>
           </div>
@@ -94,10 +118,12 @@ export default function ReportsPage() {
                 variant="outline"
                 size="sm"
                 className="mt-3"
-                onClick={() => downloadFile(reportsService.getPdfUrl(startDate, endDate))}
+                onClick={() => handleDownload("pdf")}
+                disabled={loadingPdf}
+                aria-label="Download KPI Summary PDF report"
                 leftIcon={<FileDown size={14} aria-hidden="true" />}
               >
-                Download PDF
+                {loadingPdf ? "Downloading…" : "Download PDF"}
               </Button>
             </div>
           </div>
