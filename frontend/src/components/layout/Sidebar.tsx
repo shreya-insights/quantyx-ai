@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import {
+  BrainCircuit,
   LayoutDashboard,
   CreditCard,
   TrendingUp,
@@ -28,8 +29,9 @@ const NAV_ITEMS: NavItem[] = [
   { href: ROUTES.TRANSACTIONS, icon: CreditCard,      label: "Transactions" },
   { href: ROUTES.ANALYTICS,    icon: TrendingUp,      label: "Analytics" },
   { href: ROUTES.FRAUD,        icon: ShieldAlert,     label: "Fraud Monitor" },
-  { href: ROUTES.QUERY_LAB,    icon: Terminal,        label: "Query Lab",  roles: ["admin", "analyst"] },
-  { href: ROUTES.REPORTS,      icon: FileText,        label: "Reports",    roles: ["admin", "analyst"] },
+  { href: ROUTES.QUERY_LAB,    icon: Terminal,        label: "Query Lab",   roles: ["admin", "analyst"] },
+  { href: ROUTES.REPORTS,      icon: FileText,        label: "Reports",     roles: ["admin", "analyst"] },
+  { href: ROUTES.AI_ANALYST,   icon: BrainCircuit,    label: "AI Analyst",  roles: ["admin", "analyst"] },
   { href: ROUTES.SETTINGS,     icon: Settings,        label: "Settings" },
 ];
 
@@ -73,9 +75,11 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         {/* Logo row */}
         <div className="px-5 py-5 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-sm font-bold text-white shadow-lg shadow-brand-600/30 dark:shadow-brand-600/20 flex-shrink-0 select-none">
-              Q
-            </div>
+            <img
+              src="/monitor.png"
+              alt="Quantyx AI logo"
+              className="w-8 h-8 flex-shrink-0 select-none"
+            />
             <div>
               <span className="font-bold text-white text-sm">Quantyx AI</span>
               <div className="text-xs text-slate-400 leading-none mt-0.5">Financial Analytics</div>

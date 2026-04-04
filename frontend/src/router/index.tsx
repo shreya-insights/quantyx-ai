@@ -15,6 +15,7 @@ const FraudPage        = lazy(() => import("@/features/fraud/pages/FraudPage"));
 const QueryLabPage     = lazy(() => import("@/features/query-lab/pages/QueryLabPage"));
 const ReportsPage      = lazy(() => import("@/features/reports/pages/ReportsPage"));
 const SettingsPage     = lazy(() => import("@/features/settings/pages/SettingsPage"));
+const AIAnalystPage    = lazy(() => import("@/features/ai-analyst/pages/AIAnalystPage"));
 
 const S = (el: React.ReactElement) => (
   <Suspense fallback={<PageSkeleton />}>{el}</Suspense>
@@ -37,9 +38,10 @@ export const router = createBrowserRouter([
       { path: "/analytics",       element: S(<AnalyticsPage />) },
       { path: "/fraud",           element: S(<FraudPage />) },
       { path: "/query-lab",       element: S(<QueryLabPage />) },
-      { path: "/reports",         element: S(<ReportsPage />) },
-      { path: "/settings",        element: S(<SettingsPage />) },
-      { path: "*",                element: <Navigate to="/dashboard" replace /> },
+      { path: "/reports",          element: S(<ReportsPage />) },
+      { path: "/settings",         element: S(<SettingsPage />) },
+      { path: "/ai-analyst",       element: S(<AIAnalystPage />) },
+      { path: "*",                 element: <Navigate to="/dashboard" replace /> },
     ],
   },
 ]);

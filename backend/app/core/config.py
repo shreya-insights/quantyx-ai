@@ -97,6 +97,21 @@ class Settings(BaseSettings):
     CACHE_TTL_MERCHANT: int = 600     # 10 min
     CACHE_TTL_SEGMENTATION: int = 1800  # 30 min
 
+    # ─── AI Analyst / LLM (cloud-only, no local models) ──────────────────────
+    LLM_PRIMARY_PROVIDER: str = "groq"
+    LLM_FALLBACK_PROVIDER: str = "gemini"
+    LLM_TERTIARY_PROVIDER: str = "openrouter"
+    GROQ_API_KEY: str = ""
+    GROQ_MODEL: str = "llama-3.3-70b-versatile"
+    GEMINI_API_KEY: str = ""
+    GEMINI_MODEL: str = "gemini-1.5-flash"
+    OPENROUTER_API_KEY: str = ""
+    OPENROUTER_MODEL: str = "meta-llama/llama-3.1-8b-instruct:free"
+    OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
+    AI_ANALYST_MAX_TOKENS: int = 1500
+    AI_ANALYST_RATE_LIMIT_PER_HOUR: int = 20
+    AI_ANALYST_MAX_TOOL_ROUNDS: int = 5
+
 
 @lru_cache
 def get_settings() -> Settings:

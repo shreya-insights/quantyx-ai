@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+from app.api.v1.endpoints.ai_analyst import router as analyst_router
 from app.api.v1.endpoints.analytics import router as analytics_router
 from app.api.v1.endpoints.auth import router as auth_router
 from app.api.v1.endpoints.fraud import router as fraud_router
@@ -25,3 +26,4 @@ api_router.include_router(fraud_router)
 api_router.include_router(query_lab_router)
 api_router.include_router(reports_router)
 api_router.include_router(subscriptions_router)
+api_router.include_router(analyst_router)
