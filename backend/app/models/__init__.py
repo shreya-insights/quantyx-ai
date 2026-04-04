@@ -1,4 +1,10 @@
 from app.models.account import Account, AccountType
+from app.models.analytics_cache import (
+    DailyRevenueSummary,
+    KPISummaryCache,
+    MerchantRankingCache,
+    MonthlyCategorySummary,
+)
 from app.models.audit_log import AuditLog
 from app.models.category import Category
 from app.models.company import Company, SubscriptionTier
@@ -21,6 +27,7 @@ from app.models.user import User, UserRole
 __all__ = [
     "Account",
     "AccountType",
+    "DailyRevenueSummary",
     "AlertSeverity",
     "AuditLog",
     "AlertType",
@@ -28,8 +35,11 @@ __all__ = [
     "Category",
     "Company",
     "FraudAlert",
+    "KPISummaryCache",
     "KpiReport",
+    "MerchantRankingCache",
     "Merchant",
+    "MonthlyCategorySummary",
     "MerchantFeatures",
     "PLAN_LIMITS",
     "PLAN_PRICING",

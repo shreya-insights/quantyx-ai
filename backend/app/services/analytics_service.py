@@ -1,7 +1,11 @@
+from dataclasses import dataclass
 from datetime import date, datetime, timezone
+from typing import Generic, Literal, TypeVar
 
+import structlog
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.repositories.analytics_cache_repo import AnalyticsCacheRepository
 from app.repositories.analytics_repo import AnalyticsRepository
 from app.schemas.analytics import (
     CohortResponse,
@@ -19,22 +23,42 @@ from app.schemas.analytics import (
 )
 from app.utils.cache import CacheManager
 
+logger = structlog.get_logger(__name__)
+T = TypeVar("T")
+CacheHeaderStatus = Literal["fresh", "stale", "miss"]
+
+
+@dataclass(frozen=True)
+class CacheAwareResult(Generic[T]):
+    """API payload plus DB analytics-cache staleness signal for response headers."""
+
+    data: T
+    cache_status: CacheHeaderStatus
+
+
+def _enqueue_analytics_refresh(company_id: int) -> None:
+    """Fire-and-forget cache rebuild; broker outages must not break API responses."""
+    try:
+        from app.worker.tasks.analytics_tasks import refresh_analytics_cache
+
+        refresh_analytics_cache.apply_async(args=[company_id])
+    except Exception as exc:
+        logger.warning(
+            "analytics.refresh_enqueue_failed",
+            company_id=company_id,
+            error=str(exc),
+        )
+
 
 class AnalyticsService:
     def __init__(self, session: AsyncSession, cache: CacheManager | None = None):
         self.repo = AnalyticsRepository(session)
         self.cache = cache
+        self._analytics_cache = AnalyticsCacheRepository(session)
 
-    async def get_revenue_trend(
-        self, company_id: int, months: int = 12
+    def _revenue_from_rows(
+        self, rows: list[dict], months: int
     ) -> RevenueTrendResponse:
-        cache_key = f"revenue_trend:{company_id}:{months}"
-        if self.cache:
-            cached = await self.cache.get(cache_key)
-            if cached:
-                return RevenueTrendResponse(**cached)
-
-        rows = await self.repo.get_revenue_trend(company_id, months)
         points = [
             RevenueTrendPoint(
                 month=r["month"],
@@ -43,16 +67,16 @@ class AnalyticsService:
                 net_flow=float(r["net_flow"] or 0),
                 transaction_count=int(r["transaction_count"] or 0),
                 avg_transaction=float(r["avg_transaction"] or 0),
-                mom_growth_pct=float(r["mom_growth_pct"]) if r["mom_growth_pct"] is not None else None,
+                mom_growth_pct=float(r["mom_growth_pct"])
+                if r.get("mom_growth_pct") is not None
+                else None,
             )
             for r in rows
         ]
-
         total_inflow = sum(p.inflow for p in points)
         total_outflow = sum(p.outflow for p in points)
         avg_monthly = total_inflow / len(points) if points else 0.0
-
-        response = RevenueTrendResponse(
+        return RevenueTrendResponse(
             data=points,
             period_months=months,
             total_inflow=round(total_inflow, 2),
@@ -60,11 +84,23 @@ class AnalyticsService:
             avg_monthly_inflow=round(avg_monthly, 2),
         )
 
-        if self.cache:
-            from app.core.config import settings
-            await self.cache.set(cache_key, response.model_dump(), ttl=settings.CACHE_TTL_REVENUE)
-
-        return response
+    async def get_revenue_trend(
+        self, company_id: int, months: int = 12
+    ) -> CacheAwareResult[RevenueTrendResponse]:
+        rows, db_status = await self._analytics_cache.read_revenue_cache(
+            company_id, months
+        )
+        if db_status == "miss":
+            _enqueue_analytics_refresh(company_id)
+            rows = await self.repo.get_revenue_trend(company_id, months)
+            header_status: CacheHeaderStatus = "miss"
+        elif db_status == "stale":
+            _enqueue_analytics_refresh(company_id)
+            header_status = "stale"
+        else:
+            header_status = "fresh"
+        body = self._revenue_from_rows(rows, months)
+        return CacheAwareResult(data=body, cache_status=header_status)
 
     async def get_rfm_analysis(self, company_id: int) -> RFMResponse:
         cache_key = f"rfm:{company_id}"
@@ -108,14 +144,17 @@ class AnalyticsService:
 
         response = RFMResponse(
             segments=segments,
-            customers=customers[:500],  # limit payload size
+            customers=customers[:500],
             analysis_date=datetime.now(timezone.utc),
             total_customers=len(customers),
         )
 
         if self.cache:
             from app.core.config import settings
-            await self.cache.set(cache_key, response.model_dump(), ttl=settings.CACHE_TTL_SEGMENTATION)
+
+            await self.cache.set(
+                cache_key, response.model_dump(), ttl=settings.CACHE_TTL_SEGMENTATION
+            )
 
         return response
 
@@ -145,20 +184,16 @@ class AnalyticsService:
 
         if self.cache:
             from app.core.config import settings
-            await self.cache.set(cache_key, response.model_dump(), ttl=settings.CACHE_TTL_COHORT)
+
+            await self.cache.set(
+                cache_key, response.model_dump(), ttl=settings.CACHE_TTL_COHORT
+            )
 
         return response
 
-    async def get_top_merchants(
-        self, company_id: int, days: int = 30, top_n: int = 20
+    def _merchants_from_rows(
+        self, rows: list[dict], days: int
     ) -> MerchantRankingResponse:
-        cache_key = f"top_merchants:{company_id}:{days}:{top_n}"
-        if self.cache:
-            cached = await self.cache.get(cache_key)
-            if cached:
-                return MerchantRankingResponse(**cached)
-
-        rows = await self.repo.get_top_merchants(company_id, days, top_n)
         merchants = [
             MerchantRanking(
                 rank=int(r["rank"]),
@@ -173,40 +208,43 @@ class AnalyticsService:
             )
             for r in rows
         ]
-
-        response = MerchantRankingResponse(
+        return MerchantRankingResponse(
             data=merchants,
             total_merchants=len(merchants),
             analysis_period_days=days,
         )
 
-        if self.cache:
-            from app.core.config import settings
-            await self.cache.set(cache_key, response.model_dump(), ttl=settings.CACHE_TTL_MERCHANT)
+    async def get_top_merchants(
+        self, company_id: int, days: int = 30, top_n: int = 20
+    ) -> CacheAwareResult[MerchantRankingResponse]:
+        rows, db_status = await self._analytics_cache.read_merchant_cache(
+            company_id, days, top_n
+        )
+        if db_status == "miss":
+            _enqueue_analytics_refresh(company_id)
+            rows = await self.repo.get_top_merchants(company_id, days, top_n)
+            header_status: CacheHeaderStatus = "miss"
+        elif db_status == "stale":
+            _enqueue_analytics_refresh(company_id)
+            header_status = "stale"
+        else:
+            header_status = "fresh"
+        body = self._merchants_from_rows(rows, days)
+        return CacheAwareResult(data=body, cache_status=header_status)
 
-        return response
-
-    async def get_kpi_summary(
+    async def _kpi_from_oltp(
         self, company_id: int, start_date: date, end_date: date
     ) -> KpiSummary:
-        cache_key = f"kpi:{company_id}:{start_date}:{end_date}"
-        if self.cache:
-            cached = await self.cache.get(cache_key)
-            if cached:
-                return KpiSummary(**cached)
-
         kpi = await self.repo.get_kpi_summary(
             company_id, str(start_date), str(end_date)
         )
         fraud = await self.repo.get_fraud_kpi(
             company_id, str(start_date), str(end_date)
         )
-
         total_tx = int(kpi["total_transactions"] or 0)
         fraud_count = int(fraud["fraud_alert_count"] or 0)
         fraud_rate = round(fraud_count / total_tx * 100, 4) if total_tx > 0 else 0.0
-
-        response = KpiSummary(
+        return KpiSummary(
             period_start=start_date,
             period_end=end_date,
             total_transactions=total_tx,
@@ -223,16 +261,42 @@ class AnalyticsService:
             active_accounts=int(kpi["unique_customers"] or 0),
         )
 
-        if self.cache:
-            from app.core.config import settings
-            await self.cache.set(cache_key, response.model_dump(), ttl=settings.CACHE_TTL_KPI)
+    async def get_kpi_summary(
+        self, company_id: int, start_date: date, end_date: date
+    ) -> CacheAwareResult[KpiSummary]:
+        period_key = AnalyticsCacheRepository.kpi_period_type(start_date, end_date)
+        payload, db_status = await self._analytics_cache.read_kpi_cache(
+            company_id, period_key
+        )
+        if db_status == "miss":
+            _enqueue_analytics_refresh(company_id)
+            body = await self._kpi_from_oltp(company_id, start_date, end_date)
+            return CacheAwareResult(data=body, cache_status="miss")
+        if db_status == "stale":
+            _enqueue_analytics_refresh(company_id)
+        if payload is None:
+            body = await self._kpi_from_oltp(company_id, start_date, end_date)
+            return CacheAwareResult(data=body, cache_status="miss")
+        body = KpiSummary(
+            period_start=payload["period_start"],
+            period_end=payload["period_end"],
+            total_transactions=payload["total_transactions"],
+            total_volume=payload["total_volume"],
+            total_inflow=payload["total_inflow"],
+            total_outflow=payload["total_outflow"],
+            unique_customers=payload["unique_customers"],
+            unique_merchants=payload["unique_merchants"],
+            avg_transaction_value=payload["avg_transaction_value"],
+            fraud_alert_count=payload["fraud_alert_count"],
+            fraud_alert_rate_pct=payload["fraud_alert_rate_pct"],
+            top_category=payload["top_category"],
+            mom_volume_growth_pct=payload["mom_volume_growth_pct"],
+            active_accounts=payload["active_accounts"],
+        )
+        header: CacheHeaderStatus = "stale" if db_status == "stale" else "fresh"
+        return CacheAwareResult(data=body, cache_status=header)
 
-        return response
-
-    async def get_spending_by_category(
-        self, company_id: int, days: int = 30
-    ) -> list[SpendingByCategory]:
-        rows = await self.repo.get_spending_by_category(company_id, days)
+    def _category_from_rows(self, rows: list[dict]) -> list[SpendingByCategory]:
         return [
             SpendingByCategory(
                 category_name=r["category_name"],
@@ -243,6 +307,24 @@ class AnalyticsService:
             )
             for r in rows
         ]
+
+    async def get_spending_by_category(
+        self, company_id: int, days: int = 30
+    ) -> CacheAwareResult[list[SpendingByCategory]]:
+        rows, db_status = await self._analytics_cache.read_category_cache(
+            company_id, days
+        )
+        if db_status == "miss":
+            _enqueue_analytics_refresh(company_id)
+            rows = await self.repo.get_spending_by_category(company_id, days)
+            header_status: CacheHeaderStatus = "miss"
+        elif db_status == "stale":
+            _enqueue_analytics_refresh(company_id)
+            header_status = "stale"
+        else:
+            header_status = "fresh"
+        body = self._category_from_rows(rows)
+        return CacheAwareResult(data=body, cache_status=header_status)
 
     async def get_transaction_frequency_heatmap(
         self, company_id: int, days: int = 90

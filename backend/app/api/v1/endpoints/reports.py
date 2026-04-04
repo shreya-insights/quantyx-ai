@@ -30,12 +30,12 @@ async def download_kpi_csv(
     cache = await get_cache_manager()
     service = AnalyticsService(db, cache)
 
-    trend = await service.get_revenue_trend(current_user.company_id, months=12)
+    trend_result = await service.get_revenue_trend(current_user.company_id, months=12)
 
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow(["Month", "Inflow", "Outflow", "Net Flow", "Transactions", "MoM Growth %"])
-    for point in trend.data:
+    for point in trend_result.data.data:
         writer.writerow([
             point.month, point.inflow, point.outflow,
             point.net_flow, point.transaction_count,
@@ -77,7 +77,8 @@ async def download_kpi_pdf(
 
     cache = await get_cache_manager()
     service = AnalyticsService(db, cache)
-    kpi = await service.get_kpi_summary(current_user.company_id, start_date, end_date)
+    kpi_result = await service.get_kpi_summary(current_user.company_id, start_date, end_date)
+    kpi = kpi_result.data
 
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=A4)

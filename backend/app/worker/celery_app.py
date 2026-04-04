@@ -38,6 +38,7 @@ celery_app.conf.update(
         "quantyx.ingestion.*": {"queue": "ingestion"},
         "quantyx.features.*": {"queue": "features"},
         "quantyx.monitoring.*": {"queue": "features"},
+        "quantyx.analytics.*": {"queue": "analytics"},
     },
     beat_scheduler="redbeat.RedBeatScheduler",
     beat_schedule={
@@ -49,12 +50,17 @@ celery_app.conf.update(
             "task": "quantyx.monitoring.run_model_health_check",
             "schedule": crontab(minute=0, hour=0, day_of_week=1),
         },
+        "refresh-analytics-cache-hourly": {
+            "task": "quantyx.analytics.refresh_all_analytics_caches",
+            "schedule": crontab(minute=0),
+        },
     },
 )
 
 # Register tasks
 from app.worker.tasks import feature_tasks as _feature_tasks  # noqa: E402, F401
 from app.worker.tasks import fraud_tasks as _fraud_tasks  # noqa: E402, F401
+from app.worker.tasks import analytics_tasks as _analytics_tasks  # noqa: E402, F401
 from app.worker.tasks import monitoring_tasks as _monitoring_tasks  # noqa: E402, F401
 
 __all__ = ["celery_app", "CELERY_RESULT_EXPIRE_SECONDS"]
