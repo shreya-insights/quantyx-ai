@@ -44,6 +44,9 @@ class TransactionRepository(BaseRepository[Transaction]):
         if filters.account_id:
             where_clauses.append("t.account_id = :account_id")
             params["account_id"] = filters.account_id
+        if filters.transaction_id:
+            where_clauses.append("t.id = :transaction_id")
+            params["transaction_id"] = filters.transaction_id
         if filters.merchant_id:
             where_clauses.append("t.merchant_id = :merchant_id")
             params["merchant_id"] = filters.merchant_id
@@ -59,6 +62,7 @@ class TransactionRepository(BaseRepository[Transaction]):
                 t.id, t.company_id, t.account_id, t.merchant_id, t.category_id,
                 t.transaction_ref, t.amount, t.currency, t.transaction_type,
                 t.status, t.description, t.transaction_date, t.created_at,
+                t.fraud_check_job_id,
                 m.name AS merchant_name,
                 c.name AS category_name,
                 a.account_number

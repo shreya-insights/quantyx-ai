@@ -69,6 +69,10 @@ class Transaction(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime, server_default=func.now(), nullable=False
     )
+    fraud_analyzed_at: Mapped[datetime | None] = mapped_column(
+        DateTime, nullable=True, default=None
+    )
+    fraud_check_job_id: Mapped[str | None] = mapped_column(String(80), nullable=True)
 
     # Relationships
     company: Mapped["Company"] = relationship("Company", back_populates="transactions")  # noqa: F821

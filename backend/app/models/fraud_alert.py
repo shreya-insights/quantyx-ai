@@ -8,7 +8,7 @@ from sqlalchemy import (
     ForeignKey,
     Index,
     Numeric,
-    String,
+    String,  # used for model_version column
     Text,
     func,
 )
@@ -26,6 +26,7 @@ class AlertType(str, PyEnum):
     VELOCITY_BREACH = "velocity_breach"
     DUPLICATE_TRANSACTION = "duplicate_transaction"
     NIGHT_PATTERN = "night_pattern"
+    ML_FRAUD_SCORE = "ml_fraud_score"
 
 
 class AlertSeverity(str, PyEnum):
@@ -58,7 +59,8 @@ class FraudAlert(Base):
         BigIntPK, ForeignKey("users.id", ondelete="SET NULL")
     )
     resolved_at: Mapped[datetime | None] = mapped_column(DateTime)
-    rule_metadata: Mapped[str | None] = mapped_column(String(1000))
+    rule_metadata: Mapped[str | None] = mapped_column(Text)
+    model_version: Mapped[str | None] = mapped_column(String(60))
     created_at: Mapped[datetime] = mapped_column(
         DateTime, server_default=func.now(), nullable=False
     )

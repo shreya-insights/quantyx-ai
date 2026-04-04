@@ -31,3 +31,7 @@ dist/
 build/
 .coverage
 htmlcov/
+
+# ML model artifacts — deploy via CI artifact or volume mount, never commit
+backend/ml/*.pkl
+backend/ml/feature_columns.json

@@ -84,6 +84,9 @@ class Settings(BaseSettings):
     FRAUD_LOCATION_RADIUS_KM: float = 200.0
     FRAUD_DUPLICATE_WINDOW_MIN: int = 5
 
+    # ─── ML Model ─────────────────────────────────────────────────────────────
+    ML_MODEL_DIR: str = "backend/ml"
+
     # ─── Cache TTLs (seconds) ─────────────────────────────────────────────────
     CACHE_TTL_KPI: int = 300          # 5 min
     CACHE_TTL_REVENUE: int = 900      # 15 min

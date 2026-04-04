@@ -52,6 +52,8 @@ export interface Transaction {
   merchant_name: string | null;
   category_name: string | null;
   account_number: string | null;
+  fraud_check_job_id?: string | null;
+  fraud_check_status?: string | null;
 }
 
 export interface Account {
@@ -202,7 +204,21 @@ export type AlertType =
   | "new_device"
   | "velocity_breach"
   | "duplicate_transaction"
-  | "night_pattern";
+  | "night_pattern"
+  | "ml_fraud_score";
+
+export interface ShapReason {
+  feature: string;
+  shap_value: number;
+  human_label: string;
+  direction: "increases fraud risk" | "decreases fraud risk";
+}
+
+export interface MLFraudExplanation {
+  fraud_probability: number;
+  top_reasons: ShapReason[];
+  explanation: string;
+}
 
 export interface FraudAlert {
   id: number;
@@ -216,12 +232,28 @@ export interface FraudAlert {
   resolved_by: number | null;
   resolved_at: string | null;
   rule_metadata: string | null;
+  model_version: string | null;
   created_at: string;
+  ml_explanation: MLFraudExplanation | null;
   transaction_amount: number | null;
   transaction_ref: string | null;
   transaction_date: string | null;
   account_number: string | null;
   user_email: string | null;
+}
+
+export type TransactionFraudPollStatus =
+  | "pending"
+  | "analyzing"
+  | "clear"
+  | "flagged"
+  | "unavailable"
+  | "not_analyzed";
+
+export interface TransactionFraudStatus {
+  status: TransactionFraudPollStatus;
+  job_id: string | null;
+  alert: FraudAlert | null;
 }
 
 export interface FraudStats {

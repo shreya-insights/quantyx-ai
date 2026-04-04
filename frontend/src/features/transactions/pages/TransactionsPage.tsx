@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
+import { AxiosError } from "axios";
 import { Upload, ChevronLeft, ChevronRight, X, CheckCircle2, CreditCard } from "lucide-react";
+import { FraudStatusBadge } from "../components/FraudStatusBadge";
 import { useTransactions, useBulkUpload } from "../hooks/useTransactions";
 import { Button, Badge, TableRowSkeleton } from "@/components/ui";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -9,6 +11,20 @@ import { STATUS_COLORS, TX_TYPE_COLORS } from "@/utils/constants";
 import type { TransactionFilters } from "@/services/transactions.service";
 
 const PAGE_SIZE = 20;
+
+function bulkUploadErrorMessage(error: unknown): string {
+  if (error instanceof AxiosError) {
+    const data = error.response?.data as { detail?: string | Array<{ msg?: string }> } | undefined;
+    if (typeof data?.detail === "string") {
+      return data.detail;
+    }
+    const first = Array.isArray(data?.detail) ? data.detail[0] : undefined;
+    if (first && typeof first.msg === "string") {
+      return first.msg;
+    }
+  }
+  return "Upload failed. Please try again.";
+}
 
 export default function TransactionsPage() {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -84,8 +100,11 @@ export default function TransactionsPage() {
       )}
 
       {uploadMutation.isError && (
-        <div className="mb-4 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm text-red-700 dark:text-red-300">
-          Upload failed. Please try again.
+        <div
+          className="mb-4 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm text-red-700 dark:text-red-300"
+          role="alert"
+        >
+          {bulkUploadErrorMessage(uploadMutation.error)}
         </div>
       )}
 
@@ -152,17 +171,17 @@ export default function TransactionsPage() {
             <caption className="sr-only">Transactions table</caption>
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700">
-                {["Reference", "Account", "Merchant", "Amount", "Type", "Status", "Date"].map((h, i) => (
-                  <th key={h} scope="col" className={`py-3 px-4 font-medium text-slate-500 dark:text-slate-400 text-xs ${i > 2 ? "text-center" : "text-left"}`}>{h}</th>
+                {["Reference", "Account", "Merchant", "Amount", "Type", "Status", "Fraud", "Date"].map((h, i) => (
+                  <th key={h} scope="col" className={`py-3 px-4 font-medium text-slate-500 dark:text-slate-400 text-xs ${i > 2 && i !== 7 ? "text-center" : "text-left"}`}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {isLoading ? (
-                Array.from({ length: 10 }).map((_, i) => <TableRowSkeleton key={i} cols={7} />)
+                Array.from({ length: 10 }).map((_, i) => <TableRowSkeleton key={i} cols={8} />)
               ) : transactions.length === 0 ? (
                 <tr>
-                  <td colSpan={7}>
+                  <td colSpan={8}>
                     <EmptyState
                       icon={Upload}
                       title="No transactions yet"
@@ -201,6 +220,12 @@ export default function TransactionsPage() {
                       }>
                         {tx.status}
                       </Badge>
+                    </td>
+                    <td className="py-3 px-4 text-left">
+                      <FraudStatusBadge
+                        transactionId={tx.id}
+                        jobId={tx.fraud_check_job_id ?? null}
+                      />
                     </td>
                     <td className="py-3 px-4 text-slate-400 dark:text-slate-500 text-xs whitespace-nowrap">{formatDateTime(tx.transaction_date)}</td>
                   </tr>

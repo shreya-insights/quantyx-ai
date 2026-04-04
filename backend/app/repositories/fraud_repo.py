@@ -4,6 +4,17 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.fraud_alert import FraudAlert
 from app.repositories.base import BaseRepository
 
+# MySQL returns NULL for SUM()/ROUND() on an empty filtered set; COUNT(*) is still 0.
+_FRAUD_STATS_INT_KEYS = (
+    "total_alerts",
+    "open_alerts",
+    "resolved_alerts",
+    "critical_count",
+    "high_count",
+    "medium_count",
+    "low_count",
+)
+
 
 class FraudRepository(BaseRepository[FraudAlert]):
     def __init__(self, session: AsyncSession):
@@ -81,7 +92,12 @@ class FraudRepository(BaseRepository[FraudAlert]):
         """)
         result = await self.session.execute(sql, {"company_id": company_id})
         row = result.fetchone()
-        stats = dict(row._mapping)
+        stats = dict(row._mapping) if row else {}
+        for key in _FRAUD_STATS_INT_KEYS:
+            if stats.get(key) is None:
+                stats[key] = 0
+        if stats.get("resolution_rate_pct") is None:
+            stats["resolution_rate_pct"] = 0.0
 
         # Alerts by type
         type_sql = text("""
