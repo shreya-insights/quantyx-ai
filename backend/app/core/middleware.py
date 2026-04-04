@@ -3,9 +3,28 @@ import uuid
 
 import structlog
 from fastapi import Request, Response
+from jose import JWTError
 from starlette.middleware.base import BaseHTTPMiddleware
 
+from app.core.security import decode_token
+from app.utils.metrics import observe_http_request, route_template_or_path
+
 logger = structlog.get_logger()
+
+
+def _company_id_for_metrics(request: Request) -> str:
+    auth = request.headers.get("Authorization", "")
+    if not auth.startswith("Bearer "):
+        return "anonymous"
+    token = auth.removeprefix("Bearer ").strip()
+    if not token:
+        return "anonymous"
+    try:
+        payload = decode_token(token)
+        cid = payload.get("company_id")
+        return str(cid) if cid is not None else "anonymous"
+    except JWTError:
+        return "anonymous"
 
 
 class RequestLoggingMiddleware(BaseHTTPMiddleware):
@@ -26,9 +45,33 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
             response = await call_next(request)
         except Exception as exc:
             log.error("unhandled_exception", error=str(exc))
+            elapsed_s = time.perf_counter() - start
+            endpoint = route_template_or_path(
+                request.url.path,
+                request.scope.get("route"),
+            )
+            observe_http_request(
+                method=request.method,
+                endpoint=endpoint,
+                status_code=500,
+                company_id=_company_id_for_metrics(request),
+                duration_seconds=elapsed_s,
+            )
             raise
 
-        elapsed_ms = round((time.perf_counter() - start) * 1000, 2)
+        elapsed_s = time.perf_counter() - start
+        elapsed_ms = round(elapsed_s * 1000, 2)
+        endpoint = route_template_or_path(
+            request.url.path,
+            request.scope.get("route"),
+        )
+        observe_http_request(
+            method=request.method,
+            endpoint=endpoint,
+            status_code=response.status_code,
+            company_id=_company_id_for_metrics(request),
+            duration_seconds=elapsed_s,
+        )
         log.info(
             "request_completed",
             status_code=response.status_code,

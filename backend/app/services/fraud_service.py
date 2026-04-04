@@ -19,6 +19,7 @@ from app.models.fraud_alert import AlertSeverity, AlertType, FraudAlert
 from app.models.transaction import Transaction
 from app.repositories.fraud_repo import FraudRepository
 from app.repositories.transaction_repo import TransactionRepository
+from app.utils.metrics import FRAUD_DETECTIONS_TOTAL
 
 logger = structlog.get_logger()
 
@@ -59,6 +60,12 @@ class FraudDetectionService:
         alerts.extend(results)
 
         if alerts:
+            for a in alerts:
+                FRAUD_DETECTIONS_TOTAL.labels(
+                    severity=a.severity.value,
+                    alert_type=a.alert_type.value,
+                    company_id=str(a.company_id),
+                ).inc()
             self.session.add_all(alerts)
             await self.session.flush()
             logger.info(

@@ -27,6 +27,7 @@ from app.core.config import settings
 from app.models.fraud_alert import AlertSeverity, AlertType, FraudAlert
 from app.models.transaction import Transaction
 from app.services.fraud_service import FraudDetectionService
+from app.utils.metrics import FRAUD_DETECTIONS_TOTAL
 
 logger = structlog.get_logger(__name__)
 
@@ -127,7 +128,10 @@ async def _run_ml_scoring(
 
     try:
         features = await _build_feature_dict(session, tx)
-        ml_result = MLFraudService().predict_with_explanation(features)
+        ml_result = MLFraudService().predict_with_explanation(
+            features,
+            company_id=tx.company_id,
+        )
 
         logger.info(
             "fraud_task.ml_scored",
@@ -157,6 +161,11 @@ async def _run_ml_scoring(
             rule_metadata=shap_payload,
             model_version=ml_result.model_version,
         )
+        FRAUD_DETECTIONS_TOTAL.labels(
+            severity=ml_alert.severity.value,
+            alert_type=ml_alert.alert_type.value,
+            company_id=str(tx.company_id),
+        ).inc()
         session.add(ml_alert)
         await session.flush()
         return ml_alert

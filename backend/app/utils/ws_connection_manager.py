@@ -11,6 +11,8 @@ from collections import defaultdict
 import structlog
 from fastapi import WebSocket
 
+from app.utils.metrics import ACTIVE_WEBSOCKET_CONNECTIONS
+
 logger = structlog.get_logger(__name__)
 
 MAX_CONNECTIONS_PER_COMPANY = 50
@@ -46,6 +48,7 @@ class ConnectionManager:
                 return False
             await websocket.accept()
             self.active_connections[company_id].add(websocket)
+            ACTIVE_WEBSOCKET_CONNECTIONS.labels(company_id=str(company_id)).inc()
             logger.info(
                 "websocket_accepted",
                 company_id=company_id,
@@ -60,6 +63,7 @@ class ConnectionManager:
         """
         async with self._lock:
             self.active_connections[company_id].discard(websocket)
+            ACTIVE_WEBSOCKET_CONNECTIONS.labels(company_id=str(company_id)).dec()
             logger.info(
                 "websocket_disconnected",
                 company_id=company_id,
@@ -89,6 +93,8 @@ class ConnectionManager:
         if stale:
             async with self._lock:
                 self.active_connections[company_id] -= stale
+            for _ in stale:
+                ACTIVE_WEBSOCKET_CONNECTIONS.labels(company_id=str(company_id)).dec()
             logger.info(
                 "websocket_stale_pruned",
                 company_id=company_id,
