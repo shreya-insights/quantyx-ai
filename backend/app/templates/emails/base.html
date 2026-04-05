@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quantyx AI</title>
+</head>
+<body style="margin:0;padding:0;background-color:#F3F4F6;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F3F4F6" style="background-color:#F3F4F6;">
+    <tr>
+      <td align="center" style="padding:40px 20px;">
+        <!-- Outer card -->
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#FFFFFF;border-radius:12px;overflow:hidden;">
+
+          <!-- ── Header ── -->
+          <tr>
+            <td bgcolor="#0F2044" align="center" style="background-color:#0F2044;padding:32px 48px;">
+              <h1 style="color:#FFFFFF;font-size:24px;font-weight:700;margin:0;letter-spacing:-0.5px;font-family:Arial,Helvetica,sans-serif;">Quantyx AI</h1>
+              <p style="color:#93C5FD;font-size:13px;margin:8px 0 0;font-family:Arial,Helvetica,sans-serif;">Financial Analytics Platform</p>
+            </td>
+          </tr>
+
+          <!-- ── Body ── -->
+          <tr>
+            <td style="padding:40px 48px;">
+              {% block content %}{% endblock %}
+            </td>
+          </tr>
+
+          <!-- ── Footer ── -->
+          <tr>
+            <td bgcolor="#F9FAFB" align="center" style="background-color:#F9FAFB;padding:24px 48px;border-top:1px solid #E5E7EB;">
+              <p style="color:#6B7280;font-size:12px;margin:0;line-height:1.6;font-family:Arial,Helvetica,sans-serif;">
+                &copy; {{ current_year }} Quantyx AI. All rights reserved.<br>
+                This email was sent to {{ recipient_email }}.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /Outer card -->
+      </td>
+    </tr>
+  </table>
+  <!--[if mso]></td></tr></table><![endif]-->
+</body>
+</html>

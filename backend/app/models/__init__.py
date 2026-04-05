@@ -13,6 +13,7 @@ from app.models.analytics_cache import (
 )
 from app.models.audit_log import AuditLog
 from app.models.category import Category
+from app.models.invitation import Invitation, InvitationStatus
 from app.models.company import Company, SubscriptionTier
 from app.models.feature_store import MerchantFeatures, UserFeatures, VelocityFeature
 from app.models.fraud_alert import AlertSeverity, AlertType, FraudAlert
@@ -58,6 +59,8 @@ __all__ = [
     "FeatureDistributionSnapshot",
     "FraudAlert",
     "HourlyTransactionHeatmap",
+    "Invitation",
+    "InvitationStatus",
     "KPISummaryCache",
     "KpiReport",
     "LifetimeValueMetric",

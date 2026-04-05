@@ -134,6 +134,21 @@ class Settings(BaseSettings):
     ANALYTICS_CACHE_STALE_TX_THRESHOLD: int = 100
     ANALYTICS_CACHE_IDEMPOTENCY_MINUTES: int = 5
 
+    # ─── Email / SMTP ─────────────────────────────────────────────────────────
+    MAIL_USERNAME: str = ""
+    MAIL_PASSWORD: str = ""
+    MAIL_FROM: str = ""
+    MAIL_FROM_NAME: str = "Quantyx AI"
+    MAIL_SERVER: str = "smtp.gmail.com"
+    MAIL_PORT: int = 587
+    MAIL_STARTTLS: bool = True
+    MAIL_SSL_TLS: bool = False
+
+    # ─── Invitation tokens ────────────────────────────────────────────────────
+    INVITE_TOKEN_EXPIRE_HOURS: int = 72
+    INVITE_SECRET_KEY: str = "change-this-to-random-64-char-string"
+    FRONTEND_URL: str = "http://localhost:3000"
+
     # ─── AI Analyst / LLM (cloud-only, no local models) ──────────────────────
     LLM_PRIMARY_PROVIDER: str = "groq"
     LLM_FALLBACK_PROVIDER: str = "gemini"

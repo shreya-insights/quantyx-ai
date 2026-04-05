@@ -5,6 +5,7 @@ from app.api.v1.endpoints.analytics import router as analytics_router
 from app.api.v1.endpoints.audit import router as audit_router
 from app.api.v1.endpoints.auth import router as auth_router
 from app.api.v1.endpoints.fraud import router as fraud_router
+from app.api.v1.endpoints.invitations import router as invitations_router
 from app.api.v1.endpoints.model_health import router as model_health_router
 from app.api.v1.endpoints.query_lab import router as query_lab_router
 from app.api.v1.endpoints.reports import router as reports_router
@@ -22,6 +23,7 @@ api_router = APIRouter(prefix="/api/v1")
 _rate_limit = [Depends(check_rate_limit)]
 
 api_router.include_router(auth_router, dependencies=_rate_limit)
+api_router.include_router(invitations_router, dependencies=_rate_limit)
 api_router.include_router(transactions_router, dependencies=_rate_limit)
 api_router.include_router(accounts_router, dependencies=_rate_limit)
 api_router.include_router(merchants_router, dependencies=_rate_limit)
