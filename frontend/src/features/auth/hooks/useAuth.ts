@@ -32,7 +32,7 @@ export function useRegister() {
       localStorage.setItem("access_token", tokens.access_token);
       const user = await authService.me();
       login(tokens, user);
-      navigate(ROUTES.DASHBOARD);
+      navigate(ROUTES.ONBOARDING);
     },
   });
 }

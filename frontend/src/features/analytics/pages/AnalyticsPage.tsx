@@ -115,7 +115,7 @@ export default function AnalyticsPage() {
           <h2 className="text-base font-semibold mb-1 text-slate-900 dark:text-slate-100">Monthly Revenue Trend (12 months)</h2>
           <p className="text-xs text-slate-400 font-mono mb-4">LAG() OVER (ORDER BY month) → MoM growth %</p>
           {(revenueQ.data?.data.length ?? 0) > 0 ? (
-            <ResponsiveContainer width="100%" height={320}>
+            <ResponsiveContainer minWidth={0} width="100%" height={320}>
               <LineChart data={revenueQ.data!.data}>
                 <CartesianGrid strokeDasharray="3 3" stroke={c.grid} />
                 <XAxis dataKey="month" tick={{ fontSize: 11, fill: c.tick }} />
@@ -140,7 +140,7 @@ export default function AnalyticsPage() {
             <h2 className="text-base font-semibold mb-1 text-slate-900 dark:text-slate-100">Customer Segments</h2>
             <p className="text-xs text-slate-400 font-mono mb-4">NTILE(5) OVER recency/frequency/monetary → CASE segments</p>
             {(rfmQ.data?.segments.length ?? 0) > 0 ? (
-              <ResponsiveContainer width="100%" height={280}>
+              <ResponsiveContainer minWidth={0} width="100%" height={280}>
                 <PieChart>
                   <Pie data={rfmQ.data!.segments} dataKey="customer_count" nameKey="segment" cx="50%" cy="50%" outerRadius={100} isAnimationActive animationBegin={0} animationDuration={700}>
                     {rfmQ.data!.segments.map((entry, idx) => (
@@ -232,7 +232,7 @@ export default function AnalyticsPage() {
           <h2 className="text-base font-semibold mb-1 text-slate-900 dark:text-slate-100">Top Merchants by Revenue</h2>
           <p className="text-xs text-slate-400 font-mono mb-4">RANK() OVER (PARTITION BY category_code ORDER BY revenue DESC) · SUM OVER () for share %</p>
           {(merchantsQ.data?.data.length ?? 0) > 0 ? (
-            <ResponsiveContainer width="100%" height={340}>
+            <ResponsiveContainer minWidth={0} width="100%" height={340}>
               <BarChart data={merchantsQ.data!.data.slice(0, 10)} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={c.grid} />
                 <XAxis type="number" tickFormatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 11, fill: c.tick }} />
@@ -319,7 +319,7 @@ export default function AnalyticsPage() {
           <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
             <h2 className="text-base font-semibold mb-4 text-slate-900 dark:text-slate-100">Spending by Category</h2>
             {(categoriesQ.data?.length ?? 0) > 0 ? (
-              <ResponsiveContainer width="100%" height={280}>
+              <ResponsiveContainer minWidth={0} width="100%" height={280}>
                 <PieChart>
                   <Pie data={categoriesQ.data} dataKey="total_amount" nameKey="category_name" cx="50%" cy="50%" outerRadius={100} isAnimationActive animationBegin={0} animationDuration={700}>
                     {categoriesQ.data!.map((_, idx) => (

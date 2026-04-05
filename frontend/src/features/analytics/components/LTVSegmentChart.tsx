@@ -32,7 +32,7 @@ export function LTVSegmentChart({ data }: Props) {
 
   return (
     <div className="space-y-4">
-      <ResponsiveContainer width="100%" height={280}>
+      <ResponsiveContainer minWidth={0} width="100%" height={280}>
         <PieChart>
           <Pie
             data={chartData}
