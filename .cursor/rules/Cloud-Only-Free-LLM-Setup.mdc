@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+
+── ADD THIS SECTION to your existing .cursorrules file ─────────────────
+
+
+## LLM PROVIDER — CLOUD ONLY (CRITICAL CONSTRAINT)
+# This project uses CLOUD LLM APIs only. The developer's laptop cannot run local models.
+# NEVER generate code that uses or references:
+#   - Ollama (not installed, not available)
+#   - llama.cpp (not installed)
+#   - LocalAI (not installed)
+#   - Any model running on localhost (except cloud APIs)
+#   - ANTHROPIC_API_KEY (paid service — not configured)
+#   - OPENAI_API_KEY (paid service — not configured)
+
+
+# APPROVED CLOUD PROVIDERS (all free tier):
+#   PRIMARY:   Groq        — console.groq.com     — gsk_ key prefix
+#   FALLBACK:  Gemini      — aistudio.google.com  — AIzaSy key prefix
+#   TERTIARY:  OpenRouter  — openrouter.ai        — sk-or-v1- key prefix
+
+
+# CORRECT pattern for any LLM call in this project:
+#   provider = LLMProvider()            # reads settings automatically
+#   response = await provider.chat(...) # cloud call, auto-fallback
+
+
+# WRONG patterns (never generate these):
+#   import ollama                        # NOT ALLOWED
+#   AsyncOllama(host="localhost:11434")  # NOT ALLOWED
+#   httpx.post("http://localhost:...")   # NOT ALLOWED for LLM calls
+#   from anthropic import AsyncAnthropic # NOT ALLOWED (paid)
+#   openai.Client(...)                   # NOT ALLOWED (paid)
+
+
+## WHEN GENERATING LLM CODE:
+# Always use: from backend.app.services.llm_provider import LLMProvider
+# Never import groq, genai, or httpx directly in business logic files
+# Never hardcode model names — always read from settings.*_MODEL
