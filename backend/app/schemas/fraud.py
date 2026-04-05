@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel, model_validator
 
@@ -36,6 +37,8 @@ class FraudAlertResponse(BaseModel):
     resolved_at: datetime | None
     rule_metadata: str | None
     model_version: str | None = None
+    is_confirmed: bool | None = None
+    resolved_by_analyst_label: Literal["fraud", "legitimate"] | None = None
     created_at: datetime
 
     # Enriched fields from joins
@@ -71,6 +74,14 @@ class FraudAlertResponse(BaseModel):
 
 class FraudResolveRequest(BaseModel):
     resolution_note: str | None = None
+    is_confirmed: bool | None = None
+    analyst_label: Literal["fraud", "legitimate"] | None = None
+
+    @model_validator(mode="after")
+    def _default_confirm_when_label(self) -> FraudResolveRequest:
+        if self.analyst_label is not None and self.is_confirmed is None:
+            self.is_confirmed = True
+        return self
 
 
 class FraudStatsResponse(BaseModel):

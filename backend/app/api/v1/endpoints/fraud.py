@@ -63,13 +63,21 @@ async def resolve_fraud_alert(
 ):
     """Mark a fraud alert as resolved with an optional resolution note."""
     service = FraudDetectionService(db)
-    alert = await service.resolve_alert(
+    await service.resolve_alert(
         alert_id,
         current_user.company_id,
         current_user.user_id,
         request.resolution_note,
+        is_confirmed=request.is_confirmed,
+        analyst_label=request.analyst_label,
     )
-    return alert
+    repo = FraudRepository(db)
+    from app.core.exceptions import NotFoundError
+
+    match = await repo.get_enriched_alert(current_user.company_id, alert_id)
+    if not match:
+        raise NotFoundError("Fraud alert")
+    return FraudAlertResponse(**match)
 
 
 @router.get("/stats", response_model=FraudStatsResponse)

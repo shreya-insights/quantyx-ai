@@ -50,7 +50,8 @@ class FraudRepository(BaseRepository[FraudAlert]):
                 fa.id, fa.company_id, fa.transaction_id, fa.alert_type,
                 fa.severity, fa.confidence_score, fa.description,
                 fa.is_resolved, fa.resolved_by, fa.resolved_at,
-                fa.rule_metadata, fa.created_at,
+                fa.rule_metadata, fa.model_version, fa.is_confirmed,
+                fa.resolved_by_analyst_label, fa.created_at,
                 t.amount AS transaction_amount,
                 t.transaction_ref,
                 t.transaction_date,
@@ -69,6 +70,34 @@ class FraudRepository(BaseRepository[FraudAlert]):
         result = await self.session.execute(text(data_sql), params)
         rows = [dict(row._mapping) for row in result.fetchall()]
         return rows, total
+
+    async def get_enriched_alert(
+        self, company_id: int, alert_id: int
+    ) -> dict | None:
+        """Single alert row with the same shape as list endpoint (for resolve response)."""
+        sql = text("""
+            SELECT
+                fa.id, fa.company_id, fa.transaction_id, fa.alert_type,
+                fa.severity, fa.confidence_score, fa.description,
+                fa.is_resolved, fa.resolved_by, fa.resolved_at,
+                fa.rule_metadata, fa.model_version, fa.is_confirmed,
+                fa.resolved_by_analyst_label, fa.created_at,
+                t.amount AS transaction_amount,
+                t.transaction_ref,
+                t.transaction_date,
+                a.account_number,
+                u.email AS user_email
+            FROM fraud_alerts fa
+            JOIN transactions t ON fa.transaction_id = t.id
+            JOIN accounts a ON t.account_id = a.id
+            LEFT JOIN users u ON a.user_id = u.id
+            WHERE fa.company_id = :company_id AND fa.id = :alert_id
+        """)
+        result = await self.session.execute(
+            sql, {"company_id": company_id, "alert_id": alert_id}
+        )
+        row = result.fetchone()
+        return dict(row._mapping) if row else None
 
     async def get_fraud_stats(self, company_id: int) -> dict:
         sql = text("""
