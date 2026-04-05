@@ -92,10 +92,10 @@ async def check_rate_limit(
     # Developer / admin bypass: skip all limits when the token email is in the
     # RATE_LIMIT_BYPASS_EMAILS set. Email is read from the JWT (server-authoritative),
     # never from the request body.
-    if credentials and credentials.credentials and settings.RATE_LIMIT_BYPASS_EMAILS:
+    if credentials and credentials.credentials and settings.bypass_emails_set:
         try:
             _bp = decode_token(credentials.credentials)
-            if str(_bp.get("email", "")).lower() in settings.RATE_LIMIT_BYPASS_EMAILS:
+            if str(_bp.get("email", "")).lower() in settings.bypass_emails_set:
                 logger.debug(
                     "rate_limit.bypassed",
                     email=_bp.get("email"),

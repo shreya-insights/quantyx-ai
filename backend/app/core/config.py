@@ -83,18 +83,17 @@ class Settings(BaseSettings):
     QUOTA_SYNC_INTERVAL: int = 100
     PLAN_CACHE_TTL_SECONDS: int = 300
     DAILY_USAGE_KEY_TTL_SECONDS: int = 32 * 86_400
-    # Comma-separated list of emails that bypass all rate-limit and quota checks.
-    # Intended for developer / admin accounts only. Sourced from .env, never hardcoded.
-    RATE_LIMIT_BYPASS_EMAILS: frozenset[str] = Field(default_factory=frozenset)
+    # Comma-separated emails in .env (plain string). Do not use frozenset here:
+    # pydantic-settings JSON-decodes complex env types before validators run.
+    RATE_LIMIT_BYPASS_EMAILS: str = Field(default="")
 
-    @field_validator("RATE_LIMIT_BYPASS_EMAILS", mode="before")
-    @classmethod
-    def parse_bypass_emails(cls, v: object) -> frozenset[str]:
-        if isinstance(v, str):
-            return frozenset(e.strip().lower() for e in v.split(",") if e.strip())
-        if isinstance(v, (list, set, frozenset)):
-            return frozenset(str(e).strip().lower() for e in v if str(e).strip())
-        return frozenset()
+    @property
+    def bypass_emails_set(self) -> frozenset[str]:
+        return frozenset(
+            e.strip().lower()
+            for e in self.RATE_LIMIT_BYPASS_EMAILS.split(",")
+            if e.strip()
+        )
 
     # ─── Seed ─────────────────────────────────────────────────────────────────
     FIRST_ADMIN_EMAIL: str = "admin@quantyx.ai"
