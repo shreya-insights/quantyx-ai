@@ -3,6 +3,7 @@ Integration tests for the analytics endpoints.
 These tests verify the SQL analytics engine functions correctly.
 """
 import os
+from datetime import datetime, timedelta, timezone
 
 import pytest
 from httpx import AsyncClient
@@ -35,6 +36,46 @@ async def test_kpi_summary_empty(client: AsyncClient):
     data = response.json()
     assert "total_transactions" in data
     assert data["total_transactions"] == 0
+
+
+@pytest.mark.asyncio
+async def test_kpi_summary_future_completed_tx_expands_window(client: AsyncClient):
+    """Dashboard KPI uses completed-only data; window extends when latest tx is after today."""
+    token = await _get_token(client, "-futurek")
+    headers = {"Authorization": f"Bearer {token}"}
+    me = await client.get("/api/v1/auth/me", headers=headers)
+    assert me.status_code == 200
+    user_id = me.json()["id"]
+    acct = await client.post(
+        "/api/v1/accounts",
+        headers=headers,
+        json={
+            "user_id": user_id,
+            "account_number": "ACME-FUTURE-001",
+            "account_type": "savings",
+            "balance": 0,
+            "currency": "USD",
+        },
+    )
+    assert acct.status_code == 201
+    account_id = acct.json()["id"]
+    future = (datetime.now(timezone.utc) + timedelta(days=14)).isoformat()
+    tx = await client.post(
+        "/api/v1/transactions",
+        headers=headers,
+        json={
+            "account_id": account_id,
+            "amount": 100.0,
+            "currency": "USD",
+            "transaction_type": "debit",
+            "transaction_date": future,
+        },
+    )
+    assert tx.status_code == 201
+    response = await client.get("/api/v1/analytics/kpi-summary", headers=headers)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["total_transactions"] >= 1
 
 
 @requires_mysql_analytics_sql

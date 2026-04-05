@@ -35,6 +35,8 @@ celery_app.conf.update(
     result_expires=CELERY_RESULT_EXPIRE_SECONDS,
     task_track_started=True,
     redbeat_redis_url=settings.REDIS_URL,
+    # Include the `analytics` queue on at least one worker (e.g. -Q fraud,...,analytics)
+    # so refresh_analytics_cache runs; otherwise APIs still serve OLTP on cache miss/stale.
     task_routes={
         "quantyx.fraud.*": {"queue": "fraud"},
         "quantyx.reports.*": {"queue": "reports"},

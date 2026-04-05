@@ -12,6 +12,7 @@ from app.schemas.analytics import (
     SpendingByCategory,
     TransactionFrequency,
 )
+from app.repositories.analytics_repo import AnalyticsRepository
 from app.services.analytics_service import AnalyticsService
 from app.utils.cache import get_cache_manager
 
@@ -98,17 +99,23 @@ async def get_kpi_summary(
     response: Response,
     current_user: CurrentUser,
     db: DBSession,
-    start_date: date = Query(default=None),
-    end_date: date = Query(default=None),
+    start_date: date | None = Query(default=None),
+    end_date: date | None = Query(default=None),
 ):
     """
     One-shot KPI dashboard summary: total volume, inflow/outflow,
     unique customers, fraud rate, and more.
     """
-    if not end_date:
-        end_date = date.today()
-    if not start_date:
-        start_date = end_date - timedelta(days=30)
+    if start_date is None and end_date is None:
+        repo = AnalyticsRepository(db)
+        start_date, end_date = await repo.resolve_dashboard_kpi_window(
+            current_user.company_id
+        )
+    else:
+        if end_date is None:
+            end_date = date.today()
+        if start_date is None:
+            start_date = end_date - timedelta(days=30)
 
     service = await _get_service(db)
     result = await service.get_kpi_summary(current_user.company_id, start_date, end_date)

@@ -7,13 +7,50 @@ All queries use raw SQL with advanced MySQL features:
   - PERIOD_DIFF for cohort analysis
   - DATE_FORMAT, TIMESTAMPDIFF, DATEDIFF
 """
+from datetime import date, datetime, timedelta, timezone
+
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
+
+_KPI_ROLLING_DAYS = 30
+_KPI_FUTURE_CAP_DAYS = 365
 
 
 class AnalyticsRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
+
+    async def resolve_dashboard_kpi_window(self, company_id: int) -> tuple[date, date]:
+        """Rolling KPI window; extends past UTC today when latest completed tx is future-dated."""
+        today = datetime.now(timezone.utc).date()
+        sql = text(
+            """
+            SELECT MAX(DATE(transaction_date)) AS d
+            FROM transactions
+            WHERE company_id = :company_id
+              AND status = 'completed'
+            """
+        )
+        result = await self.session.execute(sql, {"company_id": company_id})
+        row = result.fetchone()
+        raw_max = row[0] if row else None
+        max_d: date | None
+        if raw_max is None:
+            max_d = None
+        elif isinstance(raw_max, datetime):
+            max_d = raw_max.date()
+        elif isinstance(raw_max, date):
+            max_d = raw_max
+        elif isinstance(raw_max, str):
+            max_d = date.fromisoformat(raw_max[:10])
+        else:
+            max_d = date.fromisoformat(str(raw_max)[:10])
+        end = today
+        if max_d is not None:
+            cap = today + timedelta(days=_KPI_FUTURE_CAP_DAYS)
+            end = min(max(today, max_d), cap)
+        start = end - timedelta(days=_KPI_ROLLING_DAYS)
+        return start, end
 
     # ─── Revenue Trend ────────────────────────────────────────────────────────
 
@@ -317,7 +354,7 @@ class AnalyticsRepository:
             FROM transactions
             WHERE company_id   = :company_id
               AND status       = 'completed'
-              AND transaction_date BETWEEN :start_date AND :end_date
+              AND DATE(transaction_date) BETWEEN :start_date AND :end_date
         """)
         result = await self.session.execute(
             sql, {"company_id": company_id, "start_date": start_date, "end_date": end_date}
@@ -332,7 +369,7 @@ class AnalyticsRepository:
                 SUM(CASE WHEN severity = 'critical' THEN 1 ELSE 0 END) AS critical_count
             FROM fraud_alerts
             WHERE company_id = :company_id
-              AND created_at BETWEEN :start_date AND :end_date
+              AND DATE(created_at) BETWEEN :start_date AND :end_date
         """)
         result = await self.session.execute(
             sql, {"company_id": company_id, "start_date": start_date, "end_date": end_date}

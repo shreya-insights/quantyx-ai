@@ -1,7 +1,7 @@
 from functools import lru_cache
 from typing import Optional
 
-from pydantic import field_validator
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -58,7 +58,10 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
     # ─── CORS ─────────────────────────────────────────────────────────────────
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000"]
+    ALLOWED_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
 
     @field_validator("ALLOWED_ORIGINS", mode="before")
     @classmethod
@@ -67,9 +70,30 @@ class Settings(BaseSettings):
             return [origin.strip() for origin in v.split(",")]
         return v
 
-    # ─── Rate Limiting ────────────────────────────────────────────────────────
-    RATE_LIMIT_REQUESTS: int = 100
-    RATE_LIMIT_WINDOW: int = 60  # seconds
+    # ─── Rate limiting & API metering (Redis + Subscription.api_calls_used) ─
+    IP_RATE_LIMIT_PER_MINUTE: int = 100
+    API_RATE_LIMIT_WINDOW_SECONDS: int = 60
+    PLAN_RATE_LIMITS_PER_MINUTE: dict[str, int] = Field(
+        default_factory=lambda: {
+            "starter": 60,
+            "growth": 300,
+            "enterprise": 1000,
+        }
+    )
+    QUOTA_SYNC_INTERVAL: int = 100
+    PLAN_CACHE_TTL_SECONDS: int = 300
+    DAILY_USAGE_KEY_TTL_SECONDS: int = 32 * 86_400
+    # Comma-separated emails in .env (plain string). Do not use frozenset here:
+    # pydantic-settings JSON-decodes complex env types before validators run.
+    RATE_LIMIT_BYPASS_EMAILS: str = Field(default="")
+
+    @property
+    def bypass_emails_set(self) -> frozenset[str]:
+        return frozenset(
+            e.strip().lower()
+            for e in self.RATE_LIMIT_BYPASS_EMAILS.split(",")
+            if e.strip()
+        )
 
     # ─── Seed ─────────────────────────────────────────────────────────────────
     FIRST_ADMIN_EMAIL: str = "admin@quantyx.ai"

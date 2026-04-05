@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timezone
 from typing import Any, Literal
 
+import structlog
 from sqlalchemy import func, select, text
 from sqlalchemy.dialects.mysql import insert as mysql_insert
+from sqlalchemy.exc import ProgrammingError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
@@ -18,6 +20,22 @@ from app.models.analytics_cache import (
 )
 
 CacheHeaderStatus = Literal["fresh", "stale", "miss"]
+
+logger = structlog.get_logger(__name__)
+
+_MYSQL_ERR_NO_SUCH_TABLE = 1146
+
+
+def _is_missing_cache_table_error(exc: BaseException) -> bool:
+    """True when MySQL reports missing table (migrations not applied)."""
+    if not isinstance(exc, ProgrammingError):
+        return False
+    orig = getattr(exc, "orig", None)
+    args = getattr(orig, "args", None)
+    if args and len(args) > 0 and args[0] == _MYSQL_ERR_NO_SUCH_TABLE:
+        return True
+    lowered = str(exc).lower()
+    return "doesn't exist" in lowered or "1146" in lowered
 
 
 def _utcnow() -> datetime:
@@ -77,7 +95,16 @@ class AnalyticsCacheRepository:
         stmt = select(func.max(DailyRevenueSummary.refreshed_at)).where(
             DailyRevenueSummary.company_id == company_id
         )
-        res = await self.session.execute(stmt)
+        try:
+            res = await self.session.execute(stmt)
+        except ProgrammingError as exc:
+            if _is_missing_cache_table_error(exc):
+                logger.warning(
+                    "analytics.cache_table_missing_skipping_idempotency_check",
+                    company_id=company_id,
+                )
+                return False
+            raise
         last = res.scalar_one_or_none()
         if last is None:
             return False
@@ -93,7 +120,16 @@ class AnalyticsCacheRepository:
             .order_by(DailyRevenueSummary.summary_month.desc())
             .limit(months)
         )
-        res = await self.session.execute(stmt)
+        try:
+            res = await self.session.execute(stmt)
+        except ProgrammingError as exc:
+            if _is_missing_cache_table_error(exc):
+                logger.warning(
+                    "analytics.cache_table_missing_revenue_read_miss",
+                    company_id=company_id,
+                )
+                return [], "miss"
+            raise
         rows_orm = list(res.scalars().all())
         if not rows_orm:
             return [], "miss"
@@ -127,7 +163,16 @@ class AnalyticsCacheRepository:
             MonthlyCategorySummary.company_id == company_id,
             MonthlyCategorySummary.period_days == period_days,
         )
-        res = await self.session.execute(stmt)
+        try:
+            res = await self.session.execute(stmt)
+        except ProgrammingError as exc:
+            if _is_missing_cache_table_error(exc):
+                logger.warning(
+                    "analytics.cache_table_missing_category_read_miss",
+                    company_id=company_id,
+                )
+                return [], "miss"
+            raise
         rows_orm = list(res.scalars().all())
         if not rows_orm:
             return [], "miss"
@@ -160,7 +205,16 @@ class AnalyticsCacheRepository:
             )
             .order_by(MerchantRankingCache.rank_position.asc())
         )
-        res = await self.session.execute(stmt)
+        try:
+            res = await self.session.execute(stmt)
+        except ProgrammingError as exc:
+            if _is_missing_cache_table_error(exc):
+                logger.warning(
+                    "analytics.cache_table_missing_merchant_read_miss",
+                    company_id=company_id,
+                )
+                return [], "miss"
+            raise
         rows_orm = list(res.scalars().all())
         if not rows_orm:
             return [], "miss"
@@ -192,7 +246,17 @@ class AnalyticsCacheRepository:
             KPISummaryCache.company_id == company_id,
             KPISummaryCache.period_type == period_type,
         )
-        res = await self.session.execute(stmt)
+        try:
+            res = await self.session.execute(stmt)
+        except ProgrammingError as exc:
+            if _is_missing_cache_table_error(exc):
+                logger.warning(
+                    "analytics.cache_table_missing_kpi_read_miss",
+                    company_id=company_id,
+                    period_type=period_type,
+                )
+                return None, "miss"
+            raise
         row = res.scalar_one_or_none()
         if row is None:
             return None, "miss"
@@ -373,10 +437,3 @@ class AnalyticsCacheRepository:
             refreshed_at=stmt.inserted.refreshed_at,
         )
         await self.session.execute(stmt)
-
-
-def default_kpi_period_dates() -> tuple[date, date]:
-    """Rolling window aligned with analytics API defaults (last 30 days)."""
-    end_d = datetime.now(timezone.utc).date()
-    start_d = end_d - timedelta(days=30)
-    return start_d, end_d

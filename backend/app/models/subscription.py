@@ -45,7 +45,7 @@ PLAN_LIMITS = {
     PlanName.GROWTH: {
         "users": 10,
         "transactions_per_month": 500_000,
-        "api_calls_per_month": 50_000,
+        "api_calls_per_month": 10_000,
         "features": ["core_analytics", "fraud_detection", "query_lab", "exports"],
     },
     PlanName.ENTERPRISE: {

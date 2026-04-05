@@ -12,7 +12,9 @@ import {
   AlertOctagon,
   ShieldAlert,
   BarChart2,
+  AlertCircle,
 } from "lucide-react";
+import { isAxiosError } from "axios";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useKpiSummary, useRevenueTrends } from "../hooks/useDashboard";
@@ -47,6 +49,15 @@ export default function DashboardPage() {
 
   const kpi   = kpiQuery.data;
   const trend = trendQuery.data?.data ?? [];
+  const analyticsError = kpiQuery.isError || trendQuery.isError;
+  const rawErr = kpiQuery.error ?? trendQuery.error;
+  const analyticsErrorMessage = (() => {
+    if (isAxiosError(rawErr) && rawErr.response == null) {
+      return "Cannot reach the API (browser shows this as “Network Error”). Start the backend on port 8000. If you have VITE_API_URL in .env pointing at a dead host, remove it so dev uses the Vite proxy.";
+    }
+    if (rawErr instanceof Error) return rawErr.message;
+    return "Could not load dashboard analytics.";
+  })();
 
   const tooltipStyle = {
     borderRadius: 8,
@@ -61,6 +72,26 @@ export default function DashboardPage() {
         title="Dashboard"
         subtitle="Financial intelligence overview — last 30 days"
       />
+
+      {analyticsError && (
+        <div
+          className="mb-6 flex flex-wrap items-center gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-100"
+          role="alert"
+        >
+          <AlertCircle className="h-5 w-5 shrink-0" aria-hidden />
+          <span className="min-w-0 flex-1">{analyticsErrorMessage}</span>
+          <button
+            type="button"
+            onClick={() => {
+              void kpiQuery.refetch();
+              void trendQuery.refetch();
+            }}
+            className="shrink-0 rounded-md bg-amber-100 px-3 py-1.5 font-medium text-amber-950 hover:bg-amber-200 dark:bg-amber-900/50 dark:text-amber-50 dark:hover:bg-amber-900"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       {/* KPI Cards */}
       {kpiQuery.isLoading ? (

@@ -4,8 +4,14 @@ from fastapi import HTTPException, status
 class QuantyxException(HTTPException):
     """Base exception for Quantyx AI."""
 
-    def __init__(self, status_code: int, detail: str, error_code: str = "GENERIC_ERROR"):
-        super().__init__(status_code=status_code, detail=detail)
+    def __init__(
+        self,
+        status_code: int,
+        detail: str,
+        error_code: str = "GENERIC_ERROR",
+        headers: dict[str, str] | None = None,
+    ):
+        super().__init__(status_code=status_code, detail=detail, headers=headers)
         self.error_code = error_code
 
 
@@ -60,6 +66,32 @@ class SubscriptionLimitError(QuantyxException):
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
             detail=detail,
             error_code="SUBSCRIPTION_LIMIT_EXCEEDED",
+        )
+
+
+class RateLimitError(QuantyxException):
+    """429 with actionable Retry-After and X-RateLimit-* headers."""
+
+    def __init__(
+        self,
+        detail: str,
+        *,
+        retry_after: int,
+        limit: int,
+        remaining: int,
+        reset_ts: int,
+    ):
+        hdrs = {
+            "Retry-After": str(max(1, retry_after)),
+            "X-RateLimit-Limit": str(limit),
+            "X-RateLimit-Remaining": str(remaining),
+            "X-RateLimit-Reset": str(reset_ts),
+        }
+        super().__init__(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=detail,
+            error_code="RATE_LIMIT_EXCEEDED",
+            headers=hdrs,
         )
 
 

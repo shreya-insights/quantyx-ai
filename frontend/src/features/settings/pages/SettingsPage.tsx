@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Users, CreditCard, Check } from "lucide-react";
+import { format, parseISO } from "date-fns";
+import { Users, CreditCard, Check, AlertTriangle } from "lucide-react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 import { usePlans, useUsage, useSubscribe } from "../hooks/useSettings";
 import { Button, Skeleton } from "@/components/ui";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -114,7 +123,7 @@ export default function SettingsPage() {
 
       {/* Usage */}
       {tab === "usage" && (
-        <div className="max-w-md">
+        <div className="max-w-3xl space-y-6">
           <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
             <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-4">Current Usage</h2>
             {usageQuery.isLoading ? (
@@ -125,17 +134,38 @@ export default function SettingsPage() {
               </div>
             ) : usageQuery.data ? (
               <div className="space-y-4">
+                {(usageQuery.data.usage_pct ?? 0) >= 90 && usageQuery.data.api_calls_limit != null && (
+                  <div
+                    className="flex gap-3 rounded-lg border border-amber-300/80 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-100"
+                    role="alert"
+                  >
+                    <AlertTriangle className="h-5 w-5 flex-shrink-0 text-amber-600 dark:text-amber-400" aria-hidden="true" />
+                    <p>
+                      You have used {(usageQuery.data.usage_pct ?? 0).toFixed(0)}% of this month&apos;s API quota.
+                      Usage resets on {format(parseISO(usageQuery.data.reset_date), "MMM d, yyyy")}.
+                    </p>
+                  </div>
+                )}
                 <div>
                   <div className="flex justify-between text-sm mb-1.5">
                     <span className="text-slate-600 dark:text-slate-400">API Calls This Month</span>
                     <span className="font-medium text-slate-900 dark:text-slate-100">
-                      {usageQuery.data.api_calls_used.toLocaleString()} / {usageQuery.data.api_calls_limit?.toLocaleString() ?? "∞"}
+                      {usageQuery.data.current_month_calls.toLocaleString()} / {usageQuery.data.api_calls_limit?.toLocaleString() ?? "∞"}
                     </span>
                   </div>
-                  {usageQuery.data.api_calls_limit && (
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
+                    Resets on {format(parseISO(usageQuery.data.reset_date), "MMMM d, yyyy")} (billing month).
+                  </p>
+                  {usageQuery.data.api_calls_limit != null && (
                     <div className="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full transition-all ${(usageQuery.data.usage_pct ?? 0) >= 80 ? "bg-red-500" : "bg-blue-500"}`}
+                        className={`h-2 rounded-full transition-all ${
+                          (usageQuery.data.usage_pct ?? 0) > 80
+                            ? "bg-red-500"
+                            : (usageQuery.data.usage_pct ?? 0) >= 60
+                              ? "bg-amber-500"
+                              : "bg-blue-500"
+                        }`}
                         style={{ width: `${Math.min(usageQuery.data.usage_pct ?? 0, 100)}%` }}
                       />
                     </div>
@@ -156,6 +186,28 @@ export default function SettingsPage() {
               </div>
             ) : null}
           </div>
+
+          {usageQuery.data && usageQuery.data.daily_breakdown.length > 0 && (
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+              <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-4">API Calls (last 30 days)</h3>
+              <div className="h-64 w-full" role="img" aria-label="Bar chart of API calls per day for the last 30 days">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={usageQuery.data.daily_breakdown.map((d) => ({
+                      ...d,
+                      label: format(parseISO(d.date), "MMM d"),
+                    }))}
+                    margin={{ top: 8, right: 8, left: 0, bottom: 0 }}
+                  >
+                    <XAxis dataKey="label" tick={{ fontSize: 10 }} interval="preserveStartEnd" />
+                    <YAxis tick={{ fontSize: 11 }} width={40} allowDecimals={false} />
+                    <Tooltip />
+                    <Bar dataKey="calls" fill="rgb(59 130 246)" radius={[4, 4, 0, 0]} name="Calls" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

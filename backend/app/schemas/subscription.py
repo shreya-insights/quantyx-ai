@@ -40,6 +40,11 @@ class SubscriptionResponse(BaseModel):
     model_config = {"from_attributes": True}
 
 
+class DailyUsage(BaseModel):
+    date: str
+    calls: int
+
+
 class UsageResponse(BaseModel):
     plan_name: str
     api_calls_used: int
@@ -48,3 +53,6 @@ class UsageResponse(BaseModel):
     usage_pct: float | None
     transaction_count_this_month: int
     transaction_limit: int | None
+    current_month_calls: int
+    reset_date: str
+    daily_breakdown: list[DailyUsage]

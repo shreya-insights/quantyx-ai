@@ -96,6 +96,7 @@ class AnalyticsService:
             header_status: CacheHeaderStatus = "miss"
         elif db_status == "stale":
             _enqueue_analytics_refresh(company_id)
+            rows = await self.repo.get_revenue_trend(company_id, months)
             header_status = "stale"
         else:
             header_status = "fresh"
@@ -226,6 +227,7 @@ class AnalyticsService:
             header_status: CacheHeaderStatus = "miss"
         elif db_status == "stale":
             _enqueue_analytics_refresh(company_id)
+            rows = await self.repo.get_top_merchants(company_id, days, top_n)
             header_status = "stale"
         else:
             header_status = "fresh"
@@ -274,6 +276,8 @@ class AnalyticsService:
             return CacheAwareResult(data=body, cache_status="miss")
         if db_status == "stale":
             _enqueue_analytics_refresh(company_id)
+            body = await self._kpi_from_oltp(company_id, start_date, end_date)
+            return CacheAwareResult(data=body, cache_status="stale")
         if payload is None:
             body = await self._kpi_from_oltp(company_id, start_date, end_date)
             return CacheAwareResult(data=body, cache_status="miss")
@@ -293,8 +297,7 @@ class AnalyticsService:
             mom_volume_growth_pct=payload["mom_volume_growth_pct"],
             active_accounts=payload["active_accounts"],
         )
-        header: CacheHeaderStatus = "stale" if db_status == "stale" else "fresh"
-        return CacheAwareResult(data=body, cache_status=header)
+        return CacheAwareResult(data=body, cache_status="fresh")
 
     def _category_from_rows(self, rows: list[dict]) -> list[SpendingByCategory]:
         return [
@@ -320,6 +323,7 @@ class AnalyticsService:
             header_status: CacheHeaderStatus = "miss"
         elif db_status == "stale":
             _enqueue_analytics_refresh(company_id)
+            rows = await self.repo.get_spending_by_category(company_id, days)
             header_status = "stale"
         else:
             header_status = "fresh"
