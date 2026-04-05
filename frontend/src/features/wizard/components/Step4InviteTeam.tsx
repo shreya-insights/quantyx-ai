@@ -1,9 +1,9 @@
 import { useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Plus, Trash2, CheckCircle2, AlertCircle, Loader2, UserPlus } from "lucide-react";
+import { Plus, Trash2, CheckCircle2, AlertCircle, Loader2, UserPlus, ClipboardCopy } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { Button } from "@/components/ui/Button";
-import { authService } from "@/services/auth.service";
+import { invitationService } from "@/services/invitation.service";
 import useWizardStore from "@/stores/wizard.store";
 import type { InviteEntry } from "@/types/wizard.types";
 
@@ -24,6 +24,7 @@ export function Step4InviteTeam() {
     data.invites.length > 0 ? data.invites : [createEntry()]
   );
   const [emailErrors, setEmailErrors] = useState<Record<string, string>>({});
+  const [copied, setCopied] = useState<string | null>(null);
 
   const updateEntry = useCallback(
     (id: string, patch: Partial<InviteEntry>) => {
@@ -70,6 +71,16 @@ export function Step4InviteTeam() {
     return Object.keys(errors).length === 0;
   };
 
+  const copyToClipboard = async (email: string, entryId: string) => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(entryId);
+      setTimeout(() => setCopied(null), 2000);
+    } catch {
+      // clipboard API not available — silent fail
+    }
+  };
+
   const handleSubmit = async () => {
     // Allow skipping — no invites required
     if (entries.length === 1 && !entries[0].email.trim()) {
@@ -82,37 +93,35 @@ export function Step4InviteTeam() {
 
     setSubmitting(true);
 
-    const settled = await Promise.allSettled(
-      entries.map(async (entry) => {
-        try {
-          await authService.inviteUser({
-            email: entry.email.trim(),
-            full_name: entry.email.split("@")[0],
-            role: entry.role,
-            // Temporary password — user must reset on first login
-            password: crypto.randomUUID().slice(0, 16),
-          });
-          return { id: entry.id, status: "sent" as const };
-        } catch {
-          return { id: entry.id, status: "error" as const };
-        }
-      })
-    );
-
-    const updated = entries.map((e) => {
-      const result = settled.find(
-        (r) => r.status === "fulfilled" && r.value.id === e.id
+    try {
+      const response = await invitationService.sendBulk(
+        entries.map((e) => ({
+          email: e.email.trim(),
+          role: e.role as "admin" | "analyst" | "viewer",
+        }))
       );
-      return result?.status === "fulfilled"
-        ? { ...e, status: result.value.status }
-        : { ...e, status: "error" as const };
-    });
 
-    setEntries(updated);
-    updateData({ invites: updated });
-    setSubmitting(false);
+      const updated: InviteEntry[] = entries.map((entry) => {
+        const result = response.results.find((r) => r.email === entry.email.trim());
+        if (!result) return { ...entry, status: "error" as const };
+        return {
+          ...entry,
+          status: result.status === "queued" ? ("sent" as const) : ("error" as const),
+        };
+      });
 
-    // Proceed if at least one succeeded (or all had errors — allow skipping past)
+      setEntries(updated);
+      updateData({ invites: updated });
+    } catch {
+      // Network-level failure — mark all as error
+      const updated = entries.map((e) => ({ ...e, status: "error" as const }));
+      setEntries(updated);
+      updateData({ invites: updated });
+    } finally {
+      setSubmitting(false);
+    }
+
+    // Proceed regardless — wizard advances even if all invites errored
     goNext();
   };
 
@@ -143,16 +152,18 @@ export function Step4InviteTeam() {
                   "flex items-start gap-2 p-3 rounded-xl border transition-colors",
                   emailErrors[entry.id]
                     ? "border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/10"
+                    : entry.status === "error"
+                    ? "border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/10"
                     : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50"
                 )}
               >
                 {/* Status icon */}
                 <div className="flex-shrink-0 mt-2.5">
                   {entry.status === "sent" && (
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" aria-label="Invite sent" />
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500" aria-label="Invite queued" />
                   )}
                   {entry.status === "error" && (
-                    <AlertCircle className="w-4 h-4 text-red-500" aria-label="Invite failed" />
+                    <AlertCircle className="w-4 h-4 text-amber-500" aria-label="Invite failed" />
                   )}
                   {entry.status === "pending" && (
                     <UserPlus className="w-4 h-4 text-slate-400" aria-hidden="true" />
@@ -187,6 +198,17 @@ export function Step4InviteTeam() {
                         {emailErrors[entry.id]}
                       </motion.p>
                     )}
+                    {entry.status === "error" && !emailErrors[entry.id] && (
+                      <motion.p
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="text-amber-600 dark:text-amber-400 text-xs overflow-hidden mt-0.5"
+                        role="alert"
+                      >
+                        Email failed — resend from Settings after setup
+                      </motion.p>
+                    )}
                   </AnimatePresence>
                 </div>
 
@@ -208,6 +230,25 @@ export function Step4InviteTeam() {
                   <option value="analyst">Analyst</option>
                   <option value="viewer">Viewer</option>
                 </select>
+
+                {/* Clipboard fallback for failed entries */}
+                {entry.status === "error" && entry.email.trim() && (
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(entry.email.trim(), entry.id)}
+                    aria-label={`Copy ${entry.email} to clipboard`}
+                    title={copied === entry.id ? "Copied!" : "Copy email to clipboard"}
+                    className="flex-shrink-0 mt-1 p-1 rounded-md text-slate-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                  >
+                    <ClipboardCopy
+                      className={cn(
+                        "w-3.5 h-3.5",
+                        copied === entry.id && "text-emerald-500"
+                      )}
+                      aria-hidden="true"
+                    />
+                  </button>
+                )}
 
                 {/* Remove */}
                 {entries.length > 1 && entry.status !== "sent" && (

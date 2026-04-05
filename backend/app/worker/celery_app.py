@@ -45,6 +45,7 @@ celery_app.conf.update(
         "quantyx.monitoring.*": {"queue": "features"},
         "quantyx.analytics.*": {"queue": "analytics"},
         "quantyx.warehouse.*": {"queue": "analytics"},
+        "quantyx.email.*": {"queue": "email"},
     },
     beat_scheduler="redbeat.RedBeatScheduler",
     beat_schedule={
@@ -90,6 +91,7 @@ def _quantyx_celery_postrun(
 
 # Register tasks
 from app.worker.tasks import analytics_tasks as _analytics_tasks  # noqa: E402, F401
+from app.worker.tasks import email_tasks as _email_tasks  # noqa: E402, F401
 from app.worker.tasks import feature_tasks as _feature_tasks  # noqa: E402, F401
 from app.worker.tasks import fraud_tasks as _fraud_tasks  # noqa: E402, F401
 from app.worker.tasks import monitoring_tasks as _monitoring_tasks  # noqa: E402, F401

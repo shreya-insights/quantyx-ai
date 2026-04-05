@@ -5,10 +5,11 @@ import ProtectedRoute from "@/components/common/ProtectedRoute";
 import { PageSkeleton } from "@/components/ui/Skeleton";
 
 // ─── Lazy-loaded page chunks ──────────────────────────────────────────────
-const LandingPage      = lazy(() => import("@/features/auth/pages/LandingPage"));
-const LoginPage        = lazy(() => import("@/features/auth/pages/LoginPage"));
-const RegisterPage     = lazy(() => import("@/features/auth/pages/RegisterPage"));
-const WizardPage       = lazy(() => import("@/features/wizard/WizardPage"));
+const LandingPage       = lazy(() => import("@/features/auth/pages/LandingPage"));
+const LoginPage         = lazy(() => import("@/features/auth/pages/LoginPage"));
+const RegisterPage      = lazy(() => import("@/features/auth/pages/RegisterPage"));
+const AcceptInvitePage  = lazy(() => import("@/features/auth/pages/AcceptInvitePage"));
+const WizardPage        = lazy(() => import("@/features/wizard/WizardPage"));
 const DashboardPage    = lazy(() => import("@/features/dashboard/pages/DashboardPage"));
 const TransactionsPage = lazy(() => import("@/features/transactions/pages/TransactionsPage"));
 const AnalyticsPage    = lazy(() => import("@/features/analytics/pages/AnalyticsPage"));
@@ -23,10 +24,11 @@ const S = (el: React.ReactElement) => (
 );
 
 export const router = createBrowserRouter([
-  { path: "/",            element: S(<LandingPage />) },
-  { path: "/login",       element: S(<LoginPage />) },
-  { path: "/register",    element: S(<RegisterPage />) },
-  { path: "/onboarding",  element: S(<WizardPage />) },
+  { path: "/",              element: S(<LandingPage />) },
+  { path: "/login",         element: S(<LoginPage />) },
+  { path: "/register",      element: S(<RegisterPage />) },
+  { path: "/accept-invite", element: S(<AcceptInvitePage />) },
+  { path: "/onboarding",    element: S(<WizardPage />) },
   {
     element: (
       <ProtectedRoute>

@@ -1,0 +1,20 @@
+You're invited to join {{ company_name }} on Quantyx AI
+==========================================================
+
+Hi there,
+
+{{ inviter_name }} has invited you to join {{ company_name }} on Quantyx AI
+as a {{ role }}.
+
+To accept the invitation and set up your account, visit the link below:
+
+{{ invite_url }}
+
+This invitation expires in {{ expire_hours }} hours.
+
+If you did not expect this invitation, you can safely ignore this email.
+
+--
+Quantyx AI — Financial Analytics Platform
+© {{ current_year }} Quantyx AI. All rights reserved.
+This email was sent to {{ recipient_email }}.
