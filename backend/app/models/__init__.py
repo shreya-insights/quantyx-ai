@@ -23,6 +23,11 @@ from app.models.model_monitoring import (
     ModelPerformanceMetric,
     PsiStatus,
 )
+from app.models.warehouse import (
+    CohortRetentionMetric,
+    HourlyTransactionHeatmap,
+    LifetimeValueMetric,
+)
 from app.models.saved_query import SavedQuery
 from app.models.subscription import (
     PLAN_LIMITS,
@@ -48,11 +53,14 @@ __all__ = [
     "AlertType",
     "BillingCycle",
     "Category",
+    "CohortRetentionMetric",
     "Company",
     "FeatureDistributionSnapshot",
     "FraudAlert",
+    "HourlyTransactionHeatmap",
     "KPISummaryCache",
     "KpiReport",
+    "LifetimeValueMetric",
     "MerchantRankingCache",
     "ModelPerformanceMetric",
     "Merchant",

@@ -44,6 +44,7 @@ celery_app.conf.update(
         "quantyx.features.*": {"queue": "features"},
         "quantyx.monitoring.*": {"queue": "features"},
         "quantyx.analytics.*": {"queue": "analytics"},
+        "quantyx.warehouse.*": {"queue": "analytics"},
     },
     beat_scheduler="redbeat.RedBeatScheduler",
     beat_schedule={
@@ -58,6 +59,10 @@ celery_app.conf.update(
         "refresh-analytics-cache-hourly": {
             "task": "quantyx.analytics.refresh_all_analytics_caches",
             "schedule": crontab(minute=0),
+        },
+        "nightly-warehouse-etl": {
+            "task": "quantyx.warehouse.run_nightly_etl",
+            "schedule": crontab(minute=0, hour=2),
         },
     },
 )
@@ -88,5 +93,6 @@ from app.worker.tasks import analytics_tasks as _analytics_tasks  # noqa: E402, 
 from app.worker.tasks import feature_tasks as _feature_tasks  # noqa: E402, F401
 from app.worker.tasks import fraud_tasks as _fraud_tasks  # noqa: E402, F401
 from app.worker.tasks import monitoring_tasks as _monitoring_tasks  # noqa: E402, F401
+from app.worker.tasks import warehouse_tasks as _warehouse_tasks  # noqa: E402, F401
 
 __all__ = ["celery_app", "CELERY_RESULT_EXPIRE_SECONDS"]

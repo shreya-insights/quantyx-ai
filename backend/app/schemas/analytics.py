@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from typing import Literal
 
 from pydantic import BaseModel
 
@@ -118,3 +119,41 @@ class TransactionFrequency(BaseModel):
     transaction_count: int
     total_amount: float
     avg_amount: float
+
+
+class CohortRetentionCell(BaseModel):
+    cohort_month: str
+    months_since_cohort: int
+    retention_rate: float
+    user_count: int
+    retained_count: int
+
+
+class CohortRetentionGridResponse(BaseModel):
+    rows: list[CohortRetentionCell]
+    cohort_months: list[str]
+    max_months: int
+
+
+class LTVSegment(BaseModel):
+    segment: Literal["high", "medium", "low"]
+    user_count: int
+    pct_of_total: float
+    avg_spend: float
+
+
+class LTVSegmentsResponse(BaseModel):
+    segments: list[LTVSegment]
+    total_users: int
+
+
+class HeatmapCell(BaseModel):
+    day_of_week: int
+    hour_of_day: int
+    avg_count: float
+    avg_amount: float
+    fraud_rate: float
+
+
+class HeatmapResponse(BaseModel):
+    cells: list[HeatmapCell]

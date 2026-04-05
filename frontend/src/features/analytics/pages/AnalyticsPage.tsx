@@ -4,7 +4,19 @@ import {
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
-import { useRevenueTrends, useRFMAnalysis, useCohortRetention, useTopMerchants, useSpendingByCategory } from "../hooks/useAnalytics";
+import {
+  useRevenueTrends,
+  useRFMAnalysis,
+  useCohortRetention,
+  useTopMerchants,
+  useSpendingByCategory,
+  useCohortRetentionGrid,
+  useLTVSegments,
+  useWarehouseHeatmap,
+} from "../hooks/useAnalytics";
+import { CohortRetentionTable } from "../components/CohortRetentionTable";
+import { LTVSegmentChart } from "../components/LTVSegmentChart";
+import { TransactionHeatmap } from "../components/TransactionHeatmap";
 import { Skeleton } from "@/components/ui";
 import { PageHeader } from "@/components/common/PageHeader";
 import { EmptyState } from "@/components/common/EmptyState";
@@ -12,12 +24,23 @@ import { formatCurrency, formatNumber } from "@/utils/format";
 import { CHART_COLORS, SEGMENT_COLORS } from "@/utils/constants";
 import { useChartColors } from "@/hooks/useChartColors";
 
-type Tab = "revenue" | "rfm" | "cohort" | "merchants" | "categories";
+type Tab =
+  | "revenue"
+  | "rfm"
+  | "cohort"
+  | "merchants"
+  | "categories"
+  | "cohort-retention"
+  | "ltv"
+  | "heatmap";
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "revenue",    label: "Revenue Trends" },
   { id: "rfm",        label: "RFM Segmentation" },
   { id: "cohort",     label: "Cohort Analysis" },
+  { id: "cohort-retention", label: "WH · Cohort" },
+  { id: "ltv",        label: "WH · LTV" },
+  { id: "heatmap",    label: "WH · Heatmap" },
   { id: "merchants",  label: "Top Merchants" },
   { id: "categories", label: "Categories" },
 ];
@@ -29,6 +52,9 @@ export default function AnalyticsPage() {
   const revenueQ    = useRevenueTrends(12);
   const rfmQ        = useRFMAnalysis();
   const cohortQ     = useCohortRetention();
+  const whCohortQ   = useCohortRetentionGrid();
+  const whLtvQ      = useLTVSegments();
+  const whHeatQ     = useWarehouseHeatmap();
   const merchantsQ  = useTopMerchants(30, 15);
   const categoriesQ = useSpendingByCategory(30);
 
@@ -36,6 +62,9 @@ export default function AnalyticsPage() {
     revenue:    revenueQ.isLoading,
     rfm:        rfmQ.isLoading,
     cohort:     cohortQ.isLoading,
+    "cohort-retention": whCohortQ.isLoading,
+    ltv:        whLtvQ.isLoading,
+    heatmap:    whHeatQ.isLoading,
     merchants:  merchantsQ.isLoading,
     categories: categoriesQ.isLoading,
   }[activeTab];
@@ -214,6 +243,72 @@ export default function AnalyticsPage() {
             </ResponsiveContainer>
           ) : (
             <EmptyState icon={TrendingUp} title="No merchant data" description="Merchant rankings will appear once transaction data is loaded." className="h-52" />
+          )}
+        </div>
+      )}
+
+      {/* Warehouse: cohort retention grid */}
+      {!isLoading && activeTab === "cohort-retention" && (
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="text-base font-semibold mb-1 text-slate-900 dark:text-slate-100">
+            Warehouse cohort retention
+          </h2>
+          <p className="text-xs text-slate-400 font-mono mb-4">
+            Pre-aggregated nightly ETL · cell = retention % by cohort month × M+N
+          </p>
+          {(whCohortQ.data?.rows.length ?? 0) > 0 && whCohortQ.data ? (
+            <CohortRetentionTable data={whCohortQ.data} />
+          ) : (
+            <EmptyState
+              icon={TrendingUp}
+              title="No warehouse cohort data"
+              description="Run the nightly ETL or ensure users and completed transactions exist. Data appears after quantyx.warehouse.run_nightly_etl populates the warehouse."
+              className="h-52"
+            />
+          )}
+        </div>
+      )}
+
+      {/* Warehouse: LTV */}
+      {!isLoading && activeTab === "ltv" && (
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="text-base font-semibold mb-1 text-slate-900 dark:text-slate-100">
+            LTV segments (warehouse)
+          </h2>
+          <p className="text-xs text-slate-400 font-mono mb-4">
+            Tertiles from p33 / p66 spend thresholds on lifetime totals
+          </p>
+          {(whLtvQ.data?.segments.length ?? 0) > 0 && whLtvQ.data ? (
+            <LTVSegmentChart data={whLtvQ.data} />
+          ) : (
+            <EmptyState
+              icon={TrendingUp}
+              title="No LTV warehouse rows"
+              description="LTV metrics are built from per-user completed transaction totals during nightly warehouse ETL."
+              className="h-52"
+            />
+          )}
+        </div>
+      )}
+
+      {/* Warehouse: 7×24 heatmap */}
+      {!isLoading && activeTab === "heatmap" && (
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
+          <h2 className="text-base font-semibold mb-1 text-slate-900 dark:text-slate-100">
+            Transaction intensity heatmap
+          </h2>
+          <p className="text-xs text-slate-400 font-mono mb-4">
+            7×24 grid · avg_count / week slot from last 90 days (warehouse)
+          </p>
+          {whHeatQ.data ? (
+            <TransactionHeatmap data={whHeatQ.data} />
+          ) : (
+            <EmptyState
+              icon={TrendingUp}
+              title="No heatmap data"
+              description="Heatmap loads from the warehouse after ETL runs."
+              className="h-52"
+            />
           )}
         </div>
       )}

@@ -152,6 +152,47 @@ export interface CohortResponse {
   periods_analyzed: number;
 }
 
+/** Pre-aggregated warehouse cohort grid (nightly ETL). */
+export interface CohortRetentionCell {
+  cohort_month: string;
+  months_since_cohort: number;
+  retention_rate: number;
+  user_count: number;
+  retained_count: number;
+}
+
+export interface CohortRetentionGridResponse {
+  rows: CohortRetentionCell[];
+  cohort_months: string[];
+  max_months: number;
+}
+
+export type LTVSegmentName = "high" | "medium" | "low";
+
+export interface LTVSegment {
+  segment: LTVSegmentName;
+  user_count: number;
+  pct_of_total: number;
+  avg_spend: number;
+}
+
+export interface LTVSegmentsResponse {
+  segments: LTVSegment[];
+  total_users: number;
+}
+
+export interface HeatmapCell {
+  day_of_week: number;
+  hour_of_day: number;
+  avg_count: number;
+  avg_amount: number;
+  fraud_rate: number;
+}
+
+export interface HeatmapResponse {
+  cells: HeatmapCell[];
+}
+
 export interface MerchantRanking {
   rank: number;
   merchant_id: number;

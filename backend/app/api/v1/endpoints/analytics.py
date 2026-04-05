@@ -3,16 +3,20 @@ from datetime import date, timedelta
 from fastapi import APIRouter, Query, Response
 
 from app.core.dependencies import AnalystUser, CurrentUser, DBSession
+from app.repositories.analytics_repo import AnalyticsRepository
+from app.repositories.warehouse_repo import WarehouseRepository
 from app.schemas.analytics import (
     CohortResponse,
+    CohortRetentionGridResponse,
+    HeatmapResponse,
     KpiSummary,
+    LTVSegmentsResponse,
     MerchantRankingResponse,
     RevenueTrendResponse,
     RFMResponse,
     SpendingByCategory,
     TransactionFrequency,
 )
-from app.repositories.analytics_repo import AnalyticsRepository
 from app.services.analytics_service import AnalyticsService
 from app.utils.cache import get_cache_manager
 
@@ -146,3 +150,33 @@ async def get_transaction_heatmap(
     """Hour-of-day × day-of-week transaction frequency heatmap."""
     service = await _get_service(db)
     return await service.get_transaction_frequency_heatmap(current_user.company_id, days)
+
+
+@router.get("/cohort-retention", response_model=CohortRetentionGridResponse)
+async def get_cohort_retention_warehouse(
+    current_user: AnalystUser,
+    db: DBSession,
+):
+    """Pre-aggregated cohort retention grid (nightly warehouse ETL)."""
+    repo = WarehouseRepository(db)
+    return await repo.get_cohort_retention_grid(current_user.company_id)
+
+
+@router.get("/ltv-segments", response_model=LTVSegmentsResponse)
+async def get_ltv_segments_warehouse(
+    current_user: AnalystUser,
+    db: DBSession,
+):
+    """LTV distribution from warehouse tertiles (p33 / p66 spend thresholds)."""
+    repo = WarehouseRepository(db)
+    return await repo.get_ltv_segments(current_user.company_id)
+
+
+@router.get("/heatmap", response_model=HeatmapResponse)
+async def get_hourly_heatmap_warehouse(
+    current_user: CurrentUser,
+    db: DBSession,
+):
+    """7×24 warehouse heatmap (avg_count / avg_amount / fraud_rate per cell)."""
+    repo = WarehouseRepository(db)
+    return await repo.get_hourly_heatmap(current_user.company_id)

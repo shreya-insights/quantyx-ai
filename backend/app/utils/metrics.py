@@ -122,6 +122,13 @@ DB_QUERY_DURATION_SECONDS = Histogram(
     buckets=DB_QUERY_DURATION_BUCKETS,
 )
 
+WAREHOUSE_ETL_DURATION_SECONDS = Histogram(
+    "warehouse_etl_duration_seconds",
+    "Nightly warehouse ETL step latency (sync SQL + Python) in seconds.",
+    ["step"],
+    buckets=CELERY_TASK_DURATION_BUCKETS,
+)
+
 # Queue depth is sampled at scrape time (bounded label: known queue names only).
 CELERY_QUEUE_DEPTH = Gauge(
     "celery_queue_depth",
