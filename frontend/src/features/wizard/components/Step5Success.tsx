@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Building2, CreditCard, Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { LottiePlayer } from "./LottiePlayer";
+import { WIZARD_SUCCESS_LOTTIE_URL } from "../wizardLottieUrls";
 import useWizardStore from "@/stores/wizard.store";
 import { ROUTES } from "@/utils/constants";
 
@@ -71,7 +72,7 @@ export function Step5Success() {
     <div className="max-w-lg mx-auto flex flex-col items-center text-center">
       {/* Lottie success — loop=false, stagger reveals summary after it completes */}
       <LottiePlayer
-        src="/animations/success.json"
+        src={WIZARD_SUCCESS_LOTTIE_URL}
         loop={false}
         autoplay
         className="w-48 h-48"

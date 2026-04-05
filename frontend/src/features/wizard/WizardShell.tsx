@@ -5,18 +5,11 @@ import { LottiePlayer } from "./components/LottiePlayer";
 import { StepAnimator } from "./components/StepAnimator";
 import useWizardStore from "@/stores/wizard.store";
 import type { WizardStep } from "@/types/wizard.types";
+import { WIZARD_STEP_LOTTIE_URL } from "./wizardLottieUrls";
 
 interface WizardShellProps {
   children: ReactNode;
 }
-
-const STEP_LOTTIE_MAP: Record<WizardStep, string> = {
-  1: "/animations/welcome.json",
-  2: "/animations/setup.json",
-  3: "/animations/profile.json",
-  4: "/animations/team.json",
-  5: "/animations/success.json",
-};
 
 const STEP_TITLES: Record<WizardStep, string> = {
   1: "Welcome aboard",
@@ -82,7 +75,7 @@ export function WizardShell({ children }: WizardShellProps) {
 
         {/* Step illustration — shows icon fallback until Lottie JSON files are placed */}
         <LottiePlayer
-          src={STEP_LOTTIE_MAP[currentStep]}
+          src={WIZARD_STEP_LOTTIE_URL[currentStep]}
           loop
           className="w-64 h-64"
           fallbackIcon={STEP_FALLBACK_ICONS[currentStep]}

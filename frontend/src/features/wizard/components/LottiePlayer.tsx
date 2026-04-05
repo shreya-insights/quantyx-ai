@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, type ReactNode } from "react";
-import Lottie, { type LottieRefCurrentProps } from "lottie-react";
+import { useState, useEffect, type ReactNode } from "react";
+import { useLottie } from "lottie-react";
 import { cn } from "@/utils/cn";
 
 interface LottiePlayerProps {
@@ -10,6 +10,38 @@ interface LottiePlayerProps {
   onComplete?: () => void;
   /** Icon rendered inside a pulsing ring when the Lottie JSON hasn't loaded yet. */
   fallbackIcon?: ReactNode;
+}
+
+/**
+ * Renders Lottie via `useLottie` (named export). Do not use `import Lottie from
+ * "lottie-react"` — Vite/Rolldown can expose the default as a module object, which
+ * triggers "Element type is invalid ... got: object".
+ */
+function LottieCanvas({
+  animationData,
+  loop,
+  autoplay,
+  className,
+  onComplete,
+}: {
+  animationData: object;
+  loop: boolean;
+  autoplay: boolean;
+  className?: string;
+  onComplete?: () => void;
+}) {
+  const { View } = useLottie(
+    {
+      animationData,
+      loop,
+      autoplay,
+      onComplete,
+      className,
+      rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
+    },
+    undefined,
+  );
+  return View;
 }
 
 /**
@@ -27,14 +59,20 @@ export function LottiePlayer({
   fallbackIcon,
 }: LottiePlayerProps) {
   const [animData, setAnimData] = useState<object | null>(null);
-  const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   useEffect(() => {
+    setAnimData(null);
     let cancelled = false;
     fetch(src)
-      .then((r) => {
+      .then(async (r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
+        const ct = r.headers.get("content-type") ?? "";
+        if (ct.includes("text/html")) {
+          throw new Error(
+            "Lottie URL returned HTML — asset missing or dev server served index.html",
+          );
+        }
+        return r.json() as Promise<object>;
       })
       .then((data) => {
         if (!cancelled) setAnimData(data);
@@ -61,14 +99,12 @@ export function LottiePlayer({
   }
 
   return (
-    <Lottie
-      lottieRef={lottieRef}
+    <LottieCanvas
       animationData={animData}
       loop={loop}
       autoplay={autoplay}
-      onComplete={onComplete}
       className={className}
-      rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+      onComplete={onComplete}
     />
   );
 }
