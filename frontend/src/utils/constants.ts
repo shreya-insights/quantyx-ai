@@ -39,6 +39,7 @@ export const ROUTES = {
   HOME:         "/",
   LOGIN:        "/login",
   REGISTER:     "/register",
+  ONBOARDING:   "/onboarding",
   DASHBOARD:    "/dashboard",
   TRANSACTIONS: "/transactions",
   ANALYTICS:    "/analytics",

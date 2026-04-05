@@ -191,7 +191,7 @@ export default function SettingsPage() {
             <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6">
               <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-4">API Calls (last 30 days)</h3>
               <div className="h-64 w-full" role="img" aria-label="Bar chart of API calls per day for the last 30 days">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer minWidth={0} width="100%" height="100%">
                   <BarChart
                     data={usageQuery.data.daily_breakdown.map((d) => ({
                       ...d,

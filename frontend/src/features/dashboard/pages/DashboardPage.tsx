@@ -13,6 +13,7 @@ import {
   ShieldAlert,
   BarChart2,
   AlertCircle,
+  Sparkles,
 } from "lucide-react";
 import { isAxiosError } from "axios";
 import { motion } from "framer-motion";
@@ -22,9 +23,12 @@ import { LiveFeedPanel } from "../components/LiveFeedPanel";
 import { StatCard, KpiCardSkeleton } from "@/components/ui";
 import { PageHeader } from "@/components/common/PageHeader";
 import { EmptyState } from "@/components/common/EmptyState";
+import { Button } from "@/components/ui/Button";
 import { formatCurrency, formatNumber, formatPercent } from "@/utils/format";
 import { useChartColors } from "@/hooks/useChartColors";
 import { useAuthStore } from "@/stores/auth.store";
+import useWizardStore from "@/stores/wizard.store";
+import { ROUTES } from "@/utils/constants";
 
 const cardContainer = {
   hidden: {},
@@ -46,6 +50,7 @@ export default function DashboardPage() {
   const trendQuery = useRevenueTrends(6);
   const c          = useChartColors();
   const { user }   = useAuthStore();
+  const { data: wizardData } = useWizardStore();
 
   const kpi   = kpiQuery.data;
   const trend = trendQuery.data?.data ?? [];
@@ -72,6 +77,29 @@ export default function DashboardPage() {
         title="Dashboard"
         subtitle="Financial intelligence overview — last 30 days"
       />
+
+      {/* Setup wizard CTA banner — visible until onboarding is marked complete */}
+      {!wizardData.completed && (
+        <div
+          className="mb-6 flex flex-wrap items-center gap-3 rounded-xl border border-blue-200 bg-blue-50 dark:border-blue-800/50 dark:bg-blue-950/30 px-4 py-3"
+          role="status"
+        >
+          <Sparkles className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-blue-800 dark:text-blue-200">
+              Complete your workspace setup
+            </p>
+            <p className="text-xs text-blue-600 dark:text-blue-400">
+              Takes 3 minutes — company profile, plan selection, and team invites.
+            </p>
+          </div>
+          <Link to={ROUTES.ONBOARDING} className="shrink-0">
+            <Button size="sm" aria-label="Start workspace setup wizard">
+              Start Setup
+            </Button>
+          </Link>
+        </div>
+      )}
 
       {analyticsError && (
         <div
@@ -135,7 +163,7 @@ export default function DashboardPage() {
           <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100 mb-0.5">Revenue Trend</h2>
           <p className="text-xs text-slate-400 mb-4">Monthly inflow vs outflow — last 6 months</p>
           {trend.length > 0 ? (
-            <ResponsiveContainer width="100%" height={220}>
+            <ResponsiveContainer minWidth={0} width="100%" height={220}>
               <LineChart data={trend}>
                 <CartesianGrid strokeDasharray="3 3" stroke={c.grid} />
                 <XAxis dataKey="month" tick={{ fontSize: 11, fill: c.tick }} />
@@ -161,7 +189,7 @@ export default function DashboardPage() {
           <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100 mb-0.5">Net Cash Flow</h2>
           <p className="text-xs text-slate-400 mb-4">Monthly net flow (inflow − outflow)</p>
           {trend.length > 0 ? (
-            <ResponsiveContainer width="100%" height={220}>
+            <ResponsiveContainer minWidth={0} width="100%" height={220}>
               <BarChart data={trend}>
                 <CartesianGrid strokeDasharray="3 3" stroke={c.grid} />
                 <XAxis dataKey="month" tick={{ fontSize: 11, fill: c.tick }} />

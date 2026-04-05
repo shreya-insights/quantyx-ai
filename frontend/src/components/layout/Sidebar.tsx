@@ -10,11 +10,13 @@ import {
   Settings,
   LogOut,
   X,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import { useAuthStore } from "@/stores/auth.store";
+import useWizardStore from "@/stores/wizard.store";
 import { ROUTES } from "@/utils/constants";
 
 interface NavItem {
@@ -43,6 +45,7 @@ interface SidebarProps {
 export default function Sidebar({ open, onClose }: SidebarProps) {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+  const { data: wizardData } = useWizardStore();
 
   const handleLogout = () => {
     logout();
@@ -142,6 +145,24 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
             );
           })}
         </nav>
+
+        {/* Setup Wizard CTA — only shown until onboarding is complete */}
+        {!wizardData.completed && (
+          <div className="px-3 pb-3">
+            <NavLink
+              to={ROUTES.ONBOARDING}
+              onClick={onClose}
+              className="flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg bg-blue-600/20 border border-blue-500/30 text-blue-300 hover:bg-blue-600/30 hover:text-blue-200 transition-colors text-sm font-medium group"
+              aria-label="Open Setup Wizard"
+            >
+              <Sparkles size={16} className="flex-shrink-0 group-hover:scale-110 transition-transform" aria-hidden="true" />
+              <span>Setup Wizard</span>
+              <span className="ml-auto text-[10px] bg-blue-500/40 text-blue-200 px-1.5 py-0.5 rounded-full font-semibold">
+                NEW
+              </span>
+            </NavLink>
+          </div>
+        )}
 
         {/* User section */}
         <div className="px-3 py-3 border-t border-slate-800">
