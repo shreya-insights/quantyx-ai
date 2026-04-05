@@ -114,6 +114,14 @@ class Settings(BaseSettings):
     # ─── ML Model ─────────────────────────────────────────────────────────────
     ML_MODEL_DIR: str = "backend/ml"
 
+    # ─── Model monitoring / drift (env-tunable; global defaults) ──────────────
+    MODEL_HEALTH_F1_THRESHOLD: float = 0.75
+    MODEL_HEALTH_PRECISION_THRESHOLD: float = 0.70
+    MODEL_HEALTH_PSI_MONITOR_THRESHOLD: float = 0.1
+    MODEL_HEALTH_PSI_DRIFT_THRESHOLD: float = 0.2
+    MODEL_HEALTH_PSI_DRIFT_MIN_FEATURES: int = 3
+    MODEL_HEALTH_DRIFT_WINDOW_DAYS: int = 30
+
     # ─── Cache TTLs (seconds) ─────────────────────────────────────────────────
     CACHE_TTL_KPI: int = 300          # 5 min
     CACHE_TTL_REVENUE: int = 900      # 15 min

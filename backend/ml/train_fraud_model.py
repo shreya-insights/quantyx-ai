@@ -35,6 +35,7 @@ from app.services.feature_engineering import FEATURE_COLUMNS
 
 RANDOM_SEED: int = 42
 TEST_SIZE: float = 0.2
+PSI_BASELINE_MIN_SAMPLES: int = 30
 EARLY_STOPPING_ROUNDS: int = 30
 N_ESTIMATORS: int = 300
 MAX_DEPTH: int = 6
@@ -141,6 +142,27 @@ def _load_training_data(engine) -> tuple[pd.DataFrame, pd.Series]:
     return df[FEATURE_COLUMNS].fillna(0), y
 
 
+def _build_feature_psi_baselines(
+    df: pd.DataFrame, feature_names: list[str]
+) -> dict[str, dict]:
+    """Training histogram per feature — reference percents for production PSI."""
+    baselines: dict[str, dict] = {}
+    for col in feature_names:
+        s = df[col].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
+        if len(s) < PSI_BASELINE_MIN_SAMPLES:
+            continue
+        edges = np.quantile(s, np.linspace(0.0, 1.0, 11)).astype(float)
+        counts, _ = np.histogram(s, bins=edges)
+        total = float(counts.sum())
+        if total <= 0:
+            continue
+        baselines[col] = {
+            "bin_edges": edges.tolist(),
+            "expected_pct": (counts.astype(float) / total).tolist(),
+        }
+    return baselines
+
+
 def _tune_threshold(
     model: XGBClassifier, X_val: pd.DataFrame, y_val: pd.Series
 ) -> tuple[float, float]:
@@ -211,6 +233,7 @@ def train() -> None:
         "trained_at": pd.Timestamp.now().isoformat(),
         "n_samples": len(X),
         "fraud_rate_pct": float(y.mean() * 100),
+        "feature_psi_baselines": _build_feature_psi_baselines(X_train, FEATURE_COLUMNS),
     }
     manifest_path.write_text(json.dumps(manifest, indent=2))
 

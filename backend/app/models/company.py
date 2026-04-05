@@ -42,6 +42,12 @@ class Company(Base):
     kpi_reports: Mapped[list["KpiReport"]] = relationship("KpiReport", back_populates="company", lazy="select")  # noqa: F821
     subscriptions: Mapped[list["Subscription"]] = relationship("Subscription", back_populates="company", lazy="select")  # noqa: F821
     saved_queries: Mapped[list["SavedQuery"]] = relationship("SavedQuery", back_populates="company", lazy="select")  # noqa: F821
+    performance_metrics: Mapped[list["ModelPerformanceMetric"]] = relationship(
+        "ModelPerformanceMetric", back_populates="company", lazy="select"
+    )  # noqa: F821
+    feature_snapshots: Mapped[list["FeatureDistributionSnapshot"]] = relationship(
+        "FeatureDistributionSnapshot", back_populates="company", lazy="select"
+    )  # noqa: F821
 
     __table_args__ = (
         Index("idx_company_slug", "slug"),

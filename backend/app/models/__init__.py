@@ -1,4 +1,10 @@
 from app.models.account import Account, AccountType
+from app.models.admin_notification import (
+    AdminNotification,
+    AdminNotificationSeverity,
+    AdminNotificationType,
+)
+from app.models.analyst_label import AnalystGroundTruth
 from app.models.analytics_cache import (
     DailyRevenueSummary,
     KPISummaryCache,
@@ -12,6 +18,11 @@ from app.models.feature_store import MerchantFeatures, UserFeatures, VelocityFea
 from app.models.fraud_alert import AlertSeverity, AlertType, FraudAlert
 from app.models.kpi_report import KpiReport
 from app.models.merchant import Merchant
+from app.models.model_monitoring import (
+    FeatureDistributionSnapshot,
+    ModelPerformanceMetric,
+    PsiStatus,
+)
 from app.models.saved_query import SavedQuery
 from app.models.subscription import (
     PLAN_LIMITS,
@@ -27,6 +38,10 @@ from app.models.user import User, UserRole
 __all__ = [
     "Account",
     "AccountType",
+    "AdminNotification",
+    "AdminNotificationSeverity",
+    "AdminNotificationType",
+    "AnalystGroundTruth",
     "DailyRevenueSummary",
     "AlertSeverity",
     "AuditLog",
@@ -34,16 +49,19 @@ __all__ = [
     "BillingCycle",
     "Category",
     "Company",
+    "FeatureDistributionSnapshot",
     "FraudAlert",
     "KPISummaryCache",
     "KpiReport",
     "MerchantRankingCache",
+    "ModelPerformanceMetric",
     "Merchant",
     "MonthlyCategorySummary",
     "MerchantFeatures",
     "PLAN_LIMITS",
     "PLAN_PRICING",
     "PlanName",
+    "PsiStatus",
     "SavedQuery",
     "Subscription",
     "SubscriptionStatus",

@@ -206,8 +206,17 @@ class FraudDetectionService:
         return []
 
     async def resolve_alert(
-        self, alert_id: int, company_id: int, resolved_by: int, note: str | None = None
+        self,
+        alert_id: int,
+        company_id: int,
+        resolved_by: int,
+        note: str | None = None,
+        *,
+        is_confirmed: bool | None = None,
+        analyst_label: str | None = None,
     ) -> FraudAlert:
+        from app.models.analyst_label import AnalystGroundTruth
+
         alert = await self.fraud_repo.get_by_id(alert_id)
         if not alert or alert.company_id != company_id:
             from app.core.exceptions import NotFoundError
@@ -216,6 +225,10 @@ class FraudDetectionService:
         alert.is_resolved = True
         alert.resolved_by = resolved_by
         alert.resolved_at = datetime.now(timezone.utc)
+        if is_confirmed is not None:
+            alert.is_confirmed = is_confirmed
+        if analyst_label is not None:
+            alert.resolved_by_analyst_label = AnalystGroundTruth(analyst_label)
         if note:
             alert.description = (alert.description or "") + f"\n[Resolution note: {note}]"
         await self.session.flush()

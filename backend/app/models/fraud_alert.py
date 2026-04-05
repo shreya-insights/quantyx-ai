@@ -16,6 +16,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
 from app.db.types import BigIntPK
+from app.models.analyst_label import AnalystGroundTruth
 
 
 class AlertType(str, PyEnum):
@@ -61,6 +62,15 @@ class FraudAlert(Base):
     resolved_at: Mapped[datetime | None] = mapped_column(DateTime)
     rule_metadata: Mapped[str | None] = mapped_column(Text)
     model_version: Mapped[str | None] = mapped_column(String(60))
+    is_confirmed: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
+    resolved_by_analyst_label: Mapped[AnalystGroundTruth | None] = mapped_column(
+        Enum(
+            AnalystGroundTruth,
+            values_callable=lambda x: [e.value for e in x],
+            name="analyst_ground_truth",
+        ),
+        nullable=True,
+    )
     created_at: Mapped[datetime] = mapped_column(
         DateTime, server_default=func.now(), nullable=False
     )
