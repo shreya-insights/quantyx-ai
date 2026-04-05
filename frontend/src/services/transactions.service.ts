@@ -6,6 +6,7 @@ import type {
   PaginatedResponse,
   Transaction,
   TransactionFraudStatus,
+  TransactionType,
 } from "@/types/api.types";
 
 export interface TransactionFilters {
@@ -18,6 +19,17 @@ export interface TransactionFilters {
   account_id?: number;
   min_amount?: number;
   max_amount?: number;
+}
+
+export interface CreateTransactionPayload {
+  account_id: number;
+  merchant_id?: number;
+  category_id?: number;
+  amount: number;
+  currency?: string;
+  transaction_type: TransactionType;
+  description?: string;
+  transaction_date?: string;
 }
 
 export const transactionsService = {
@@ -44,10 +56,18 @@ export const transactionsService = {
 
   listMerchants: () => api.get<Merchant[]>("/merchants").then((r) => r.data),
 
+  create: (payload: CreateTransactionPayload) =>
+    api.post<Transaction>("/transactions", payload).then((r) => r.data),
+
   getFraudStatus: (transactionId: number, jobId: string | null) =>
     api
       .get<TransactionFraudStatus>(`/transactions/${transactionId}/fraud-status`, {
         params: jobId ? { job_id: jobId } : {},
       })
+      .then((r) => r.data),
+
+  flagMerchant: (merchantId: number) =>
+    api
+      .post<Merchant>(`/merchants/${merchantId}/flag`)
       .then((r) => r.data),
 };
