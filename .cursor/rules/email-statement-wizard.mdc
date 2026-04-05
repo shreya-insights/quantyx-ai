@@ -1,0 +1,30 @@
+---
+alwaysApply: true
+---
+
+## STATE MANAGEMENT RULES (Feature A)
+# NEVER put API response data in Zustand — TanStack Query cache only
+# queryKey arrays in useQuery MUST match queryClient.invalidateQueries exactly
+# All Zustand stores use immer middleware — no spread operators in set()
+# useMutation retry: 0 always — mutations are not idempotent
+# select() in useQuery transforms data once — components receive clean types
+# placeholderData: keepPreviousData on all paginated/filtered queries
+
+
+## ANIMATION RULES (Feature B)
+# Framer Motion: ONLY animate transform and opacity — never width/height/layout
+# AnimatePresence must have mode="wait" and initial={false} always
+# motion.div key prop must change when animated content changes
+# useReducedMotion() MUST be checked in all animated components
+# Lottie loop=false for success/completion animations
+# All transition durations between 0.25s and 0.5s — never slower
+
+
+## EMAIL / INVITATION RULES (Feature C)
+# Raw invite tokens NEVER stored in DB — SHA-256 hash only
+# Raw tokens NEVER appear in structlog calls (security)
+# Email sending ALWAYS via Celery task — HTTP endpoint never calls SMTP directly
+# HTML email templates use table layout only — no flex, no grid (Outlook)
+# Jinja2 autoescape ALWAYS enabled for email templates
+# resend() MUST revoke old token before issuing new token
+# validate token endpoint is public but has rate limiting
