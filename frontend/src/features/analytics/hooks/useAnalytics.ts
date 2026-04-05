@@ -40,3 +40,27 @@ export function useSpendingByCategory(days = 30) {
     staleTime: 10 * 60 * 1000,
   });
 }
+
+export function useCohortRetentionGrid() {
+  return useQuery({
+    queryKey: ["warehouse-cohort-retention"],
+    queryFn: () => analyticsService.getCohortRetentionGrid(),
+    staleTime: 60 * 60 * 1000,
+  });
+}
+
+export function useLTVSegments() {
+  return useQuery({
+    queryKey: ["warehouse-ltv-segments"],
+    queryFn: () => analyticsService.getLTVSegments(),
+    staleTime: 60 * 60 * 1000,
+  });
+}
+
+export function useWarehouseHeatmap() {
+  return useQuery({
+    queryKey: ["warehouse-heatmap"],
+    queryFn: () => analyticsService.getWarehouseHeatmap(),
+    staleTime: 60 * 60 * 1000,
+  });
+}

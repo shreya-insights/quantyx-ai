@@ -8,6 +8,8 @@ interface AuthState {
   refreshToken: string | null;
   isAuthenticated: boolean;
   login: (tokens: TokenResponse, user: User) => void;
+  /** Update tokens after /auth/refresh without replacing user (WebSocket, etc.). */
+  setTokens: (tokens: TokenResponse) => void;
   logout: () => void;
   setUser: (user: User) => void;
 }
@@ -28,6 +30,15 @@ export const useAuthStore = create<AuthState>()(
           accessToken: tokens.access_token,
           refreshToken: tokens.refresh_token,
           isAuthenticated: true,
+        });
+      },
+
+      setTokens: (tokens) => {
+        localStorage.setItem("access_token", tokens.access_token);
+        localStorage.setItem("refresh_token", tokens.refresh_token);
+        set({
+          accessToken: tokens.access_token,
+          refreshToken: tokens.refresh_token,
         });
       },
 

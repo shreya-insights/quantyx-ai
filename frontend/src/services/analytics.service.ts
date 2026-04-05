@@ -1,7 +1,10 @@
 import { api } from "@/lib/axios";
 import type {
   CohortResponse,
+  CohortRetentionGridResponse,
+  HeatmapResponse,
   KpiSummary,
+  LTVSegmentsResponse,
   MerchantRankingResponse,
   RFMResponse,
   RevenueTrendResponse,
@@ -52,4 +55,13 @@ export const analyticsService = {
     api
       .get<TransactionFrequency[]>("/analytics/transaction-heatmap", { params: { days } })
       .then((r) => r.data),
+
+  getCohortRetentionGrid: () =>
+    api.get<CohortRetentionGridResponse>("/analytics/cohort-retention").then((r) => r.data),
+
+  getLTVSegments: () =>
+    api.get<LTVSegmentsResponse>("/analytics/ltv-segments").then((r) => r.data),
+
+  getWarehouseHeatmap: () =>
+    api.get<HeatmapResponse>("/analytics/heatmap").then((r) => r.data),
 };

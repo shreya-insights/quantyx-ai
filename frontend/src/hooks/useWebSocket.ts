@@ -11,7 +11,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { getWsOrigin } from "@/lib/apiBase";
+import { authService } from "@/services/auth.service";
 import { useAuthStore } from "@/stores/auth.store";
+import { isAccessTokenExpiredOrNear } from "@/utils/jwtExpiry";
 import type {
   WsConnectionStatus,
   WsEvent,
@@ -32,7 +34,7 @@ export interface UseWebSocketReturn {
 }
 
 export function useWebSocket(companyId: number | null): UseWebSocketReturn {
-  const { accessToken } = useAuthStore();
+  const { accessToken, refreshToken } = useAuthStore();
 
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -41,8 +43,10 @@ export function useWebSocket(companyId: number | null): UseWebSocketReturn {
 
   const companyIdRef = useRef(companyId);
   const accessTokenRef = useRef(accessToken);
+  const refreshTokenRef = useRef(refreshToken);
   companyIdRef.current = companyId;
   accessTokenRef.current = accessToken;
+  refreshTokenRef.current = refreshToken;
 
   const [connectionStatus, setConnectionStatus] =
     useState<WsConnectionStatus>("connecting");
@@ -55,58 +59,77 @@ export function useWebSocket(companyId: number | null): UseWebSocketReturn {
   const [disconnectedSince, setDisconnectedSince] = useState<number | null>(null);
 
   const connect = useCallback(() => {
-    const cid = companyIdRef.current;
-    const token = accessTokenRef.current;
-    if (!cid || !token || !mountedRef.current) return;
+    const run = async () => {
+      const cid = companyIdRef.current;
+      let token = accessTokenRef.current;
+      const rt = refreshTokenRef.current;
+      if (!cid || !token || !mountedRef.current) return;
 
-    const url = `${getWsOrigin()}/api/v1/ws/company/${cid}?token=${encodeURIComponent(token)}`;
-    const ws = new WebSocket(url);
-    wsRef.current = ws;
-
-    setConnectionStatus(attemptRef.current === 0 ? "connecting" : "reconnecting");
-
-    ws.onopen = () => {
-      if (!mountedRef.current || wsRef.current !== ws) {
-        ws.close();
-        return;
+      if (isAccessTokenExpiredOrNear(token) && rt) {
+        try {
+          const refreshed = await authService.refresh(rt);
+          useAuthStore.getState().setTokens(refreshed);
+          token = refreshed.access_token;
+          accessTokenRef.current = token;
+          refreshTokenRef.current = refreshed.refresh_token;
+        } catch {
+          /* Fall through: handshake will fail; user may need to log in again */
+        }
       }
-      attemptRef.current = 0;
-      setConnectionStatus("connected");
-      setDisconnectedSince(null);
+
+      if (!mountedRef.current || !token) return;
+
+      const url = `${getWsOrigin()}/api/v1/ws/company/${cid}?token=${encodeURIComponent(token)}`;
+      const ws = new WebSocket(url);
+      wsRef.current = ws;
+
+      setConnectionStatus(attemptRef.current === 0 ? "connecting" : "reconnecting");
+
+      ws.onopen = () => {
+        if (!mountedRef.current || wsRef.current !== ws) {
+          ws.close();
+          return;
+        }
+        attemptRef.current = 0;
+        setConnectionStatus("connected");
+        setDisconnectedSince(null);
+      };
+
+      ws.onmessage = ({ data }: MessageEvent) => {
+        if (!mountedRef.current || wsRef.current !== ws) return;
+        try {
+          const msg = JSON.parse(data as string) as WsEvent;
+          if (msg.type === "ping") return;
+
+          setEvents((prev) => {
+            const next = [msg, ...prev];
+            return next.length > MAX_EVENTS ? next.slice(0, MAX_EVENTS) : next;
+          });
+
+          if (msg.type === "fraud_alert") setLastFraudAlert(msg);
+          if (msg.type === "transaction") setLastTransaction(msg);
+        } catch {
+          // Malformed frame: discard silently
+        }
+      };
+
+      ws.onclose = () => {
+        if (!mountedRef.current || wsRef.current !== ws) return;
+
+        setConnectionStatus("reconnecting");
+        setDisconnectedSince((prev) => prev ?? Date.now());
+
+        const delay =
+          RECONNECT_DELAYS[Math.min(attemptRef.current, RECONNECT_DELAYS.length - 1)];
+        attemptRef.current += 1;
+
+        reconnectTimerRef.current = setTimeout(connect, delay);
+      };
+
+      ws.onerror = () => undefined;
     };
 
-    ws.onmessage = ({ data }: MessageEvent) => {
-      if (!mountedRef.current || wsRef.current !== ws) return;
-      try {
-        const msg = JSON.parse(data as string) as WsEvent;
-        if (msg.type === "ping") return;
-
-        setEvents((prev) => {
-          const next = [msg, ...prev];
-          return next.length > MAX_EVENTS ? next.slice(0, MAX_EVENTS) : next;
-        });
-
-        if (msg.type === "fraud_alert") setLastFraudAlert(msg);
-        if (msg.type === "transaction") setLastTransaction(msg);
-      } catch {
-        // Malformed frame: discard silently
-      }
-    };
-
-    ws.onclose = () => {
-      if (!mountedRef.current || wsRef.current !== ws) return;
-
-      setConnectionStatus("reconnecting");
-      setDisconnectedSince((prev) => prev ?? Date.now());
-
-      const delay =
-        RECONNECT_DELAYS[Math.min(attemptRef.current, RECONNECT_DELAYS.length - 1)];
-      attemptRef.current += 1;
-
-      reconnectTimerRef.current = setTimeout(connect, delay);
-    };
-
-    ws.onerror = () => undefined;
+    void run();
   }, []);
 
   useEffect(() => {
@@ -125,7 +148,7 @@ export function useWebSocket(companyId: number | null): UseWebSocketReturn {
         wsRef.current = null;
       }
     };
-  }, [companyId, accessToken, connect]);
+  }, [companyId, accessToken, refreshToken, connect]);
 
   return {
     isConnected: connectionStatus === "connected",
